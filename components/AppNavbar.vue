@@ -8,9 +8,9 @@
         >
       </li>
       <li>
-        <nuxt-link class="px-5 py-2 rounded-lg hover:bg-slate-100" to="/a"
-          >What is teammate?</nuxt-link
-        >
+        <nuxt-link class="px-5 py-2 rounded-lg hover:bg-slate-100" to="/a">{{
+          $t("whatIsTeammate")
+        }}</nuxt-link>
       </li>
       <li>
         <nuxt-link class="px-5 py-2 rounded-lg hover:bg-slate-100" to="/a"
@@ -23,7 +23,7 @@
       <ul class="flex gap-2">
         <li>
           <nuxt-link to="">
-            <Button class="text-xs" variant="outline">Log in</Button>
+            <Button class="text-xs" variant="outline">{{ $t("login") }}</Button>
           </nuxt-link>
         </li>
 
@@ -31,18 +31,24 @@
           <nuxt-link to="a">
             <Button
               class="text-xs bg-sky-700 text-white hover:bg-slate-100 hover:text-inherit"
-              >Sign up</Button
+              >{{ $t("signup") }}</Button
             >
           </nuxt-link>
         </li>
 
         <li>
-          <nuxt-link to="a">
-            <Button
-              class="text-xs bg-sky-700 text-white hover:bg-slate-100 hover:text-inherit"
-              >Post A Jobs</Button
-            >
-          </nuxt-link>
+          <Dialog>
+            <DialogTrigger as-child>
+              <Button
+                class="text-xs bg-sky-700 text-white hover:bg-slate-100 hover:text-inherit"
+                >{{ $t("findATeammate") }}</Button
+              >
+            </DialogTrigger>
+
+            <!--  New Jobs Modal-->
+            <DialogsNewJob />
+            <!--  New Jobs Modal-->
+          </Dialog>
         </li>
       </ul>
     </div>

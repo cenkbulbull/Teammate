@@ -1,11 +1,32 @@
+<script lang="ts" setup>
+const infoUsers: Info = {
+  icon: "mynaui:users",
+  iconBg: "bg-violet-300",
+  text: "Users",
+  count: "1000",
+};
+
+const infoJobs: Info = {
+  icon: "mynaui:briefcase",
+  iconBg: "bg-green-300",
+  text: "Jobs",
+  count: "300",
+};
+
+const infoNewJobs: Info = {
+  icon: "mynaui:bell",
+  iconBg: "bg-sky-700",
+  text: "New Jobs",
+  count: "30",
+};
+</script>
 <template>
   <div class="flex flex-col gap-5 py-16 px-12">
     <div class="text-4xl font-bold">
-      Find your <span class="text-sky-700">new job</span> today
+      {{ $t("findTeammatesForYourTeam") }}
     </div>
     <div class="text-slate-600">
-      Thousands of jobs in the computer, engineering and technology sectors are
-      waiting for you.
+      {{ $t("findTeammatesForYourTeamDescription") }}
     </div>
 
     <div
@@ -16,7 +37,7 @@
         <Input
           id="search"
           type="text"
-          placeholder="What position are you looking for?"
+          :placeholder="$t('whatPosition')"
           class="w-full border-none text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
         />
       </div>
@@ -28,7 +49,7 @@
           <SelectTrigger
             class="text-xs outline-none border-none focus:outline-none focus:ring-0 focus:ring-offset-0"
           >
-            <SelectValue placeholder="Location" />
+            <SelectValue :placeholder="$t('location')" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
@@ -43,33 +64,19 @@
       </div>
 
       <div>
-        <Button class="bg-sky-700 rounded-none text-xs w-full hover:bg-sky-700"
-          >Search job</Button
+        <Button
+          class="bg-sky-700 rounded-none text-xs w-full hover:bg-sky-700"
+          >{{ $t("searchJob") }}</Button
         >
       </div>
     </div>
 
     <div class="grid md:grid-cols-4 sm:grid-cols-2 gap-5">
-      <InfoCountCard
-        icon="mynaui:users"
-        iconBg="bg-violet-300"
-        text="Users"
-        count="1000"
-      />
+      <InfoCountCard :info="infoUsers" />
 
-      <InfoCountCard
-        icon="mynaui:briefcase"
-        iconBg="bg-green-300"
-        text="Jobs"
-        count="300"
-      />
+      <InfoCountCard :info="infoJobs" />
 
-      <InfoCountCard
-        icon="mynaui:bell"
-        iconBg="bg-sky-700"
-        text="New Jobs"
-        count="30"
-      />
+      <InfoCountCard :info="infoNewJobs" />
     </div>
   </div>
 </template>

@@ -1,10 +1,7 @@
 <script lang="ts" setup>
-defineProps({
-  icon: String,
-  iconBg: String,
-  text: String,
-  count: String,
-});
+const props = defineProps<{
+  info: Info;
+}>();
 </script>
 
 <template>
@@ -12,13 +9,13 @@ defineProps({
     <CardContent class="flex gap-3 p-2">
       <div
         class="flex items-center p-3 rounded text-xl text-white"
-        :class="iconBg"
+        :class="info.iconBg"
       >
-        <Icon :name="icon" />
+        <Icon :name="info.icon" />
       </div>
       <div>
-        <p class="text-lg font-bold">{{ count }}</p>
-        <p class="text-xs">{{ text }}</p>
+        <p class="text-lg font-bold">{{ info.count }}</p>
+        <p class="text-xs">{{ info.text }}</p>
       </div>
     </CardContent>
   </Card>
