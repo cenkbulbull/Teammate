@@ -39,6 +39,26 @@ export default defineI18nConfig(() => ({
       goToDetail: "Go to detail",
       logout: "Logout",
       allRequirements: "All Requirements",
+      month: "Month",
+      estimatedJobTime: "Estimated Job Time",
+      location: "Location",
+      locationToWork: "Location To Work",
+      apply: "Apply",
+      findATeammate: "Find a Teammate",
+      findTeammatesForYourTeam: "Find teammates for your team.",
+      findTeammatesForYourTeamDescription:
+        "Find people suitable for your team in the industry you want and start working immediately.",
+      whatPosition: "What position are you looking for?",
+      whatIsTeammate: "What is teammate?",
+      searchJob: "Search Job",
+      create: "Create",
+      title: "Title",
+      jobDescriptionText:
+        "Describe the job you want to work on and let users know why they should apply for that job.",
+      requirements: "Requirements",
+      requirementsText:
+        "Enter the competencies and requirements you are looking for",
+      personWhoShares: "Person who shares",
     },
     fr: {
       welcome: "Bienvenue",
