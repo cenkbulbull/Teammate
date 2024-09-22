@@ -40,8 +40,10 @@
           <Dialog>
             <DialogTrigger as-child>
               <Button
-                class="text-xs bg-sky-700 text-white hover:bg-slate-100 hover:text-inherit"
-                >{{ $t("findATeammate") }}</Button
+                class="text-xs bg-sky-700 text-white hover:bg-slate-100 hover:text-inherit gap-1"
+              >
+                <Icon class="text-xl" name="mynaui:plus-circle" />
+                {{ $t("findATeammate") }}</Button
               >
             </DialogTrigger>
 

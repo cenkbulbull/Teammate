@@ -31,7 +31,7 @@ const props = defineProps<{
           <!-- Job Card Detail Button -->
         </div>
 
-        <div class="flex gap-1">
+        <div class="flex gap-1 flex-wrap">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
