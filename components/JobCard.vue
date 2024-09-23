@@ -20,9 +20,9 @@ const props = defineProps<{
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <DrawerTrigger
-                    ><Icon class="text-xl" name="mynaui:info-circle"
-                  /></DrawerTrigger>
+                  <DrawerTrigger>
+                    <Icon class="text-xl" name="mynaui:info-circle" />
+                  </DrawerTrigger>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>{{ $t("goToDetail") }}</p>
@@ -66,12 +66,12 @@ const props = defineProps<{
             {{ job.description }}
           </div>
 
-          <div>
-            <Button
-              class="bg-sky-700 rounded-none text-xs w-full hover:bg-slate-100 hover:text-inherit rounded"
-              >{{ $t("apply") }}</Button
-            >
-          </div>
+          <!-- apply button -->
+          <Button
+            class="bg-sky-700 rounded-none text-xs hover:bg-slate-100 hover:text-inherit rounded float-right"
+            >{{ $t("apply") }}</Button
+          >
+          <!-- apply button -->
         </div>
       </div>
     </Card>
