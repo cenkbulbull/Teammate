@@ -1,5 +1,5 @@
 <template>
-  <Card class="max-w-lg">
+  <Card>
     <CardHeader class="gap-4">
       <CardTitle class="flex items-center gap-1"
         ><Icon name="mynaui:envelope" />

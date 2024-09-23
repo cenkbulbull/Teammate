@@ -76,7 +76,7 @@ const filterJobTime = (e: Boolean, id: String) => {
 </script>
 
 <template>
-  <Card class="max-w-xs">
+  <Card>
     <CardContent class="flex flex-col mt-3 gap-5">
       <!-- location -->
       <div class="flex flex-col gap-2">
