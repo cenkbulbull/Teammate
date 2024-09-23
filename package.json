@@ -17,6 +17,7 @@
     "@vueuse/core": "^11.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "dropzone": "^6.0.0-beta.2",
     "lucide-vue-next": "^0.441.0",
     "nuxt": "^3.13.0",
     "radix-vue": "^1.9.6",

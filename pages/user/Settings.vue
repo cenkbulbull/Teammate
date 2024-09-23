@@ -43,7 +43,7 @@ const abilities = ref();
             <div class="grid grid-cols-2 gap-4">
               <div class="grid gap-2">
                 <div class="flex items-center">
-                  <Label class="text-xs" for="password">{{
+                  <Label class="text-xs" for="firstname">{{
                     $t("firstName")
                   }}</Label>
                 </div>
@@ -56,7 +56,7 @@ const abilities = ref();
               </div>
               <div class="grid gap-2">
                 <div class="flex items-center">
-                  <Label class="text-xs" for="password">{{
+                  <Label class="text-xs" for="lastname">{{
                     $t("lastName")
                   }}</Label>
                 </div>
@@ -82,16 +82,37 @@ const abilities = ref();
             </div>
 
             <div class="grid gap-2">
-              <Label class="text-xs" for="email">{{ $t("biography") }}</Label>
+              <Label class="text-xs" for="telephone">{{
+                $t("telephone")
+              }}</Label>
+              <Input
+                id="telephone"
+                placeholder="999-999-9999"
+                class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
+              />
+            </div>
+
+            <div class="grid gap-2">
+              <Label class="text-xs" for="email">{{ $t("CV") }}</Label>
+              <DropzoneComponent />
+            </div>
+
+            <div class="grid gap-2">
+              <Label class="text-xs" for="biography">{{
+                $t("biography")
+              }}</Label>
               <Textarea
+                id="biography"
                 class="text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
                 :placeholder="$t('biographyText')"
               />
             </div>
 
             <div class="grid gap-2">
-              <Label class="text-xs" for="email">{{ $t("abilities") }}</Label>
-              <TagsInput v-model="abilities">
+              <Label class="text-xs" for="abilities">{{
+                $t("abilities")
+              }}</Label>
+              <TagsInput id="abilities" v-model="abilities">
                 <TagsInputItem
                   v-for="(ability, index) in abilities"
                   :key="index"

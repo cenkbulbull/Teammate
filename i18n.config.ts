@@ -12,6 +12,7 @@ export default defineI18nConfig(() => ({
       firstName: "Firstname",
       lastName: "Lastname",
       email: "Email",
+      telephone: "Telephone",
       biography: "Biography",
       biographyText: "Write text describing yourself",
       password: "Password",
@@ -53,7 +54,6 @@ export default defineI18nConfig(() => ({
       apply: "Apply",
       delete: "Delete",
       cancel: "Cancel",
-
       deleteMessage: "It is being deleted, are you sure?",
       warning: "Warning",
       findATeammate: "Find a Teammate",
@@ -82,6 +82,7 @@ export default defineI18nConfig(() => ({
       copyAdId: "Copy Ad Id",
       applications: "Applications",
       viewProfile: "View Profile",
+      dragOrSelectFile: "Drag or select file",
     },
     fr: {
       welcome: "Bienvenue",
