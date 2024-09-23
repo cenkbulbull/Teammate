@@ -1,35 +1,67 @@
 <script lang="ts" setup>
+import { useClipboard } from "@vueuse/core";
+
 const props = defineProps<{
   job: Job;
 }>();
+
+const { text, copy, copied, isSupported } = useClipboard();
 </script>
 
 <template>
   <Drawer>
     <Card>
       <div class="flex gap-3 bg-white p-5 rounded">
-        <div class="flex text-4xl bg-green-300 p-3 h-[50%] rounded">
+        <!-- <div class="flex text-4xl bg-green-300 p-3 h-[50%] rounded">
           <Icon class="text-white" name="mynaui:planet" />
-        </div>
+        </div> -->
 
         <div class="flex flex-col gap-2">
           <div class="flex justify-between">
-            <div class="font-bold">{{ job.title }}</div>
+            <div class="font-bold flex items-center justify-center">
+              <div>
+                {{ job.title }}
+              </div>
+              <div class="ms-1 mt-1">
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <Icon
+                        @click="copy(job.id)"
+                        name="mynaui:clipboard"
+                        class="text-xl"
+                      />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{{ $t("copyAdId") }}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+            </div>
 
-            <!-- Job Card Detail Button -->
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <DrawerTrigger>
-                    <Icon class="text-xl" name="mynaui:info-circle" />
-                  </DrawerTrigger>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{{ $t("goToDetail") }}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-            <!-- Job Card Detail Button -->
+            <div class="flex gap-3">
+              <!-- apply button -->
+              <Button class="text-xs rounded">{{ $t("apply") }}</Button>
+              <!-- apply button -->
+              <!-- Job Card Detail Button -->
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <DrawerTrigger>
+                      <Icon
+                        class="text-xl"
+                        name="mynaui:chevron-right-square"
+                      />
+                    </DrawerTrigger>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{{ $t("goToDetail") }}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <!-- Job Card Detail Button -->
+            </div>
           </div>
 
           <div class="flex gap-1 flex-wrap">
@@ -65,13 +97,6 @@ const props = defineProps<{
           <div class="text-xs line-clamp-3">
             {{ job.description }}
           </div>
-
-          <!-- apply button -->
-          <Button
-            class="bg-sky-700 rounded-none text-xs hover:bg-slate-100 hover:text-inherit rounded float-right"
-            >{{ $t("apply") }}</Button
-          >
-          <!-- apply button -->
         </div>
       </div>
     </Card>
