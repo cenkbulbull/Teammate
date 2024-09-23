@@ -30,9 +30,9 @@ const infoNewJobs: Info = {
     </div>
 
     <div
-      class="flex justify-between border border-slate-100 border-solid divide-x"
+      class="flex justify-between border border-slate-100 border-solid divide-x flex-wrap md:flex-nowrap gap-2"
     >
-      <div class="w-full flex items-center">
+      <div class="w-full flex items-center border md:border-none">
         <Icon name="mynaui:search" class="text-xl ms-2" />
         <Input
           id="search"
@@ -42,7 +42,7 @@ const infoNewJobs: Info = {
         />
       </div>
 
-      <div class="w-full flex items-center">
+      <div class="w-full flex items-center border md:border-none">
         <Icon name="mynaui:location" class="text-xl ms-2" />
 
         <Select>
