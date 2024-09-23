@@ -75,7 +75,10 @@ const requirements = ref();
             <TagsInputItemDelete />
           </TagsInputItem>
 
-          <TagsInputInput :placeholder="$t('requirementsText')" />
+          <TagsInputInput
+            :placeholder="$t('requirementsText')"
+            class="text-xs"
+          />
         </TagsInput>
       </div>
     </div>

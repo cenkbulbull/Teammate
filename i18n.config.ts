@@ -51,6 +51,11 @@ export default defineI18nConfig(() => ({
       location: "Location",
       locationToWork: "Location To Work",
       apply: "Apply",
+      delete: "Delete",
+      cancel: "Cancel",
+
+      deleteMessage: "It is being deleted, are you sure?",
+      warning: "Warning",
       findATeammate: "Find a Teammate",
       findTeammatesForYourTeam: "Find teammates for your team.",
       findTeammatesForYourTeamDescription:
@@ -62,6 +67,8 @@ export default defineI18nConfig(() => ({
       title: "Title",
       jobDescriptionText:
         "Describe the job you want to work on and let users know why they should apply for that job.",
+      abilities: "Abilities",
+      abilitiesText: "Enter the skills you have",
       requirements: "Requirements",
       requirementsText:
         "Enter the competencies and requirements you are looking for",
@@ -72,6 +79,9 @@ export default defineI18nConfig(() => ({
       changePasswordText: "Enter your old password and new password",
       updatePersonalInfo: "You can update your personal information here.",
       saveChanges: "Save Changes",
+      copyAdId: "Copy Ad Id",
+      applications: "Applications",
+      viewProfile: "View Profile",
     },
     fr: {
       welcome: "Bienvenue",

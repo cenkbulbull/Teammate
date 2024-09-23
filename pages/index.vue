@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const job: Job = {
+  id: "ac789xc",
   user: "Paylaşan İsim",
   title: "Frontend Developer",
   location: "Remote",

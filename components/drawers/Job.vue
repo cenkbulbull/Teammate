@@ -73,10 +73,8 @@ defineProps<{
     </DrawerHeader>
 
     <DrawerFooter class="flex-row">
-      <Button
-        class="bg-sky-700 rounded-none text-xs w-full hover:bg-slate-100 hover:text-inherit rounded"
-        >{{ $t("apply") }}</Button
-      >
+      <Button class="text-xs">{{ $t("apply") }}</Button>
+
       <DrawerClose>
         <Button class="text-xs" variant="outline"> Cancel </Button>
       </DrawerClose>
