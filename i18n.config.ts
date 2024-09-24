@@ -81,6 +81,7 @@ export default defineI18nConfig(() => ({
       updatePersonalInfo: "You can update your personal information here.",
       saveChanges: "Save Changes",
       copyAdId: "Copy Ad Id",
+      copied: "Copied",
       applications: "Applications",
       viewProfile: "View Profile",
       dragOrSelectFile: "Drag or select file",

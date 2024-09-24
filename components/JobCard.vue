@@ -18,19 +18,23 @@ const { text, copy, copied, isSupported } = useClipboard();
 
         <div class="flex flex-col gap-2">
           <div class="flex justify-between">
-            <div class="font-bold flex items-center justify-center">
+            <div class="font-bold flex items-center justify-center gap-1">
               <div>
                 {{ job.title }}
               </div>
-              <div class="ms-1 mt-1">
+              <div>
                 <TooltipProvider>
                   <Tooltip>
-                    <TooltipTrigger>
+                    <TooltipTrigger class="flex items-center gap-1">
                       <Icon
+                        click="copy(job.id)"
                         @click="copy(job.id)"
                         name="mynaui:clipboard"
                         class="text-xl"
                       />
+                      <div v-if="copied" class="text-green-300 text-xs">
+                        {{ $t("copied") }}
+                      </div>
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>{{ $t("copyAdId") }}</p>
