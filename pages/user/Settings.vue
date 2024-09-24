@@ -7,7 +7,7 @@ const abilities = ref();
 </script>
 
 <template>
-  <div class="bg-slate-50 px-12 py-7 h-[100vh]">
+  <div class="px-12 py-7">
     <Tabs default-value="personal">
       <TabsList class="grid w-full grid-cols-3">
         <TabsTrigger value="personal">
@@ -93,8 +93,27 @@ const abilities = ref();
             </div>
 
             <div class="grid gap-2">
-              <Label class="text-xs" for="email">{{ $t("CV") }}</Label>
-              <DropzoneComponent />
+              <Label class="text-xs">{{ $t("resume") }}</Label>
+              <DropzoneComponent
+                :options="{
+                  acceptedFiles: '.pdf',
+                  maxFiles: 1,
+                  dictDefaultMessage: 'cvDropzoneText',
+                  url: '/api/upload',
+                }"
+              />
+            </div>
+
+            <div class="grid gap-2">
+              <Label class="text-xs">{{ $t("profilePhoto") }}</Label>
+              <DropzoneComponent
+                :options="{
+                  acceptedFiles: 'image/*',
+                  maxFiles: 1,
+                  dictDefaultMessage: 'profilePhotoDropzoneText',
+                  url: '/api/upload',
+                }"
+              />
             </div>
 
             <div class="grid gap-2">

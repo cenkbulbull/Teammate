@@ -13,7 +13,7 @@ const job: Job = {
 
 <template>
   <div
-    class="col-span-1 grid grid-cols-1 gap-4 bg-slate-50 px-12 md:grid-cols-3 lg:grid-cols-4 py-7"
+    class="col-span-1 grid grid-cols-1 gap-4 bg-slate-50 px-4 py-7 md:px-12 md:grid-cols-3 lg:grid-cols-4"
   >
     <div class="grid gap-2 col-span-3 lg:col-span-1">
       <div>
@@ -32,7 +32,7 @@ const job: Job = {
       <Pagination
         class="m-auto"
         v-slot="{ page }"
-        :total="100"
+        :total="40"
         :sibling-count="1"
         show-edges
         :default-page="2"

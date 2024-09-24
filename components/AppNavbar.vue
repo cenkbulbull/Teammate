@@ -3,7 +3,7 @@
     class="flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center py-5 text-xs px-12"
   >
     <nuxt-link to="/"><div class="text-lg">teammate</div></nuxt-link>
-    <ul class="flex gap-1 md:gap-10">
+    <!-- <ul class="flex gap-1 md:gap-10">
       <li>
         <nuxt-link class="px-5 py-2 rounded-lg hover:bg-slate-100" to="/a"
           >Jobs List</nuxt-link
@@ -22,7 +22,7 @@
           >Github</nuxt-link
         >
       </li>
-    </ul>
+    </ul> -->
 
     <div>
       <ul class="flex gap-2">
@@ -66,14 +66,6 @@
           </nuxt-link>
         </li>
 
-        <!-- <li>
-          <nuxt-link to="/user/profile">
-            <Button size="icon" variant="outline">
-              <Icon class="text-xl" name="mynaui:user-circle" />
-            </Button>
-          </nuxt-link>
-        </li> -->
-
         <DropdownMenu>
           <DropdownMenuTrigger as-child>
             <Button size="icon" variant="outline">
@@ -81,15 +73,23 @@
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent class="w-56 mr-12">
-            <DropdownMenuLabel>test@mail.com</DropdownMenuLabel>
+            <DropdownMenuLabel class="flex items-center gap-2">
+              <Avatar class="w-6 h-6">
+                <AvatarImage src="https://github.com/radix-vue.png" />
+                <AvatarFallback>CB</AvatarFallback>
+                <!--src gelmezse isim soyisim ilk harflerini al-->
+              </Avatar>
+              <span>Cenk Bülbül</span>
+            </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem class="flex gap-2">
-                <Icon name="mynaui:user" class="text-xl" />
-                <nuxt-link to="/user/profile">
-                  <span>Profile</span>
-                </nuxt-link>
+              <DropdownMenuItem>
+                <nuxt-link to="/user/profile" class="flex gap-2"
+                  ><Icon name="mynaui:user" class="text-xl" />
+                  <span>Profile</span></nuxt-link
+                >
               </DropdownMenuItem>
+
               <DropdownMenuItem class="flex gap-2">
                 <Icon name="la:cog" class="text-xl" />
                 <nuxt-link to="/user/settings">
