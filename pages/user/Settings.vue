@@ -117,6 +117,15 @@ const abilities = ref();
             </div>
 
             <div class="grid gap-2">
+              <Label class="text-xs" for="job">{{ $t("job") }}</Label>
+              <Input
+                id="job"
+                :placeholder="$t('job')"
+                class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
+              />
+            </div>
+
+            <div class="grid gap-2">
               <Label class="text-xs" for="biography">{{
                 $t("biography")
               }}</Label>

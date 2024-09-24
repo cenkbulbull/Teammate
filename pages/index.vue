@@ -24,10 +24,10 @@ const job: Job = {
       </div>
     </div>
     <div class="grid gap-4 col-span-3">
-      <JobCard :job />
-      <JobCard :job />
-      <JobCard :job />
-      <JobCard :job />
+      <JobCard :job :applyButton="true" />
+      <JobCard :job :applyButton="true" />
+      <JobCard :job :applyButton="true" />
+      <JobCard :job :applyButton="true" />
 
       <Pagination
         class="m-auto"

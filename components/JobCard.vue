@@ -3,6 +3,7 @@ import { useClipboard } from "@vueuse/core";
 
 const props = defineProps<{
   job: Job;
+  applyButton?: boolean;
 }>();
 
 const { text, copy, copied, isSupported } = useClipboard();
@@ -18,7 +19,7 @@ const { text, copy, copied, isSupported } = useClipboard();
 
         <div class="flex flex-col gap-2">
           <div class="flex justify-between">
-            <div class="font-bold flex items-center justify-center gap-1">
+            <div class="font-bold flex justify-center gap-1">
               <div>
                 {{ job.title }}
               </div>
@@ -44,9 +45,12 @@ const { text, copy, copied, isSupported } = useClipboard();
               </div>
             </div>
 
-            <div class="flex gap-3">
+            <div :class="applyButton ? 'flex gap-3' : ''">
               <!-- apply button -->
-              <Button class="text-xs rounded">{{ $t("apply") }}</Button>
+              <Button v-if="applyButton" class="text-xs rounded h-7">{{
+                $t("apply")
+              }}</Button>
+
               <!-- apply button -->
               <!-- Job Card Detail Button -->
               <TooltipProvider>

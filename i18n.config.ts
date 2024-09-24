@@ -63,6 +63,7 @@ export default defineI18nConfig(() => ({
         "Find people suitable for your team in the industry you want and start working immediately.",
       whatPosition: "What position are you looking for?",
       whatIsTeammate: "What is teammate?",
+      job: "Job",
       searchJob: "Search Job",
       create: "Create",
       title: "Title",
@@ -94,6 +95,8 @@ export default defineI18nConfig(() => ({
       pdf: "PDF",
       sendMail: "Send Mail",
       contactInformation: "Contact Information",
+      featured: "Featured",
+      latest: "Latest",
     },
     fr: {
       welcome: "Bienvenue",
