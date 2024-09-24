@@ -4,20 +4,26 @@ import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
 
+const props = defineProps<{
+  options: DropzoneOptions;
+}>();
+
 const dropzoneRef = ref(null);
 
 onMounted(() => {
-  new Dropzone(dropzoneRef.value, {
-    url: "/api/upload", // Dosya yükleme URL'si
+  const dropzone = new Dropzone(dropzoneRef.value, {
+    url: props.options.url,
     autoProcessQueue: true,
-    acceptedFiles: ".pdf",
-    dictDefaultMessage: t("dragOrSelectFile"), // İlk açılışta mesaj gösterme
-    maxFiles: 1,
-    init: function () {
-      this.on("addedfile", function (file) {
-        // Dosya eklendiğinde yapılacak işlemler
-      });
-    },
+    acceptedFiles: props.options.acceptedFiles,
+    dictDefaultMessage: t(props.options.dictDefaultMessage),
+    maxFiles: props.options.maxFiles,
+    init:
+      props.options.init ||
+      function () {
+        this.on("addedfile", function (file) {
+          // Dosya eklendiğinde yapılacak işlemler
+        });
+      },
   });
 });
 </script>
@@ -39,5 +45,6 @@ onMounted(() => {
   min-height: 100px;
   padding: 20px;
   text-align: center;
+  font-size: 12px;
 }
 </style>

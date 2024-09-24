@@ -13,6 +13,7 @@ export default defineI18nConfig(() => ({
       lastName: "Lastname",
       email: "Email",
       telephone: "Telephone",
+      phone: "Phone",
       biography: "Biography",
       biographyText: "Write text describing yourself",
       password: "Password",
@@ -83,6 +84,15 @@ export default defineI18nConfig(() => ({
       applications: "Applications",
       viewProfile: "View Profile",
       dragOrSelectFile: "Drag or select file",
+      cvDropzoneText: "Choose a pdf file for your resume.",
+      profilePhotoDropzoneText:
+        "Choose a file of type image for your profile photo.",
+      resume: "Resume",
+      profilePhoto: "Profile Photo",
+      downloadResume: "Download Resume",
+      pdf: "PDF",
+      sendMail: "Send Mail",
+      contactInformation: "Contact Information",
     },
     fr: {
       welcome: "Bienvenue",
