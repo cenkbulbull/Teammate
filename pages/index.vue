@@ -12,6 +12,19 @@ const job: Job = {
 </script>
 
 <template>
+  <!-- Kullanıcının paylaştığı ilanların gözüktüğü sheet -->
+  <Sheet>
+    <SheetTrigger>
+      <div
+        class="flex p-1 cursor-pointer text-2xl bg-indigo-800 text-white fixed top-[50%] -right-[8px] rounded transition-all hover:-right-[3px]"
+      >
+        <Icon name="mynaui:chevron-left" />
+      </div>
+    </SheetTrigger>
+    <SheetsMyJobs />
+  </Sheet>
+  <!-- Kullanıcının paylaştığı ilanların gözüktüğü sheet -->
+
   <div
     class="col-span-1 grid grid-cols-1 gap-4 bg-slate-50 px-4 py-7 md:px-12 md:grid-cols-3 lg:grid-cols-4"
   >
@@ -24,10 +37,10 @@ const job: Job = {
       </div>
     </div>
     <div class="grid gap-4 col-span-3">
-      <JobCard :job :applyButton="true" />
-      <JobCard :job :applyButton="true" />
-      <JobCard :job :applyButton="true" />
-      <JobCard :job :applyButton="true" />
+      <JobCard :job />
+      <JobCard :job />
+      <JobCard :job />
+      <JobCard :job />
 
       <Pagination
         class="m-auto"

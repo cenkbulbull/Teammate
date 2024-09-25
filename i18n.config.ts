@@ -66,6 +66,7 @@ export default defineI18nConfig(() => ({
       job: "Job",
       searchJob: "Search Job",
       create: "Create",
+      update: "Update",
       title: "Title",
       jobDescriptionText:
         "Describe the job you want to work on and let users know why they should apply for that job.",
@@ -97,6 +98,8 @@ export default defineI18nConfig(() => ({
       contactInformation: "Contact Information",
       featured: "Featured",
       latest: "Latest",
+      myWork: "My Work",
+      applicants: "Applicants",
     },
     fr: {
       welcome: "Bienvenue",
