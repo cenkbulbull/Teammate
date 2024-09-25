@@ -9,6 +9,9 @@ const job: Job = {
     "TIKLANINCA DRAWER AÇ Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scr, when an unknown printer took a galley of type and scr, when an unknown printer took a galley of type and scr, when an unknown printer took a galley of type and scr, when an unknown printer took a galley of type and scr, when an unknown printer took a galley of type and scr, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   requirements: ["Javascript", "İngilizce", "Araştırma", "Takım çalışması"],
 };
+
+const favoritesFilterToggle = ref(false);
+const appliedFilterToggle = ref(false);
 </script>
 
 <template>
@@ -37,10 +40,60 @@ const job: Job = {
       </div>
     </div>
     <div class="grid gap-4 col-span-3">
+      <!-- filters -->
+      <div class="flex gap-4">
+        <div class="w-full flex items-center border bg-white">
+          <Icon name="mynaui:location" class="text-xl ms-2" />
+
+          <Select>
+            <SelectTrigger
+              class="text-xs outline-none border-none focus:outline-none focus:ring-0 focus:ring-offset-0"
+            >
+              <SelectValue :placeholder="$t('sort')" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="newToOld">{{ $t("newToOld") }}</SelectItem>
+                <SelectItem value="oldToNew">{{ $t("oldToNew") }}</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <!-- filter favorites -->
+        <div>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger class="flex items-center gap-1">
+                <Toggle
+                  variant="outline"
+                  v-model:pressed="favoritesFilterToggle"
+                >
+                  <Icon
+                    :name="
+                      favoritesFilterToggle
+                        ? 'material-symbols-light:bookmark'
+                        : 'material-symbols-light:bookmark-outline'
+                    "
+                    class="text-3xl cursor-pointer bg-green-700"
+                /></Toggle>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{{ $t("favoritesOnly") }}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+        <!-- filter favorites -->
+      </div>
+      <!-- filters -->
+
+      <!-- jobs -->
+      <JobCard :job />
+      <JobCard :job :appliedButRemoved="true" />
       <JobCard :job />
       <JobCard :job />
-      <JobCard :job />
-      <JobCard :job />
+      <!-- jobs -->
 
       <Pagination
         class="m-auto"

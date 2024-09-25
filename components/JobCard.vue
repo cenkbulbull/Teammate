@@ -4,14 +4,17 @@ import { useClipboard } from "@vueuse/core";
 const props = defineProps<{
   job: Job;
   myJob?: boolean;
+  appliedButRemoved?: boolean;
 }>();
 
 const { text, copy, copied, isSupported } = useClipboard();
+
+const isFavorite = ref(false);
 </script>
 
 <template>
   <Drawer>
-    <Card :class="myJob ? 'border-none' : ''">
+    <Card :class="[myJob ? 'border-none' : '']">
       <div class="flex gap-3 bg-white p-5 rounded">
         <!-- <div class="flex text-4xl bg-green-300 p-3 h-[50%] rounded">
           <Icon class="text-white" name="mynaui:planet" />
@@ -278,18 +281,20 @@ const { text, copy, copied, isSupported } = useClipboard();
                 </AlertDialog>
               </div>
 
-              <div v-else class="flex gap-2">
+              <div v-else v-if="!appliedButRemoved" class="flex gap-2">
+                <!-- favorite toggle -->
                 <div class="flex">
-                  <Icon
-                    name="material-symbols-light:bookmark-outline"
-                    class="text-2xl cursor-pointer bg-green-700 fill-black"
-                  />
-
-                  <Icon
-                    name="material-symbols-light:bookmark"
-                    class="text-2xl cursor-pointer bg-green-700 fill-black"
-                  />
+                  <Toggle size="sm" v-model:pressed="isFavorite">
+                    <Icon
+                      :name="
+                        isFavorite
+                          ? 'material-symbols-light:bookmark'
+                          : 'material-symbols-light:bookmark-outline'
+                      "
+                      class="text-2xl cursor-pointer bg-green-700"
+                  /></Toggle>
                 </div>
+                <!-- favorite toggle -->
 
                 <!-- Job Card Detail Button -->
                 <TooltipProvider>
@@ -308,6 +313,18 @@ const { text, copy, copied, isSupported } = useClipboard();
                   </Tooltip>
                 </TooltipProvider>
                 <!-- Job Card Detail Button -->
+              </div>
+
+              <div v-if="appliedButRemoved">
+                <Alert
+                  variant="destructive"
+                  class="flex items-center h-9 text-xs"
+                >
+                  <Icon name="mdi:exclamation-thick" />
+                  <AlertTitle class="mt-1">
+                    {{ $t("removed") }}
+                  </AlertTitle>
+                </Alert>
               </div>
             </div>
           </div>
