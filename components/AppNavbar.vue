@@ -58,13 +58,13 @@
           </Dialog>
         </li>
 
-        <li>
+        <!-- <li>
           <nuxt-link to="/user/myprojects">
             <Button size="icon" variant="outline">
               <Icon class="text-xl" name="mynaui:bell" />
             </Button>
           </nuxt-link>
-        </li>
+        </li> -->
 
         <DropdownMenu>
           <DropdownMenuTrigger as-child>

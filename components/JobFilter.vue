@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+const { locale, setLocale, t } = useI18n();
+
 const locations = [
   {
     id: "remote",
@@ -21,38 +23,38 @@ const locations = [
 const dateofposting = [
   {
     id: "alltime",
-    label: "All Time",
+    label: t("allTime"),
   },
   {
     id: "last24hours",
-    label: "Last 24 hours",
+    label: t("last24hours"),
   },
   {
     id: "last7days",
-    label: "Last 7 days",
+    label: t("last7days"),
   },
 ];
 
 const jobTime = [
   {
-    id: "0-1ay",
-    label: "0-1 Ay",
+    id: "0-1",
+    label: "0-1",
   },
   {
-    id: "1-3ay",
-    label: "1-3 Ay",
+    id: "1-3",
+    label: "1-3",
   },
   {
-    id: "3-6ay",
-    label: "3-6 Ay",
+    id: "3-6",
+    label: "3-6",
   },
   {
-    id: "6-12ay",
-    label: "6-12 Ay",
+    id: "6-12",
+    label: "6-12",
   },
   {
-    id: "12ay>",
-    label: "12 Ay >",
+    id: "12>",
+    label: "12 >",
   },
 ];
 
@@ -78,9 +80,25 @@ const filterJobTime = (e: Boolean, id: String) => {
 <template>
   <Card>
     <CardContent class="flex flex-col mt-3 gap-5">
+      <!-- post type -->
+      <div class="flex flex-col gap-2">
+        <p class="font-bold text-xs">{{ $t("postType") }}</p>
+        <RadioGroup default-value="all">
+          <div class="flex items-center space-x-2">
+            <RadioGroupItem id="all" value="all" selected />
+            <Label class="text-xs" for="all">{{ $t("all") }}</Label>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <RadioGroupItem id="applied" value="applied" />
+            <Label class="text-xs" for="applied">{{ $t("appliedOnly") }}</Label>
+          </div>
+        </RadioGroup>
+      </div>
+
       <!-- location -->
       <div class="flex flex-col gap-2">
-        <p class="font-bold text-xs">Location</p>
+        <p class="font-bold text-xs">{{ $t("location") }}</p>
         <div
           v-for="location in locations"
           :key="location.id"
@@ -100,7 +118,7 @@ const filterJobTime = (e: Boolean, id: String) => {
 
       <!-- posting time -->
       <div class="flex flex-col gap-2">
-        <p class="font-bold text-xs">Date of Posting</p>
+        <p class="font-bold text-xs">{{ $t("dateOfPosting") }}</p>
         <RadioGroup v-model="filter.postingTime">
           <div
             v-for="date in dateofposting"
@@ -114,7 +132,7 @@ const filterJobTime = (e: Boolean, id: String) => {
 
       <!-- job time -->
       <div class="flex flex-col gap-2">
-        <p class="font-bold text-xs">Job Time</p>
+        <p class="font-bold text-xs">{{ $t("estimatedJobTime") }}</p>
         <div v-for="time in jobTime" :key="time.id" class="flex gap-2">
           <Checkbox
             :id="time.id"
@@ -124,10 +142,12 @@ const filterJobTime = (e: Boolean, id: String) => {
               }
             "
           />
-          <Label class="text-xs" :for="time.id">{{ time.label }}</Label>
+          <Label class="text-xs" :for="time.id"
+            >{{ time.label }} {{ $t("month") }}</Label
+          >
         </div>
       </div>
-      <Button @click="console.log(filter)">Filter</Button>
+      <Button @click="console.log(filter)">{{ $t("filter") }}</Button>
     </CardContent>
   </Card>
 </template>

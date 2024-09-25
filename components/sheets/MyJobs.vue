@@ -16,7 +16,7 @@ const job: Job = {
     <SheetHeader>
       <SheetTitle class="flex items-center gap-1 px-4"
         ><Icon name="mynaui:briefcase" class="text-xl" />
-        {{ $t("myWork") }}</SheetTitle
+        {{ $t("myWorks") }}</SheetTitle
       >
       <div class="flex flex-col gap-3 overflow-auto max-h-[90vh]">
         <JobCard :job :myJob="true" />
