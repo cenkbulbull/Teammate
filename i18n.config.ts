@@ -116,6 +116,7 @@ export default defineI18nConfig(() => ({
       subscribe: "Subscribe",
       emailMeForJobs: "Email me for jobs",
       subscribeText: "Subscribe, don't miss new projects.",
+      openProjects: "Open Projects",
     },
     fr: {
       welcome: "Bienvenue",
