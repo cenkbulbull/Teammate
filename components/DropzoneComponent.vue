@@ -40,7 +40,7 @@ onMounted(() => {
 
 <style scoped>
 .dropzone {
-  border: 2px dashed #007bff;
+  border: 2px dashed #3730a3;
   border-radius: 5px;
   min-height: 100px;
   padding: 20px;

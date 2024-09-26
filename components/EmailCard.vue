@@ -16,10 +16,7 @@
         class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
     /></CardContent>
     <CardFooter>
-      <Button
-        class="text-xs bg-sky-700 text-white hover:bg-slate-100 hover:text-inherit w-full"
-        >{{ $t("subscribe") }}</Button
-      >
+      <Button class="text-xs w-full">{{ $t("subscribe") }}</Button>
     </CardFooter>
   </Card>
 </template>

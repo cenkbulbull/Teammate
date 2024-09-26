@@ -147,7 +147,9 @@ const filterJobTime = (e: Boolean, id: String) => {
           >
         </div>
       </div>
-      <Button @click="console.log(filter)">{{ $t("filter") }}</Button>
+      <Button @click="console.log(filter)" class="text-xs">{{
+        $t("filter")
+      }}</Button>
     </CardContent>
   </Card>
 </template>

@@ -13,7 +13,7 @@ defineProps<{
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
-              <Badge class="gap-1"
+              <Badge class="gap-1 font-normal" variant="secondary"
                 ><Icon name="mynaui:user" />{{ job.user }}</Badge
               >
             </TooltipTrigger>
@@ -26,7 +26,7 @@ defineProps<{
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
-              <Badge class="gap-1"
+              <Badge class="gap-1 font-normal" variant="secondary"
                 ><Icon name="mynaui:location" />{{ job.location }}</Badge
               >
             </TooltipTrigger>
@@ -39,7 +39,7 @@ defineProps<{
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
-              <Badge class="gap-1"
+              <Badge class="gap-1 font-normal" variant="secondary"
                 ><Icon name="mynaui:clock-three" />{{
                   job.estimatedJobTime + " " + $t("month")
                 }}
@@ -54,7 +54,7 @@ defineProps<{
         <TooltipProvider v-for="requirement in job.requirements">
           <Tooltip>
             <TooltipTrigger>
-              <Badge class="gap-1"
+              <Badge class="gap-1 font-normal"
                 ><Icon name="mynaui:star" />{{ requirement }}
               </Badge>
             </TooltipTrigger>
@@ -66,7 +66,7 @@ defineProps<{
       </div>
 
       <DrawerDescription
-        class="overflow-auto max-h-48 flex flex-col gap-2 text-xs"
+        class="overflow-auto max-h-48 flex flex-col gap-2 text-xs leading-6"
       >
         {{ job.description }}
       </DrawerDescription>

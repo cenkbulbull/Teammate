@@ -13,6 +13,8 @@ export default defineNuxtConfig({
         families: {
           GMSans: true,
           Poppins: true,
+          "Open Sans": true,
+          Montserrat: true,
         },
       },
     ],

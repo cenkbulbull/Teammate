@@ -64,10 +64,9 @@ const infoNewJobs: Info = {
       </div>
 
       <div>
-        <Button
-          class="bg-sky-700 rounded-none text-xs w-full hover:bg-sky-700"
-          >{{ $t("searchJob") }}</Button
-        >
+        <Button class="rounded-none text-xs w-full">{{
+          $t("searchJob")
+        }}</Button>
       </div>
     </div>
 

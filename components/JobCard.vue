@@ -130,7 +130,7 @@ const isFavorite = ref(false);
                           ? 'material-symbols-light:bookmark'
                           : 'material-symbols-light:bookmark-outline'
                       "
-                      class="text-2xl cursor-pointer bg-green-700"
+                      class="text-2xl cursor-pointer bg-green-300"
                   /></Toggle>
                 </div>
                 <!-- favorite toggle -->
@@ -139,7 +139,7 @@ const isFavorite = ref(false);
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger>
-                      <DrawerTrigger class="flex items-center">
+                      <DrawerTrigger class="flex items-center text-primary">
                         <Icon
                           class="text-xl"
                           name="mynaui:chevron-right-square"
@@ -172,7 +172,7 @@ const isFavorite = ref(false);
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Badge class="gap-1"
+                  <Badge class="gap-1 font-normal" variant="secondary"
                     ><Icon name="mynaui:location" />{{ job.location }}</Badge
                   >
                 </TooltipTrigger>
@@ -185,7 +185,7 @@ const isFavorite = ref(false);
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Badge class="gap-1"
+                  <Badge class="gap-1 font-normal" variant="secondary"
                     ><Icon name="mynaui:clock-three" />{{
                       job.estimatedJobTime + " " + $t("month")
                     }}
@@ -198,7 +198,7 @@ const isFavorite = ref(false);
             </TooltipProvider>
           </div>
 
-          <div class="text-xs line-clamp-3">
+          <div class="text-xs line-clamp-3 leading-6">
             {{ job.description }}
           </div>
         </div>

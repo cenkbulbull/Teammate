@@ -1,9 +1,11 @@
 * {
-  font-family: "Poppins", sans-serif;
+  //font-family: "Poppins", sans-serif;
+  //font-family: "Open Sans", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -11,8 +13,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0369a1;
-  border-radius: 6px;
+  background: rgb(55 48 163);
 }
 
 ::-webkit-scrollbar-thumb:hover {

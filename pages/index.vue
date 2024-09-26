@@ -31,7 +31,7 @@ const appliedFilterToggle = ref(false);
   <div
     class="col-span-1 grid grid-cols-1 gap-4 bg-slate-50 px-4 py-7 md:px-12 md:grid-cols-3 lg:grid-cols-4"
   >
-    <div class="grid gap-2 col-span-3 lg:col-span-1">
+    <div class="flex flex-col gap-3 gap-2 col-span-3 lg:col-span-1">
       <div>
         <JobFilter />
       </div>
@@ -75,7 +75,7 @@ const appliedFilterToggle = ref(false);
                         ? 'material-symbols-light:bookmark'
                         : 'material-symbols-light:bookmark-outline'
                     "
-                    class="text-3xl cursor-pointer bg-green-700"
+                    class="text-3xl cursor-pointer bg-green-300"
                 /></Toggle>
               </TooltipTrigger>
               <TooltipContent>

@@ -71,7 +71,12 @@ const job: Job = {
             {{ $t("abilities") }}
           </div>
           <div class="flex flex-wrap gap-2">
-            <Badge v-for="(i, index) in 24">Html {{ index }}</Badge>
+            <Badge
+              variant="secondary"
+              class="py-2 px-6"
+              v-for="(i, index) in 24"
+              >Html {{ index }}</Badge
+            >
           </div>
         </div>
       </div>
@@ -143,7 +148,7 @@ const job: Job = {
               <Button
                 size="icon"
                 variant="outline"
-                class="hover:bg-sky-700 hover:text-white"
+                class="hover:bg-indigo-800 hover:text-white"
                 ><Icon name="mynaui:globe" class="text-2xl" />
               </Button>
             </a>
@@ -151,7 +156,7 @@ const job: Job = {
               <Button
                 size="icon"
                 variant="outline"
-                class="hover:bg-sky-700 hover:text-white"
+                class="hover:bg-indigo-800 hover:text-white"
                 ><Icon name="mynaui:brand-github" class="text-2xl" />
               </Button>
             </a>
@@ -159,7 +164,7 @@ const job: Job = {
               <Button
                 size="icon"
                 variant="outline"
-                class="hover:bg-sky-700 hover:text-white"
+                class="hover:bg-indigo-800 hover:text-white"
                 ><Icon name="mynaui:brand-linkedin" class="text-2xl" />
               </Button>
             </a>

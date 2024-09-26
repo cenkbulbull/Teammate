@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center py-5 text-xs px-12"
+    class="flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center py-5 px-12"
   >
     <nuxt-link to="/"><div class="text-lg">teammate</div></nuxt-link>
     <!-- <ul class="flex gap-1 md:gap-10">
@@ -34,19 +34,14 @@
 
         <li>
           <nuxt-link to="/auth/signup">
-            <Button
-              class="text-xs bg-sky-700 text-white hover:bg-slate-100 hover:text-inherit"
-              >{{ $t("signup") }}</Button
-            >
+            <Button class="text-xs">{{ $t("signup") }}</Button>
           </nuxt-link>
         </li>
 
         <li>
           <Dialog>
             <DialogTrigger as-child>
-              <Button
-                class="text-xs bg-sky-700 text-white hover:bg-slate-100 hover:text-inherit gap-1"
-              >
+              <Button class="text-xs gap-1">
                 <Icon class="text-xl" name="mynaui:plus-circle" />
                 {{ $t("findATeammate") }}</Button
               >
