@@ -156,6 +156,16 @@ const abilities = ref();
                 />
               </TagsInput>
             </div>
+
+            <div class="grid gap-2">
+              <Label class="text-xs">{{ $t("emailNotifications") }}</Label>
+              <div class="flex items-center gap-2">
+                <Switch id="email-switch" />
+                <Label for="email-switch" class="text-xs">{{
+                  $t("turnOnEmailNotifications")
+                }}</Label>
+              </div>
+            </div>
           </CardContent>
           <CardFooter>
             <Button class="text-xs">{{ $t("saveChanges") }}</Button>
@@ -241,8 +251,22 @@ const abilities = ref();
               </div>
             </div>
           </CardContent>
-          <CardFooter>
+          <CardFooter class="flex gap-3 flex-wrap">
             <Button class="text-xs">{{ $t("saveChanges") }}</Button>
+
+            <Dialog>
+              <DialogTrigger as-child>
+                <Button
+                  variant="outline"
+                  class="text-xs bg-red-600 text-white"
+                  >{{ $t("deleteYourAccount") }}</Button
+                >
+              </DialogTrigger>
+
+              <!--  New Jobs Modal-->
+              <DialogsDelete />
+              <!--  New Jobs Modal-->
+            </Dialog>
           </CardFooter>
         </Card>
       </TabsContent>

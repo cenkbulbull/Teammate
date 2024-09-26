@@ -83,6 +83,7 @@ export default defineI18nConfig(() => ({
       changePasswordText: "Enter your old password and new password",
       updatePersonalInfo: "You can update your personal information here.",
       saveChanges: "Save Changes",
+      deleteYourAccount: "Delete your account",
       copyAdId: "Copy Ad Id",
       copied: "Copied",
       applications: "Applications",
@@ -117,6 +118,8 @@ export default defineI18nConfig(() => ({
       emailMeForJobs: "Email me for jobs",
       subscribeText: "Subscribe, don't miss new projects.",
       openProjects: "Open Projects",
+      emailNotifications: "Email Notifications",
+      turnOnEmailNotifications: "Turn on email notifications",
     },
     fr: {
       welcome: "Bienvenue",
