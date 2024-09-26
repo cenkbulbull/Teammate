@@ -22,7 +22,7 @@ const isFavorite = ref(false);
 
         <div class="flex flex-col gap-2">
           <div class="flex items-center justify-between">
-            <div class="font-bold flex justify-center gap-1">
+            <div class="font-bold text-sm flex justify-center gap-1">
               <div>
                 {{ job.title }}
               </div>
@@ -54,8 +54,8 @@ const isFavorite = ref(false);
                 <!-- applicatans sheet -->
                 <Sheet>
                   <SheetTrigger>
-                    <Button size="icon" variant="outline">
-                      <Icon name="mynaui:eye" class="text-xl" />
+                    <Button size="icon" variant="outline" class="w-8 h-8">
+                      <Icon name="mynaui:eye" class="text-sm" />
                     </Button>
                   </SheetTrigger>
 
@@ -67,10 +67,10 @@ const isFavorite = ref(false);
                         }}</SheetTitle
                       >
                       <div
-                        class="flex flex-col gap-3 p-5 divide-y overflow-auto max-h-[90vh]"
+                        class="flex flex-col gap-3 px-5 py-2 divide-y overflow-auto max-h-[88vh]"
                       >
                         <!-- users -->
-                        <div class="flex justify-between pt-3">
+                        <div v-for="i in 15" class="flex justify-between pt-3">
                           <div class="flex items-center gap-2">
                             <Avatar class="w-8 h-8">
                               <AvatarImage
@@ -83,173 +83,15 @@ const isFavorite = ref(false);
                           </div>
 
                           <div>
-                            <Button size="icon" variant="outline"
-                              ><Icon name="mynaui:eye" class="text-xl"
+                            <Button
+                              size="icon"
+                              variant="outline"
+                              class="w-8 h-8"
+                              ><Icon name="mynaui:eye" class="text-sm"
                             /></Button>
                           </div>
                         </div>
-                        <div class="flex justify-between pt-3">
-                          <div class="flex items-center gap-2">
-                            <Avatar class="w-8 h-8">
-                              <AvatarImage
-                                src="https://github.com/radix-vue.png"
-                              />
-                              <AvatarFallback>CB</AvatarFallback>
-                              <!--src gelmezse isim soyisim ilk harflerini al-->
-                            </Avatar>
-                            <p class="text-xs">Name Surname</p>
-                          </div>
 
-                          <div>
-                            <Button size="icon" variant="outline"
-                              ><Icon name="mynaui:eye" class="text-xl"
-                            /></Button>
-                          </div>
-                        </div>
-                        <div class="flex justify-between pt-3">
-                          <div class="flex items-center gap-2">
-                            <Avatar class="w-8 h-8">
-                              <AvatarImage
-                                src="https://github.com/radix-vue.png"
-                              />
-                              <AvatarFallback>CB</AvatarFallback>
-                              <!--src gelmezse isim soyisim ilk harflerini al-->
-                            </Avatar>
-                            <p class="text-xs">Name Surname</p>
-                          </div>
-
-                          <div>
-                            <Button size="icon" variant="outline"
-                              ><Icon name="mynaui:eye" class="text-xl"
-                            /></Button>
-                          </div>
-                        </div>
-                        <div class="flex justify-between pt-3">
-                          <div class="flex items-center gap-2">
-                            <Avatar class="w-8 h-8">
-                              <AvatarImage
-                                src="https://github.com/radix-vue.png"
-                              />
-                              <AvatarFallback>CB</AvatarFallback>
-                              <!--src gelmezse isim soyisim ilk harflerini al-->
-                            </Avatar>
-                            <p class="text-xs">Name Surname</p>
-                          </div>
-
-                          <div>
-                            <Button size="icon" variant="outline"
-                              ><Icon name="mynaui:eye" class="text-xl"
-                            /></Button>
-                          </div>
-                        </div>
-                        <div class="flex justify-between pt-3">
-                          <div class="flex items-center gap-2">
-                            <Avatar class="w-8 h-8">
-                              <AvatarImage
-                                src="https://github.com/radix-vue.png"
-                              />
-                              <AvatarFallback>CB</AvatarFallback>
-                              <!--src gelmezse isim soyisim ilk harflerini al-->
-                            </Avatar>
-                            <p class="text-xs">Name Surname</p>
-                          </div>
-
-                          <div>
-                            <Button size="icon" variant="outline"
-                              ><Icon name="mynaui:eye" class="text-xl"
-                            /></Button>
-                          </div>
-                        </div>
-                        <div class="flex justify-between pt-3">
-                          <div class="flex items-center gap-2">
-                            <Avatar class="w-8 h-8">
-                              <AvatarImage
-                                src="https://github.com/radix-vue.png"
-                              />
-                              <AvatarFallback>CB</AvatarFallback>
-                              <!--src gelmezse isim soyisim ilk harflerini al-->
-                            </Avatar>
-                            <p class="text-xs">Name Surname</p>
-                          </div>
-
-                          <div>
-                            <Button size="icon" variant="outline"
-                              ><Icon name="mynaui:eye" class="text-xl"
-                            /></Button>
-                          </div>
-                        </div>
-                        <div class="flex justify-between pt-3">
-                          <div class="flex items-center gap-2">
-                            <Avatar class="w-8 h-8">
-                              <AvatarImage
-                                src="https://github.com/radix-vue.png"
-                              />
-                              <AvatarFallback>CB</AvatarFallback>
-                              <!--src gelmezse isim soyisim ilk harflerini al-->
-                            </Avatar>
-                            <p class="text-xs">Name Surname</p>
-                          </div>
-
-                          <div>
-                            <Button size="icon" variant="outline"
-                              ><Icon name="mynaui:eye" class="text-xl"
-                            /></Button>
-                          </div>
-                        </div>
-                        <div class="flex justify-between pt-3">
-                          <div class="flex items-center gap-2">
-                            <Avatar class="w-8 h-8">
-                              <AvatarImage
-                                src="https://github.com/radix-vue.png"
-                              />
-                              <AvatarFallback>CB</AvatarFallback>
-                              <!--src gelmezse isim soyisim ilk harflerini al-->
-                            </Avatar>
-                            <p class="text-xs">Name Surname</p>
-                          </div>
-
-                          <div>
-                            <Button size="icon" variant="outline"
-                              ><Icon name="mynaui:eye" class="text-xl"
-                            /></Button>
-                          </div>
-                        </div>
-                        <div class="flex justify-between pt-3">
-                          <div class="flex items-center gap-2">
-                            <Avatar class="w-8 h-8">
-                              <AvatarImage
-                                src="https://github.com/radix-vue.png"
-                              />
-                              <AvatarFallback>CB</AvatarFallback>
-                              <!--src gelmezse isim soyisim ilk harflerini al-->
-                            </Avatar>
-                            <p class="text-xs">Name Surname</p>
-                          </div>
-
-                          <div>
-                            <Button size="icon" variant="outline"
-                              ><Icon name="mynaui:eye" class="text-xl"
-                            /></Button>
-                          </div>
-                        </div>
-                        <div class="flex justify-between pt-3">
-                          <div class="flex items-center gap-2">
-                            <Avatar class="w-8 h-8">
-                              <AvatarImage
-                                src="https://github.com/radix-vue.png"
-                              />
-                              <AvatarFallback>CB</AvatarFallback>
-                              <!--src gelmezse isim soyisim ilk harflerini al-->
-                            </Avatar>
-                            <p class="text-xs">Name Surname</p>
-                          </div>
-
-                          <div>
-                            <Button size="icon" variant="outline"
-                              ><Icon name="mynaui:eye" class="text-xl"
-                            /></Button>
-                          </div>
-                        </div>
                         <!-- users -->
                       </div>
                     </SheetHeader>
@@ -259,8 +101,8 @@ const isFavorite = ref(false);
 
                 <Dialog>
                   <DialogTrigger as-child>
-                    <Button size="icon" variant="outline">
-                      <Icon name="mynaui:pencil" class="text-xl bg-sky-600" />
+                    <Button size="icon" variant="outline" class="w-8 h-8">
+                      <Icon name="mynaui:pencil" class="text-sm bg-sky-600" />
                     </Button>
                   </DialogTrigger>
 
@@ -271,8 +113,8 @@ const isFavorite = ref(false);
 
                 <AlertDialog>
                   <AlertDialogTrigger as-child>
-                    <Button size="icon" variant="outline">
-                      <Icon name="mynaui:trash" class="text-xl bg-red-600" />
+                    <Button size="icon" variant="outline" class="w-8 h-8">
+                      <Icon name="mynaui:trash" class="text-sm bg-red-600" />
                     </Button>
                   </AlertDialogTrigger>
                   <!-- delete dialog -->
