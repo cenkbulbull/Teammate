@@ -66,35 +66,32 @@ const isFavorite = ref(false);
                           $t("applicants")
                         }}</SheetTitle
                       >
-                      <div
-                        class="flex flex-col gap-3 px-5 py-2 divide-y overflow-auto max-h-[88vh]"
-                      >
-                        <!-- users -->
-                        <div v-for="i in 15" class="flex justify-between pt-3">
-                          <div class="flex items-center gap-2">
-                            <Avatar class="w-8 h-8">
-                              <AvatarImage
-                                src="https://github.com/radix-vue.png"
-                              />
-                              <AvatarFallback>CB</AvatarFallback>
-                              <!--src gelmezse isim soyisim ilk harflerini al-->
-                            </Avatar>
-                            <p class="text-xs">Name Surname</p>
-                          </div>
-
-                          <div>
-                            <Button
-                              size="icon"
-                              variant="outline"
-                              class="w-8 h-8"
-                              ><Icon name="mynaui:eye" class="text-sm"
-                            /></Button>
-                          </div>
+                    </SheetHeader>
+                    <div
+                      class="flex flex-col gap-3 px-5 py-2 divide-y overflow-auto max-h-[88vh]"
+                    >
+                      <!-- users -->
+                      <div v-for="i in 15" class="flex justify-between pt-3">
+                        <div class="flex items-center gap-2">
+                          <Avatar class="w-8 h-8">
+                            <AvatarImage
+                              src="https://github.com/radix-vue.png"
+                            />
+                            <AvatarFallback>CB</AvatarFallback>
+                            <!--src gelmezse isim soyisim ilk harflerini al-->
+                          </Avatar>
+                          <p class="text-xs">Name Surname</p>
                         </div>
 
-                        <!-- users -->
+                        <div>
+                          <Button size="icon" variant="outline" class="w-8 h-8"
+                            ><Icon name="mynaui:eye" class="text-sm"
+                          /></Button>
+                        </div>
                       </div>
-                    </SheetHeader>
+
+                      <!-- users -->
+                    </div>
                   </SheetContent>
                 </Sheet>
                 <!-- applicatans sheet -->

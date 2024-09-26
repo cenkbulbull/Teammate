@@ -12,19 +12,19 @@ const job: Job = {
 </script>
 
 <template>
-  <SheetContent class="px-0 w-100">
+  <SheetContent class="px-0 w-100 md:max-w-2xl">
     <SheetHeader>
       <SheetTitle class="flex items-center gap-1 px-4"
         ><Icon name="mynaui:briefcase" class="text-xl" />
         {{ $t("myWorks") }}</SheetTitle
       >
-      <div class="flex flex-col gap-3 overflow-auto max-h-[90vh]">
-        <JobCard :job :myJob="true" />
-        <JobCard :job :myJob="true" />
-        <JobCard :job :myJob="true" />
-        <JobCard :job :myJob="true" />
-        <JobCard :job :myJob="true" />
-      </div>
     </SheetHeader>
+    <div class="flex flex-col gap-3 overflow-auto max-h-[90vh]">
+      <JobCard :job :myJob="true" />
+      <JobCard :job :myJob="true" />
+      <JobCard :job :myJob="true" />
+      <JobCard :job :myJob="true" />
+      <JobCard :job :myJob="true" />
+    </div>
   </SheetContent>
 </template>
