@@ -45,4 +45,22 @@ export default defineNuxtConfig({
       { code: "az-AZ", iso: "az-AZ", file: "az.json" },
     ],
   },
+  app: {
+    head: {
+      title: "Teammate",
+      meta: [
+        {
+          name: "description",
+          content:
+            "Find your project teammate now! Share your skills, meet suitable team members, and complete your projects successfully. Sign up for quick and easy connections!",
+        },
+        {
+          name: "keywords",
+          content:
+            "Finding Team Members,Project Collaboration,Remote Work Opportunities,Project Management,Job Listings,Team Building,Entrepreneur Support,Networking Opportunities,Work Environment,Creative Projects,Career Opportunities,Online Job Platform",
+        },
+        { name: "author", content: "Cenk Bülbül" },
+      ],
+    },
+  },
 });

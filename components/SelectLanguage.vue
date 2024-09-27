@@ -19,14 +19,14 @@ const openLangPopover = ref<boolean>(false);
 
 onMounted(() => {
   selectedLanguage.value =
-    (localStorage.getItem("language") as string | null) || "en-US";
+    (localStorage.getItem("locale") as string | null) || "en-US";
 });
 
 const setLanguage = (language: Language) => {
   selectedLanguage.value = language.value;
-  localStorage.setItem("language", selectedLanguage.value);
+  localStorage.setItem("locale", selectedLanguage.value);
   openLangPopover.value = false;
-  setLocale(localStorage.getItem("language") as string);
+  setLocale(localStorage.getItem("locale") as string);
 };
 </script>
 
