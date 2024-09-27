@@ -7,31 +7,28 @@ const locations = [
     label: "Remote",
   },
   {
-    id: "istanbul",
+    id: "İstanbul",
     label: "İstanbul",
   },
   {
-    id: "ankara",
+    id: "Ankara",
     label: "Ankara",
   },
   {
-    id: "zonguldak",
+    id: "Zonguldak",
     label: "Zonguldak",
   },
 ];
 
 const dateofposting = [
   {
-    id: "alltime",
-    label: t("allTime"),
+    id: "allTime",
   },
   {
     id: "last24hours",
-    label: t("last24hours"),
   },
   {
     id: "last7days",
-    label: t("last7days"),
   },
 ];
 
@@ -112,7 +109,9 @@ const filterJobTime = (e: Boolean, id: String) => {
               }
             "
           />
-          <Label class="text-xs" :for="location.id">{{ location.label }}</Label>
+          <Label class="text-xs" :for="location.id">{{
+            $t(location.id)
+          }}</Label>
         </div>
       </div>
 
@@ -125,7 +124,7 @@ const filterJobTime = (e: Boolean, id: String) => {
             class="flex items-center space-x-2"
           >
             <RadioGroupItem :key="date.id" :id="date.id" :value="date.id" />
-            <Label class="text-xs" :for="date.id">{{ date.label }}</Label>
+            <Label class="text-xs" :for="date.id">{{ $t(date.id) }}</Label>
           </div>
         </RadioGroup>
       </div>

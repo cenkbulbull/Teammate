@@ -1,8 +1,14 @@
+<script lang="ts" setup>
+const localePath = useLocalePath();
+</script>
+
 <template>
   <div
     class="flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center py-5 px-12"
   >
-    <nuxt-link to="/"><div class="text-lg">teammate</div></nuxt-link>
+    <nuxt-link :to="localePath('/')"
+      ><div class="text-lg">teammate</div></nuxt-link
+    >
     <!-- <ul class="flex gap-1 md:gap-10">
       <li>
         <nuxt-link class="px-5 py-2 rounded-lg hover:bg-slate-100" to="/a"
@@ -27,13 +33,13 @@
     <div>
       <ul class="flex gap-2">
         <li>
-          <nuxt-link to="/auth/login">
+          <nuxt-link :to="localePath('/auth/login')">
             <Button class="text-xs" variant="outline">{{ $t("login") }}</Button>
           </nuxt-link>
         </li>
 
         <li>
-          <nuxt-link to="/auth/signup">
+          <nuxt-link :to="localePath('/auth/signup')">
             <Button class="text-xs">{{ $t("signup") }}</Button>
           </nuxt-link>
         </li>
@@ -61,47 +67,58 @@
           </nuxt-link>
         </li> -->
 
-        <DropdownMenu>
-          <DropdownMenuTrigger as-child>
-            <Button size="icon" variant="outline">
-              <Icon class="text-xl" name="mynaui:user-circle" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent class="w-56 mr-12">
-            <DropdownMenuLabel class="flex items-center gap-2">
-              <Avatar class="w-6 h-6">
-                <AvatarImage src="https://github.com/radix-vue.png" />
-                <AvatarFallback>CB</AvatarFallback>
-                <!--src gelmezse isim soyisim ilk harflerini al-->
-              </Avatar>
-              <span>Cenk Bülbül</span>
-            </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <nuxt-link to="/user/profile" class="flex gap-2"
-                  ><Icon name="mynaui:user" class="text-xl" />
-                  <span>Profile</span></nuxt-link
-                >
-              </DropdownMenuItem>
+        <li>
+          <DropdownMenu>
+            <DropdownMenuTrigger as-child>
+              <Button size="icon" variant="outline">
+                <Icon class="text-xl" name="mynaui:user-circle" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent class="w-56 mr-12">
+              <DropdownMenuLabel class="flex items-center gap-2">
+                <Avatar class="w-6 h-6">
+                  <AvatarImage src="https://github.com/radix-vue.png" />
+                  <AvatarFallback>CB</AvatarFallback>
+                  <!--src gelmezse isim soyisim ilk harflerini al-->
+                </Avatar>
+                <span>Cenk Bülbül</span>
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  <nuxt-link
+                    :to="localePath('/user/profile')"
+                    class="flex gap-2"
+                    ><Icon name="mynaui:user" class="text-xl" />
+                    <span>{{ $t("profile") }}</span></nuxt-link
+                  >
+                </DropdownMenuItem>
 
-              <DropdownMenuItem class="flex gap-2">
-                <Icon name="la:cog" class="text-xl" />
-                <nuxt-link to="/user/settings">
-                  <span>Settings</span>
+                <DropdownMenuItem class="flex gap-2">
+                  <Icon name="la:cog" class="text-xl" />
+                  <nuxt-link :to="localePath('/user/settings')">
+                    <span>{{ $t("settings") }}</span>
+                  </nuxt-link>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+
+              <DropdownMenuItem
+                @click="console.log('logout')"
+                class="flex gap-2"
+              >
+                <Icon name="mynaui:logout" class="text-xl" />
+                <nuxt-link to="">
+                  <span>{{ $t("logout") }}</span>
                 </nuxt-link>
               </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </li>
 
-            <DropdownMenuItem @click="console.log('logout')" class="flex gap-2">
-              <Icon name="mynaui:logout" class="text-xl" />
-              <nuxt-link to="">
-                <span>Log out</span>
-              </nuxt-link>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <li>
+          <SelectLanguage />
+        </li>
       </ul>
     </div>
   </div>

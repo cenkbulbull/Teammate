@@ -1,22 +1,24 @@
 <script lang="ts" setup>
+const { locale, setLocale, t } = useI18n();
+
 const infoUsers: Info = {
   icon: "mynaui:users",
   iconBg: "bg-violet-300",
-  text: "Users",
+  text: "users",
   count: "1000",
 };
 
 const infoJobs: Info = {
   icon: "mynaui:briefcase",
   iconBg: "bg-green-300",
-  text: "Jobs",
+  text: "jobs",
   count: "300",
 };
 
 const infoNewJobs: Info = {
   icon: "mynaui:bell",
   iconBg: "bg-sky-700",
-  text: "New Jobs",
+  text: "newJobs",
   count: "30",
 };
 </script>

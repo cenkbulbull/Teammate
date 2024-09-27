@@ -15,7 +15,7 @@ const props = defineProps<{
       </div>
       <div>
         <p class="text-lg font-bold">{{ info.count }}</p>
-        <p class="text-xs">{{ info.text }}</p>
+        <p class="text-xs">{{ $t(info.text) }}</p>
       </div>
     </CardContent>
   </Card>

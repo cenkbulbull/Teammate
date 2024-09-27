@@ -3,7 +3,7 @@
     <CardHeader class="gap-4">
       <CardTitle class="flex items-center gap-1"
         ><Icon name="mynaui:envelope" />
-        <span class="text-lg tracking-wide">{{ $t("emailMeForJobs") }}</span>
+        <span class="text-xs tracking-wide">{{ $t("emailMeForJobs") }}</span>
       </CardTitle>
       <CardDescription class="text-xs"
         >{{ $t("subscribeText") }}

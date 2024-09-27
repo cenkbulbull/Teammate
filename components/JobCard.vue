@@ -55,7 +55,7 @@ const isFavorite = ref(false);
                 <Sheet>
                   <SheetTrigger>
                     <Button size="icon" variant="outline" class="w-8 h-8">
-                      <Icon name="mynaui:eye" class="text-sm" />
+                      <Icon name="mynaui:eye" class="text-sm text-primary" />
                     </Button>
                   </SheetTrigger>
 
@@ -85,7 +85,9 @@ const isFavorite = ref(false);
 
                         <div>
                           <Button size="icon" variant="outline" class="w-8 h-8"
-                            ><Icon name="mynaui:eye" class="text-sm"
+                            ><Icon
+                              name="mynaui:eye"
+                              class="text-sm text-primary"
                           /></Button>
                         </div>
                       </div>
@@ -99,7 +101,7 @@ const isFavorite = ref(false);
                 <Dialog>
                   <DialogTrigger as-child>
                     <Button size="icon" variant="outline" class="w-8 h-8">
-                      <Icon name="mynaui:pencil" class="text-sm bg-sky-600" />
+                      <Icon name="mynaui:pencil" class="text-sm text-primary" />
                     </Button>
                   </DialogTrigger>
 
@@ -111,7 +113,7 @@ const isFavorite = ref(false);
                 <AlertDialog>
                   <AlertDialogTrigger as-child>
                     <Button size="icon" variant="outline" class="w-8 h-8">
-                      <Icon name="mynaui:trash" class="text-sm bg-red-600" />
+                      <Icon name="mynaui:trash" class="text-sm text-primary" />
                     </Button>
                   </AlertDialogTrigger>
                   <!-- delete dialog -->
