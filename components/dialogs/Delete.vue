@@ -7,8 +7,8 @@
       </AlertDialogDescription>
     </AlertDialogHeader>
     <AlertDialogFooter>
-      <AlertDialogCancel>Cancel</AlertDialogCancel>
-      <AlertDialogAction>Continue</AlertDialogAction>
+      <AlertDialogCancel>{{ $t("cancel") }}</AlertDialogCancel>
+      <AlertDialogAction>{{ $t("continue") }}</AlertDialogAction>
     </AlertDialogFooter>
   </AlertDialogContent>
 </template>
