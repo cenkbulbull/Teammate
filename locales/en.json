@@ -115,6 +115,7 @@
   "jobs": "Jobs",
   "newJobs": "Jobs",
   "remote": "Remote",
+  "description": "Description",
   "projectGlobalDescription": "Find your project teammate now! Share your skills, meet suitable team members, and complete your projects successfully. Sign up for quick and easy connections!",
   "projectGlobalKeywords": "Finding Team Members,Project Collaboration,Remote Work Opportunities,Project Management,Job Listings,Team Building,Entrepreneur Support,Networking Opportunities,Work Environment,Creative Projects,Career Opportunities,Online Job Platform",
   "validation": {
@@ -122,6 +123,7 @@
     "maxCharacters": "{0} must be at most {1} characters long",
     "invalidEmail": "Invalid email format",
     "required": "{0} is required",
-    "passwordDontMatch": "Passwords don't match"
+    "passwordDontMatch": "Passwords don't match",
+    "selectboxError": "Please select a {0}"
   }
 }

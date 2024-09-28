@@ -41,7 +41,6 @@ const onSubmit = handleSubmit((values) => {
                       id="firstname"
                       type="text"
                       :placeholder="$t('firstName')"
-                      required
                       v-bind="componentField"
                       class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
                     />
