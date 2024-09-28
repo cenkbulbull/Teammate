@@ -2,6 +2,17 @@
 definePageMeta({
   layout: "auth",
 });
+
+import { formSchema } from "@/schemas/signupSchema";
+import { useForm } from "vee-validate";
+
+const { handleSubmit } = useForm({
+  validationSchema: formSchema(),
+});
+
+const onSubmit = handleSubmit((values) => {
+  console.log("aa");
+});
 </script>
 
 <template>
@@ -16,68 +27,111 @@ definePageMeta({
             {{ $t("signupText") }}
           </p>
         </div>
-        <div class="grid gap-4">
+
+        <form class="grid gap-4" @submit="onSubmit">
           <div class="grid grid-cols-2 gap-4">
             <div class="grid gap-2">
-              <Label class="text-xs" for="email">{{ $t("firstName") }}</Label>
-              <Input
-                id="email"
-                type="email"
-                :placeholder="$t('firstName')"
-                required
-                class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
-              />
+              <FormField v-slot="{ componentField }" name="firstname">
+                <FormItem>
+                  <FormLabel class="text-xs" for="firstname">{{
+                    $t("firstName")
+                  }}</FormLabel>
+                  <FormControl>
+                    <Input
+                      id="firstname"
+                      type="text"
+                      :placeholder="$t('firstName')"
+                      required
+                      v-bind="componentField"
+                      class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
+                    />
+                  </FormControl>
+                  <FormMessage class="text-xs" />
+                </FormItem>
+              </FormField>
             </div>
+
             <div class="grid gap-2">
-              <Label class="text-xs" for="email">{{ $t("lastName") }}</Label>
-              <Input
-                id="email"
-                type="email"
-                :placeholder="$t('lastName')"
-                required
-                class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
-              />
+              <FormField v-slot="{ componentField }" name="lastname">
+                <FormItem>
+                  <FormLabel class="text-xs" for="lastname">{{
+                    $t("lastName")
+                  }}</FormLabel>
+                  <FormControl>
+                    <Input
+                      id="lastname"
+                      type="text"
+                      :placeholder="$t('lastName')"
+                      v-bind="componentField"
+                      class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
+                    />
+                  </FormControl>
+                  <FormMessage class="text-xs" />
+                </FormItem>
+              </FormField>
             </div>
           </div>
 
           <div class="grid gap-2">
-            <Label class="text-xs" for="email">{{ $t("email") }}</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="user@example.com"
-              required
-              class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
-            />
+            <FormField v-slot="{ componentField }" name="email">
+              <FormItem>
+                <FormLabel class="text-xs" for="email">{{
+                  $t("email")
+                }}</FormLabel>
+                <FormControl>
+                  <Input
+                    v-bind="componentField"
+                    id="email"
+                    type="email"
+                    placeholder="user@example.com"
+                    class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
+                  />
+                </FormControl>
+                <FormMessage class="text-xs" />
+              </FormItem>
+            </FormField>
           </div>
 
           <div class="grid gap-2">
             <div class="grid grid-cols-2 gap-4">
               <div class="grid gap-2">
-                <div class="flex items-center">
-                  <Label class="text-xs" for="password">{{
-                    $t("password")
-                  }}</Label>
-                </div>
-                <Input
-                  id="password"
-                  type="password"
-                  required
-                  class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
-                />
+                <FormField v-slot="{ componentField }" name="password">
+                  <FormItem>
+                    <FormLabel class="text-xs" for="password">{{
+                      $t("password")
+                    }}</FormLabel>
+                    <FormControl>
+                      <Input
+                        v-bind="componentField"
+                        id="password"
+                        type="password"
+                        :placeholder="$t('password')"
+                        class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
+                      />
+                    </FormControl>
+                    <FormMessage class="text-xs" />
+                  </FormItem>
+                </FormField>
               </div>
+
               <div class="grid gap-2">
-                <div class="flex items-center">
-                  <Label class="text-xs" for="password">{{
-                    $t("repassword")
-                  }}</Label>
-                </div>
-                <Input
-                  id="password"
-                  type="password"
-                  required
-                  class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
-                />
+                <FormField v-slot="{ componentField }" name="repassword">
+                  <FormItem>
+                    <FormLabel class="text-xs" for="repassword">{{
+                      $t("repassword")
+                    }}</FormLabel>
+                    <FormControl>
+                      <Input
+                        v-bind="componentField"
+                        id="repassword"
+                        type="password"
+                        :placeholder="$t('repassword')"
+                        class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
+                      />
+                    </FormControl>
+                    <FormMessage class="text-xs" />
+                  </FormItem>
+                </FormField>
               </div>
             </div>
           </div>
@@ -87,7 +141,8 @@ definePageMeta({
             <Icon class="text-xl" name="mynaui:brand-google" />
             {{ $t("signupWithGoogle") }}
           </Button>
-        </div>
+        </form>
+
         <div class="mt-4 text-center text-sm">
           {{ $t("haveAnAccount") }}
           <nuxt-link to="login"
