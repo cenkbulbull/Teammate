@@ -19,6 +19,21 @@ export default defineNuxtConfig({
       },
     ],
     "@nuxt/icon",
+    "@pinia/nuxt",
+    [
+      "@vee-validate/nuxt",
+      {
+        // disable or enable auto imports
+        autoImports: true,
+        // Use different names for components
+        componentNames: {
+          Form: "VeeForm",
+          Field: "VeeField",
+          FieldArray: "VeeFieldArray",
+          ErrorMessage: "VeeErrorMessage",
+        },
+      },
+    ],
   ],
   css: ["@/assets/styles/index.scss"],
   shadcn: {
@@ -61,6 +76,14 @@ export default defineNuxtConfig({
         },
         { name: "author", content: "Cenk Bülbül" },
       ],
+    },
+  },
+  runtimeConfig: {
+    // The private keys which are only available within server-side (PRIVATE --SERVER)
+    //apiSecret: "", //example
+    // Keys within public, will be also exposed to the client-side (PUBLIC --ALL)
+    public: {
+      apiBase: process.env.NUXT_BASE_URL,
     },
   },
 });
