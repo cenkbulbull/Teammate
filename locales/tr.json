@@ -115,6 +115,15 @@
   "jobs": "İşler",
   "newJobs": "Yeni İşler",
   "remote": "Uzaktan",
+  "description": "Açıklama",
   "projectGlobalDescription": "Proje ekip arkadaşınızı hemen bulun! Becerilerinizi paylaşın, uygun ekip üyeleriyle tanışın ve projelerinizi başarıyla tamamlayın. Hızlı ve kolay bağlantılar için kaydolun!",
-  "projectGlobalKeywords": "Ekip Üyesi Bulma,Proje İşbirliği,Uzaktan Çalışma Olanakları,Proje Yönetimi,İş İlanları,Ekip Oluşturma,Girişimci Desteği,Networking Olanakları,Çalışma Ortamı,Yaratıcı Projeler,Kariyer Olanakları,Online İş Platformu"
+  "projectGlobalKeywords": "Ekip Üyesi Bulma,Proje İşbirliği,Uzaktan Çalışma Olanakları,Proje Yönetimi,İş İlanları,Ekip Oluşturma,Girişimci Desteği,Networking Olanakları,Çalışma Ortamı,Yaratıcı Projeler,Kariyer Olanakları,Online İş Platformu",
+  "validation": {
+    "minCharacters": "{0} en az {1} karakter uzunluğunda olmalıdır",
+    "maxCharacters": "{0} en fazla {1} karakter uzunluğunda olmalıdır",
+    "invalidEmail": "Geçersiz e-posta formatı",
+    "required": "{0} gereklidir",
+    "passwordDontMatch": "Şifreler eşleşmiyor",
+    "selectboxError": "Lütfen bir {0} seçin"
+  }
 }

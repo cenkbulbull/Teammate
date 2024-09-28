@@ -115,6 +115,15 @@
   "jobs": "İşlər",
   "newJobs": "Yeni İşlər",
   "remote": "Uzaqdan",
+  "description": "Təsvir",
   "projectGlobalDescription": "Layihə komanda yoldaşınızı indi tapın! Bacarıqlarınızı paylaşın, uyğun komanda üzvləri ilə tanış olun və layihələrinizi uğurla tamamlayın. Tez və asan bağlantılar üçün qeydiyyatdan keçin!",
-  "projectGlobalKeywords": "Komanda Üzvlərinin Tapılması,Layihədə əməkdaşlıq,Uzaqdan İş İmkanları,Layihələrin İdarə Edilməsi,İş siyahıları,Komanda qurulması,Sahibkarlara Dəstək,Şəbəkə imkanları,İş mühiti,Yaradıcı layihələr,Karyera imkanları,Onlayn İş Platforması"
+  "projectGlobalKeywords": "Komanda Üzvlərinin Tapılması,Layihədə əməkdaşlıq,Uzaqdan İş İmkanları,Layihələrin İdarə Edilməsi,İş siyahıları,Komanda qurulması,Sahibkarlara Dəstək,Şəbəkə imkanları,İş mühiti,Yaradıcı layihələr,Karyera imkanları,Onlayn İş Platforması",
+  "validation": {
+    "minCharacters": "{0} ən az {1} simvol uzunluğunda olmalıdır",
+    "maxCharacters": "{0} ən çox {1} simvol uzunluğunda olmalıdır",
+    "invalidEmail": "Yanlış e-poçt formatı",
+    "required": "{0} tələb olunur",
+    "passwordDontMatch": "Şifrələr uyğun gəlmir",
+    "selectboxError": "Zəhmət olmasa bir {0} seçin"
+  }
 }
