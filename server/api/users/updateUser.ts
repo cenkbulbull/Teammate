@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
   await $fetch(
     `${useRuntimeConfig().public.apiBase}/users/${JSON.parse(body).id}`,
     {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },

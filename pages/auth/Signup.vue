@@ -6,12 +6,25 @@ definePageMeta({
 import { formSchema } from "@/schemas/signupSchema";
 import { useForm } from "vee-validate";
 
+// test
+import { useUsersStore } from "@/stores/users";
+
+const usersStore = useUsersStore();
+
+onMounted(async () => {
+  await usersStore.fetchUsers();
+  console.log(usersStore.users);
+});
+// test
+
 const { handleSubmit } = useForm({
   validationSchema: formSchema(),
 });
 
 const onSubmit = handleSubmit((values) => {
-  console.log("aa");
+  const user = values;
+  delete user?.repassword;
+  usersStore.addUser({ id: String(Math.random()), ...user });
 });
 </script>
 
@@ -27,7 +40,6 @@ const onSubmit = handleSubmit((values) => {
             {{ $t("signupText") }}
           </p>
         </div>
-
         <form class="grid gap-4" @submit="onSubmit">
           <div class="grid grid-cols-2 gap-4">
             <div class="grid gap-2">

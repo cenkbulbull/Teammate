@@ -3,7 +3,41 @@ definePageMeta({
   layout: "user",
 });
 
-const abilities = ref();
+const personalSettings = ref({
+  id: "0.9380986828625959",
+  firstname: "",
+  lastname: "",
+  telephone: "",
+  job: "",
+  biography: "",
+  abilities: ref(),
+  emailNotification: ref(),
+});
+
+const socialSettings = ref({
+  id: "0.9380986828625959",
+  social: {
+    linkedin: "",
+    github: "",
+    web: "",
+  },
+});
+
+const handleChangeEmailSwitch = (value: Boolean) => {
+  personalSettings.value.emailNotification = value;
+};
+
+import { useUsersStore } from "@/stores/users";
+
+const usersStore = useUsersStore();
+
+const savePersonalSettings = () => {
+  usersStore.updateUser(personalSettings.value);
+};
+
+const saveSocialSettings = () => {
+  usersStore.updateUser(socialSettings.value);
+};
 </script>
 
 <template>
@@ -50,6 +84,7 @@ const abilities = ref();
                 <Input
                   id="firstname"
                   required
+                  v-model="personalSettings.firstname"
                   placeholder="firsname bilgisi gelecek"
                   class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
                 />
@@ -63,6 +98,7 @@ const abilities = ref();
                 <Input
                   id="lastname"
                   required
+                  v-model="personalSettings.lastname"
                   placeholder="lastname bilgisi gelecek"
                   class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
                 />
@@ -88,6 +124,7 @@ const abilities = ref();
               <Input
                 id="telephone"
                 placeholder="999-999-9999"
+                v-model="personalSettings.telephone"
                 class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
               />
             </div>
@@ -121,6 +158,7 @@ const abilities = ref();
               <Input
                 id="job"
                 :placeholder="$t('job')"
+                v-model="personalSettings.job"
                 class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
               />
             </div>
@@ -131,6 +169,7 @@ const abilities = ref();
               }}</Label>
               <Textarea
                 id="biography"
+                v-model="personalSettings.biography"
                 class="text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
                 :placeholder="$t('biographyText')"
               />
@@ -140,9 +179,9 @@ const abilities = ref();
               <Label class="text-xs" for="abilities">{{
                 $t("abilities")
               }}</Label>
-              <TagsInput id="abilities" v-model="abilities">
+              <TagsInput id="abilities" v-model="personalSettings.abilities">
                 <TagsInputItem
-                  v-for="(ability, index) in abilities"
+                  v-for="(ability, index) in personalSettings.abilities"
                   :key="index"
                   :value="ability"
                 >
@@ -160,7 +199,11 @@ const abilities = ref();
             <div class="grid gap-2">
               <Label class="text-xs">{{ $t("emailNotifications") }}</Label>
               <div class="flex items-center gap-2">
-                <Switch id="email-switch" />
+                <Switch
+                  id="email-switch"
+                  :checked="personalSettings.emailNotification"
+                  @update:checked="handleChangeEmailSwitch"
+                />
                 <Label for="email-switch" class="text-xs">{{
                   $t("turnOnEmailNotifications")
                 }}</Label>
@@ -168,7 +211,9 @@ const abilities = ref();
             </div>
           </CardContent>
           <CardFooter>
-            <Button class="text-xs">{{ $t("saveChanges") }}</Button>
+            <Button @click="savePersonalSettings" class="text-xs">{{
+              $t("saveChanges")
+            }}</Button>
           </CardFooter>
         </Card>
       </TabsContent>
@@ -187,6 +232,7 @@ const abilities = ref();
                 id="website"
                 type="text"
                 placeholder="Web Site"
+                v-model="socialSettings.social.web"
                 class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
               />
             </div>
@@ -196,6 +242,7 @@ const abilities = ref();
                 id="linkedin"
                 type="text"
                 placeholder="Linkedin"
+                v-model="socialSettings.social.linkedin"
                 class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
               />
             </div>
@@ -205,12 +252,15 @@ const abilities = ref();
                 id="website"
                 type="text"
                 placeholder="Github"
+                v-model="socialSettings.social.github"
                 class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
               />
             </div>
           </CardContent>
           <CardFooter>
-            <Button class="text-xs">{{ $t("saveChanges") }}</Button>
+            <Button @click="saveSocialSettings" class="text-xs">{{
+              $t("saveChanges")
+            }}</Button>
           </CardFooter>
         </Card>
       </TabsContent>
