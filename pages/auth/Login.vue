@@ -1,7 +1,16 @@
 <script setup lang="ts">
 definePageMeta({
   layout: "auth",
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: "/",
+  },
 });
+
+const { signIn } = useAuth();
+
+const email = ref();
+const password = ref();
 </script>
 
 <template>
@@ -23,6 +32,7 @@ definePageMeta({
               id="email"
               type="email"
               placeholder="user@example.com"
+              v-model="email"
               required
               class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
             />
@@ -42,11 +52,20 @@ definePageMeta({
               id="password"
               type="password"
               required
+              v-model="password"
               class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
             />
           </div>
-          <Button type="submit" class="w-full">{{ $t("login") }}</Button>
-          <Button variant="outline" class="w-full gap-1">
+          <Button
+            @click="($event) => signIn('credentials', { email, password })"
+            class="w-full"
+            >{{ $t("login") }}</Button
+          >
+          <Button
+            @click="($event) => signIn('google')"
+            variant="outline"
+            class="w-full gap-1"
+          >
             <Icon class="text-xl" name="mynaui:brand-google" />
             {{ $t("loginWithGoogle") }}
           </Button>

@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+const { status } = useAuth();
+
+const loggedIn = computed(() => status.value === "authenticated");
+
 const job: Job = {
   id: "ac789xc",
   user: "Paylaşan İsim",
@@ -16,7 +20,7 @@ const appliedFilterToggle = ref(false);
 
 <template>
   <!-- Kullanıcının paylaştığı ilanların gözüktüğü sheet -->
-  <Sheet>
+  <Sheet v-if="loggedIn">
     <SheetTrigger>
       <div
         class="flex p-1 cursor-pointer text-2xl bg-indigo-800 text-white fixed top-[50%] -right-[8px] rounded transition-all hover:-right-[3px]"

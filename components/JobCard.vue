@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import { useClipboard } from "@vueuse/core";
 
+const { status } = useAuth();
+
+const loggedIn = computed(() => status.value === "authenticated");
+
 const props = defineProps<{
   job: Job;
   myJob?: boolean;
@@ -124,7 +128,7 @@ const isFavorite = ref(false);
 
               <div v-else v-if="!appliedButRemoved" class="flex gap-2">
                 <!-- favorite toggle -->
-                <div class="flex">
+                <div v-if="loggedIn" class="flex">
                   <Toggle size="sm" v-model:pressed="isFavorite">
                     <Icon
                       :name="
@@ -138,7 +142,7 @@ const isFavorite = ref(false);
                 <!-- favorite toggle -->
 
                 <!-- Job Card Detail Button -->
-                <TooltipProvider>
+                <TooltipProvider v-if="loggedIn">
                   <Tooltip>
                     <TooltipTrigger>
                       <DrawerTrigger class="flex items-center text-primary">

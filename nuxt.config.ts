@@ -34,7 +34,14 @@ export default defineNuxtConfig({
         },
       },
     ],
+    "@sidebase/nuxt-auth",
   ],
+  auth: {
+    // provider: {
+    //   type: "authjs",
+    //   defaultProvider: "credentials",
+    // },
+  },
   css: ["@/assets/styles/index.scss"],
   shadcn: {
     /**

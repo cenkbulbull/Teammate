@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 const localePath = useLocalePath();
+
+const { status, signOut } = useAuth();
+
+const loggedIn = computed(() => status.value === "authenticated");
 </script>
 
 <template>
@@ -32,19 +36,19 @@ const localePath = useLocalePath();
 
     <div>
       <ul class="flex gap-2">
-        <li>
+        <li v-if="!loggedIn">
           <nuxt-link :to="localePath('/auth/login')">
             <Button class="text-xs" variant="outline">{{ $t("login") }}</Button>
           </nuxt-link>
         </li>
 
-        <li>
+        <li v-if="!loggedIn">
           <nuxt-link :to="localePath('/auth/signup')">
             <Button class="text-xs">{{ $t("signup") }}</Button>
           </nuxt-link>
         </li>
 
-        <li>
+        <li v-if="loggedIn">
           <Dialog>
             <DialogTrigger as-child>
               <Button class="text-xs gap-1">
@@ -67,7 +71,7 @@ const localePath = useLocalePath();
           </nuxt-link>
         </li> -->
 
-        <li>
+        <li v-if="loggedIn">
           <DropdownMenu>
             <DropdownMenuTrigger as-child>
               <Button size="icon" variant="outline">
@@ -103,12 +107,9 @@ const localePath = useLocalePath();
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
 
-              <DropdownMenuItem
-                @click="console.log('logout')"
-                class="flex gap-2"
-              >
+              <DropdownMenuItem class="flex gap-2">
                 <Icon name="mynaui:logout" class="text-xl" />
-                <nuxt-link to="">
+                <nuxt-link to="/" @click="signOut()">
                   <span>{{ $t("logout") }}</span>
                 </nuxt-link>
               </DropdownMenuItem>
