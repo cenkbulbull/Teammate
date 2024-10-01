@@ -4,19 +4,6 @@ import { NuxtAuthHandler } from "#auth";
 
 const appConfig = useAppConfig();
 
-// let users = null;
-// try {
-//   const response = await fetch("http://localhost:3000/api/users/getUsers");
-//   // Eğer yanıt başarısızsa hata fırlat
-//   if (!response.ok) {
-//     throw new Error("Failed to fetch users");
-//   }
-
-//   users = await response.json();
-// } catch (error) {
-//   console.error(error);
-// }
-
 export default NuxtAuthHandler({
   pages: {
     signIn: "/auth/Login",
@@ -81,9 +68,27 @@ export default NuxtAuthHandler({
 
           const user = users.find((user: any) => user.email === profile?.email);
 
+          //kullanıcı yoksa kayıt işlemi yap
           if (!user) {
-            console.error("böyle bir email gmail yok");
-            return null;
+            const user = {
+              email: profile?.email,
+              firstname: profile?.given_name,
+              lastname: profile?.family_name,
+              profilePhoto: profile?.picture,
+            };
+
+            // console.error("böyle bir email gmail yok");
+            // return null;
+            const response = await fetch(
+              "http://localhost:3000/api/users/createUser",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(user),
+              }
+            );
           }
         } catch (error) {
           console.error(error);
