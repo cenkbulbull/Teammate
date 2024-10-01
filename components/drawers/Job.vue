@@ -76,7 +76,7 @@ defineProps<{
       <Button class="text-xs">{{ $t("apply") }}</Button>
 
       <DrawerClose>
-        <Button class="text-xs" variant="outline"> Cancel </Button>
+        <Button class="text-xs" variant="outline"> {{ $t("cancel") }} </Button>
       </DrawerClose>
     </DrawerFooter>
   </DrawerContent>
