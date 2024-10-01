@@ -126,7 +126,7 @@ const isFavorite = ref(false);
                 </AlertDialog>
               </div>
 
-              <div v-else v-if="!appliedButRemoved" class="flex gap-2">
+              <div v-else v-if="!appliedButRemoved" class="flex gap-1">
                 <!-- favorite toggle -->
                 <div v-if="loggedIn" class="flex">
                   <Toggle size="sm" v-model:pressed="isFavorite">
@@ -141,15 +141,14 @@ const isFavorite = ref(false);
                 </div>
                 <!-- favorite toggle -->
 
-                <!-- Job Card Detail Button -->
-                <TooltipProvider v-if="loggedIn">
+                <!-- Job Card Detail Button (sm) -->
+                <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger>
-                      <DrawerTrigger class="flex items-center text-primary">
-                        <Icon
-                          class="text-xl"
-                          name="mynaui:chevron-right-square"
-                        />
+                      <DrawerTrigger
+                        class="flex items-center text-primary md:hidden"
+                      >
+                        <Icon class="text-xl" name="mynaui:panel-bottom-open" />
                       </DrawerTrigger>
                     </TooltipTrigger>
                     <TooltipContent>
@@ -158,6 +157,29 @@ const isFavorite = ref(false);
                   </Tooltip>
                 </TooltipProvider>
                 <!-- Job Card Detail Button -->
+
+                <!-- Job Card Detail Button (md>) -->
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <Sheet>
+                        <SheetTrigger>
+                          <div class="text-primary hidden md:block mt-1">
+                            <Icon
+                              class="text-xl"
+                              name="mynaui:panel-right-open"
+                            />
+                          </div>
+                        </SheetTrigger>
+                        <SheetsJob :job />
+                      </Sheet>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{{ $t("goToDetail") }}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+                <!-- Job Card Detail Button (md>) -->
               </div>
 
               <div v-if="appliedButRemoved">
