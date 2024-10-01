@@ -37,6 +37,7 @@ export default defineNuxtConfig({
     "@sidebase/nuxt-auth",
   ],
   auth: {
+    //globalAppMiddleware: true,
     // provider: {
     //   type: "authjs",
     //   defaultProvider: "credentials",
