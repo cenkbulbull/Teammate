@@ -31,7 +31,7 @@ const { signIn } = useAuth();
     class="w-full flex justify-center lg:grid lg:grid-cols-2 h-[100vh] overflow-hidden"
   >
     <div class="flex items-center justify-center py-12">
-      <div class="mx-auto grid w-[350px] gap-6">
+      <div class="mx-auto grid w-[350px] gap-2">
         <div class="grid gap-2 text-center">
           <h1 class="text-2xl font-bold">{{ $t("signup") }}</h1>
           <p class="text-xs text-balance text-muted-foreground">
