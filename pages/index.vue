@@ -46,7 +46,7 @@ const appliedFilterToggle = ref(false);
     <div class="grid gap-4 col-span-3">
       <!-- filters -->
       <div class="flex gap-4">
-        <div class="w-full flex items-center border bg-white">
+        <div class="w-full flex items-center border bg-white rounded-lg">
           <Icon name="mynaui:location" class="text-xl ms-2" />
 
           <Select>

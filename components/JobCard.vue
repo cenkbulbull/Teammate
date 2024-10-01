@@ -18,7 +18,7 @@ const isFavorite = ref(false);
 
 <template>
   <Drawer>
-    <Card :class="[myJob ? 'border-none' : '']">
+    <Card :class="[myJob ? 'border-none' : '']" class="rounded-none">
       <div class="flex gap-3 bg-white p-5 rounded">
         <!-- <div class="flex text-4xl bg-green-300 p-3 h-[50%] rounded">
           <Icon class="text-white" name="mynaui:planet" />
