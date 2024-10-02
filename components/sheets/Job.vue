@@ -21,7 +21,7 @@ const loggedIn = computed(() => status.value === "authenticated");
       </SheetDescription> -->
     </SheetHeader>
 
-    <div class="flex flex-col">
+    <div class="flex flex-col h-full justify-between">
       <div class="flex gap-3 flex-wrap mt-5 overflow-auto max-h-[80vh]">
         <div class="flex flex-wrap gap-3">
           <TooltipProvider>
@@ -84,7 +84,7 @@ const loggedIn = computed(() => status.value === "authenticated");
         </div>
       </div>
 
-      <div class="flex gap-2">
+      <div class="flex gap-2 py-5">
         <div v-if="!myJob" class="flex gap-2">
           <Button v-if="loggedIn" class="text-xs">{{ $t("apply") }}</Button>
 
@@ -99,8 +99,10 @@ const loggedIn = computed(() => status.value === "authenticated");
           <!-- applicatans sheet -->
           <Sheet>
             <SheetTrigger>
-              <Button class="flex gap-1" variant="outline">
-                <Icon name="mynaui:eye" class="text-xl" />
+              <Button
+                class="flex gap-1 text-white bg-neutral-500 hover:bg-neutral-600 hover:text-white text-xs"
+              >
+                <Icon name="mynaui:eye" class="text-sm" />
                 {{ $t("applicants") }}
               </Button>
             </SheetTrigger>
@@ -142,8 +144,8 @@ const loggedIn = computed(() => status.value === "authenticated");
 
           <Dialog>
             <DialogTrigger as-child>
-              <Button class="flex gap-1" variant="outline">
-                <Icon name="mynaui:edit-one" class="text-xl" />
+              <Button class="flex gap-1">
+                <Icon name="mynaui:edit-one" class="text-sm" />
                 {{ $t("edit") }}
               </Button>
             </DialogTrigger>
@@ -155,8 +157,10 @@ const loggedIn = computed(() => status.value === "authenticated");
 
           <AlertDialog>
             <AlertDialogTrigger as-child>
-              <Button class="flex gap-1" variant="outline">
-                <Icon name="mynaui:trash-one" class="text-xl" />
+              <Button
+                class="flex gap-1 text-white bg-red-500 hover:bg-red-600 hover:text-white text-xs"
+              >
+                <Icon name="mynaui:trash-one" class="text-sm" />
                 {{ $t("delete") }}
               </Button>
             </AlertDialogTrigger>

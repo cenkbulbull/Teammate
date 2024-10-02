@@ -91,7 +91,12 @@ const loggedIn = computed(() => status.value === "authenticated");
         <!-- applicatans sheet -->
         <Sheet>
           <SheetTrigger>
-            <Button variant="outline"> {{ $t("applicants") }} </Button>
+            <Button
+              class="flex gap-1 text-white bg-neutral-500 hover:bg-neutral-600 hover:text-white text-xs"
+            >
+              <Icon name="mynaui:eye" class="text-sm" />
+              {{ $t("applicants") }}
+            </Button>
           </SheetTrigger>
 
           <SheetContent class="px-0">
@@ -131,7 +136,10 @@ const loggedIn = computed(() => status.value === "authenticated");
 
         <Dialog>
           <DialogTrigger as-child>
-            <Button variant="outline"> {{ $t("edit") }} </Button>
+            <Button class="flex gap-1">
+              <Icon name="mynaui:edit-one" class="text-sm" />
+              {{ $t("edit") }}
+            </Button>
           </DialogTrigger>
 
           <!--  Update Jobs Modal-->
@@ -141,7 +149,12 @@ const loggedIn = computed(() => status.value === "authenticated");
 
         <AlertDialog>
           <AlertDialogTrigger as-child>
-            <Button variant="outline"> {{ $t("delete") }} </Button>
+            <Button
+              class="flex gap-1 text-white bg-red-500 hover:bg-red-600 hover:text-white text-xs"
+            >
+              <Icon name="mynaui:trash-one" class="text-sm" />
+              {{ $t("delete") }}
+            </Button>
           </AlertDialogTrigger>
           <!-- delete dialog -->
           <DialogsDelete />
