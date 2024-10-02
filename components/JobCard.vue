@@ -24,6 +24,11 @@ const isFavorite = ref(false);
           <Icon class="text-white" name="mynaui:planet" />
         </div> -->
 
+        <Avatar>
+          <AvatarImage src="https://github.com/radix-vue.png" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+
         <div class="flex flex-col gap-2">
           <div class="flex items-center justify-between">
             <div class="font-bold text-sm flex justify-center gap-1">
@@ -31,7 +36,7 @@ const isFavorite = ref(false);
                 {{ job.title }}
               </div>
 
-              <div v-if="!myJob">
+              <div>
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger class="flex items-center gap-1">
@@ -54,81 +59,9 @@ const isFavorite = ref(false);
             </div>
 
             <div class="flex gap-2">
-              <div v-if="myJob" class="flex gap-2">
-                <!-- applicatans sheet -->
-                <Sheet>
-                  <SheetTrigger>
-                    <Button size="icon" variant="outline" class="w-8 h-8">
-                      <Icon name="mynaui:eye" class="text-sm text-primary" />
-                    </Button>
-                  </SheetTrigger>
-
-                  <SheetContent class="px-0">
-                    <SheetHeader>
-                      <SheetTitle class="flex items-center gap-1 px-4">
-                        <Icon name="mynaui:file-text" class="text-xl" />{{
-                          $t("applicants")
-                        }}</SheetTitle
-                      >
-                    </SheetHeader>
-                    <div
-                      class="flex flex-col gap-3 px-5 py-2 divide-y overflow-auto max-h-[88vh]"
-                    >
-                      <!-- users -->
-                      <div v-for="i in 15" class="flex justify-between pt-3">
-                        <div class="flex items-center gap-2">
-                          <Avatar class="w-8 h-8">
-                            <AvatarImage
-                              src="https://github.com/radix-vue.png"
-                            />
-                            <AvatarFallback>CB</AvatarFallback>
-                            <!--src gelmezse isim soyisim ilk harflerini al-->
-                          </Avatar>
-                          <p class="text-xs">Name Surname</p>
-                        </div>
-
-                        <div>
-                          <Button size="icon" variant="outline" class="w-8 h-8"
-                            ><Icon
-                              name="mynaui:eye"
-                              class="text-sm text-primary"
-                          /></Button>
-                        </div>
-                      </div>
-
-                      <!-- users -->
-                    </div>
-                  </SheetContent>
-                </Sheet>
-                <!-- applicatans sheet -->
-
-                <Dialog>
-                  <DialogTrigger as-child>
-                    <Button size="icon" variant="outline" class="w-8 h-8">
-                      <Icon name="mynaui:pencil" class="text-sm text-primary" />
-                    </Button>
-                  </DialogTrigger>
-
-                  <!--  Update Jobs Modal-->
-                  <DialogsUpdateJob />
-                  <!--  Update Jobs Modal-->
-                </Dialog>
-
-                <AlertDialog>
-                  <AlertDialogTrigger as-child>
-                    <Button size="icon" variant="outline" class="w-8 h-8">
-                      <Icon name="mynaui:trash" class="text-sm text-primary" />
-                    </Button>
-                  </AlertDialogTrigger>
-                  <!-- delete dialog -->
-                  <DialogsDelete />
-                  <!-- delete dialog -->
-                </AlertDialog>
-              </div>
-
-              <div v-else v-if="!appliedButRemoved" class="flex gap-1">
+              <div v-if="!appliedButRemoved" class="flex gap-1">
                 <!-- favorite toggle -->
-                <div v-if="loggedIn" class="flex">
+                <div v-if="loggedIn && !myJob" class="flex">
                   <Toggle size="sm" v-model:pressed="isFavorite">
                     <Icon
                       :name="
@@ -171,7 +104,7 @@ const isFavorite = ref(false);
                             />
                           </div>
                         </SheetTrigger>
-                        <SheetsJob :job />
+                        <SheetsJob :job :myJob />
                       </Sheet>
                     </TooltipTrigger>
                     <TooltipContent>
@@ -233,7 +166,7 @@ const isFavorite = ref(false);
       </div>
     </Card>
     <!-- Job Details Drawer -->
-    <DrawersJob :job />
+    <DrawersJob :job :myJob />
     <!-- Job Details Drawer -->
   </Drawer>
 </template>

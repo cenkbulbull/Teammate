@@ -63,19 +63,25 @@ const loggedIn = computed(() => status.value === "authenticated");
           </Dialog>
         </li>
 
-        <!-- <li>
-          <nuxt-link to="/user/myprojects">
+        <li v-if="loggedIn">
+          <nuxt-link to="/user/myjobs">
             <Button size="icon" variant="outline">
-              <Icon class="text-xl" name="mynaui:bell" />
+              <Icon
+                class="text-xl"
+                name="material-symbols-light:work-outline"
+              />
             </Button>
           </nuxt-link>
-        </li> -->
+        </li>
 
         <li v-if="loggedIn">
           <DropdownMenu>
             <DropdownMenuTrigger as-child>
               <Button size="icon" variant="outline">
-                <Icon class="text-xl" name="mynaui:user-circle" />
+                <Icon
+                  class="text-xl"
+                  name="material-symbols-light:account-circle-outline"
+                />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent class="w-56 mr-12">
