@@ -13,6 +13,15 @@ useHead({
     { name: "author", content: "Cenk Bülbül" },
   ],
 });
+
+import { usePostsStore } from "@/stores/posts.js";
+
+const postStore = usePostsStore();
+
+onMounted(async () => {
+  await postStore.fetchPosts();
+  console.log(postStore.posts);
+});
 </script>
 
 <template>

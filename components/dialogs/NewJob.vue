@@ -1,15 +1,24 @@
 <script lang="ts" setup>
 import { formSchema } from "@/schemas/createJobSchema";
 import { useForm } from "vee-validate";
+import { usePostsStore } from "@/stores/posts";
+const postsStore = usePostsStore();
 
 const { handleSubmit } = useForm({
   validationSchema: formSchema(),
 });
 
-const onSubmit = handleSubmit((values) => {
-  console.log("aa");
-});
 const requirements = ref();
+
+const onSubmit = handleSubmit((values) => {
+  postsStore.createPost({
+    id: "11423432",
+    createdAt: new Date(),
+    user: "userid",
+    ...values,
+    requirements: requirements.value,
+  });
+});
 </script>
 
 <template>

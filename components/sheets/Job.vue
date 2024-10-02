@@ -83,7 +83,9 @@ defineProps<{
         <Button class="text-xs">{{ $t("apply") }}</Button>
 
         <SheetClose aria-label="Close">
-          <Button class="text-xs" variant="outline"> Cancel </Button>
+          <Button class="text-xs" variant="outline">
+            {{ $t("cancel") }}
+          </Button>
         </SheetClose>
       </div>
     </div>

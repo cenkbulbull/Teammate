@@ -23,12 +23,15 @@ export const useUsersStore = defineStore("users", {
     deleteUser(id: String) {
       const response = fetch("/api/users/deleteUser", {
         method: "DELETE",
-        body: JSON.stringify(id),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
       });
     },
     updateUser(data: Object) {
       const response = fetch("/api/users/updateUser", {
-        method: "PUT",
+        method: "PATCH",
         body: JSON.stringify(data),
       });
     },

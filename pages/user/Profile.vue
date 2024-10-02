@@ -121,7 +121,7 @@ const job: Job = {
               </div>
               <div class="flex flex-col text-xs gap-1">
                 <span class="text-slate-600">{{ $t("phone") }}</span>
-                <span>097029327428</span>
+                <span><a href="tel:097029327428">097029327428</a></span>
               </div>
             </div>
 
@@ -131,7 +131,7 @@ const job: Job = {
               </div>
               <div class="flex flex-col text-xs gap-1">
                 <span class="text-slate-600">{{ $t("email") }}</span>
-                <span>test@mail.com</span>
+                <span><a href="mailto:test@mail.com">test@mail.com</a></span>
               </div>
             </div>
           </CardContent>
