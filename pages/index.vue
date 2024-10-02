@@ -19,7 +19,7 @@ const appliedFilterToggle = ref(false);
 </script>
 
 <template>
-  <!-- Kullanıcının paylaştığı ilanların gözüktüğü sheet -->
+  <!-- Settings Sheet -->
   <Sheet v-if="loggedIn">
     <SheetTrigger>
       <div
@@ -28,9 +28,9 @@ const appliedFilterToggle = ref(false);
         <Icon name="mynaui:chevron-left" />
       </div>
     </SheetTrigger>
-    <SheetsMyJobs />
+    <SheetsSettings />
   </Sheet>
-  <!-- Kullanıcının paylaştığı ilanların gözüktüğü sheet -->
+  <!-- Settings Sheet -->
 
   <div
     class="col-span-1 grid grid-cols-1 gap-4 bg-slate-50 px-4 py-7 md:px-12 md:grid-cols-3 lg:grid-cols-4"

@@ -126,5 +126,13 @@
     "required": "{0} is required",
     "passwordDontMatch": "Passwords don't match",
     "selectboxError": "Please select a {0}"
-  }
+  },
+  "applicationSettings": "Application Settings",
+  "TurnOnEmailNotifications": "Turn on email notifications",
+  "TurnOnEmailNotificationsDescription": "If you turn on email notifications, you can receive news about new postings.",
+  "TurnOnJobPostingNotifications": "Turn on job posting notifications",
+  "TurnOnJobPostingNotificationsDescription": "If you turn on job posting notifications, you can receive notifications of those who apply to your postings.",
+  "ShareYourProfile": "Share your profile",
+  "SavePreferences": "Save Preferences",
+  "ImHereToo": "I'm here too."
 }
