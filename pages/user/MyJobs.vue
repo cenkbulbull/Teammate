@@ -18,11 +18,19 @@ const job: Job = {
 
 <template>
   <div class="relative">
-    <div class="w-full h-20 md:h-40 magicpattern-dots-bg"></div>
+    <div class="w-full h-20 md:h-40 magicpattern-dots-bg flex justify-center">
+      <span
+        class="flex gap-2 text-xl md:text-3xl font-bold mt-7 uppercase tracking-widest"
+        ><Icon
+          class="text-2xl mt-[1px] md:text-3xl md:mt-[2px]"
+          name="material-symbols-light:work-outline"
+        />{{ $t("myJobs") }}</span
+      >
+    </div>
     <div
-      class="px-4 md:px-24 py-12 grid grid-cols-1 gap-8 absolute top-0 md:top-[40%] left-0"
+      class="px-4 md:px-24 py-12 grid grid-cols-1 gap-8 absolute md:top-[30%] left-0"
     >
-      <Card class="col-span-3 p-3 md:p-8 flex justify-between items-center">
+      <!-- <Card class="col-span-3 p-3 md:p-8 flex justify-between items-center">
         <div class="flex items-center gap-2">
           <div class="flex gap-2">
             <Icon class="text-xl" name="material-symbols-light:work-outline" />
@@ -31,9 +39,9 @@ const job: Job = {
             }}</span>
           </div>
         </div>
-      </Card>
+      </Card> -->
 
-      <div class="flex flex-col gap-4 col-span-3">
+      <div class="flex flex-col gap-8 col-span-3">
         <JobCard :job :myJob="true" />
         <JobCard :job :myJob="true" />
         <JobCard :job :myJob="true" />
