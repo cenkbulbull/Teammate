@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 definePageMeta({
   layout: "user",
+  middleware: "auth",
 });
 
 const personalSettings = ref({
