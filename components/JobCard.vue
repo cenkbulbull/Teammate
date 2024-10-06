@@ -18,104 +18,55 @@ const isFavorite = ref(false);
 
 <template>
   <Drawer>
-    <Card :class="[myJob ? 'border-none' : '']" class="rounded-none">
-      <div class="flex gap-3 bg-white p-5 rounded">
-        <!-- <div class="flex text-4xl bg-green-300 p-3 h-[50%] rounded">
-          <Icon class="text-white" name="mynaui:planet" />
-        </div> -->
+    <Card class="flex flex-col gap-5 p-2 rounded-xl text-sm">
+      <CardHeader class="bg-slate-50 rounded-t-xl px-5 py-2">
+        <div class="flex flex-col gap-3">
+          <div class="flex justify-between items-center">
+            <div class="flex gap-1 flex-wrap">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Badge class="gap-1 font-normal" variant="secondary"
+                      ><Icon name="mynaui:location" />{{ job.location }}</Badge
+                    >
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{{ $t("locationToWork") }}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
 
-        <Avatar>
-          <AvatarImage src="https://github.com/radix-vue.png" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-
-        <div class="flex flex-col gap-2">
-          <div class="flex items-center justify-between">
-            <div class="font-bold text-sm flex justify-center gap-1">
-              <div>
-                {{ job.title }}
-              </div>
-
-              <div>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger class="flex items-center gap-1">
-                      <Icon
-                        click="copy(job.id)"
-                        @click="copy(job.id)"
-                        name="mynaui:clipboard"
-                        class="text-xl"
-                      />
-                      <div v-if="copied" class="text-green-300 text-xs">
-                        {{ $t("copied") }}
-                      </div>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{{ $t("copyAdId") }}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Badge class="gap-1 font-normal" variant="secondary"
+                      ><Icon name="mynaui:clock-three" />{{
+                        job.estimatedJobTime + " " + $t("month")
+                      }}
+                    </Badge>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{{ $t("estimatedJobTime") }}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
 
-            <div class="flex gap-2">
-              <div v-if="!appliedButRemoved" class="flex gap-1">
-                <!-- favorite toggle -->
-                <div v-if="loggedIn && !myJob" class="flex">
-                  <Toggle size="sm" v-model:pressed="isFavorite">
-                    <Icon
-                      :name="
-                        isFavorite
-                          ? 'material-symbols-light:bookmark'
-                          : 'material-symbols-light:bookmark-outline'
-                      "
-                      class="text-2xl cursor-pointer bg-green-300"
-                  /></Toggle>
-                </div>
-                <!-- favorite toggle -->
-
-                <!-- Job Card Detail Button (sm) -->
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <DrawerTrigger
-                        class="flex items-center text-primary md:hidden"
-                      >
-                        <Icon class="text-xl" name="mynaui:panel-bottom-open" />
-                      </DrawerTrigger>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{{ $t("goToDetail") }}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-                <!-- Job Card Detail Button -->
-
-                <!-- Job Card Detail Button (md>) -->
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Sheet>
-                        <SheetTrigger>
-                          <div class="text-primary hidden md:block mt-1">
-                            <Icon
-                              class="text-xl"
-                              name="mynaui:panel-right-open"
-                            />
-                          </div>
-                        </SheetTrigger>
-                        <SheetsJob :job :myJob />
-                      </Sheet>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{{ $t("goToDetail") }}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-                <!-- Job Card Detail Button (md>) -->
-              </div>
-
-              <div v-if="appliedButRemoved">
+            <div v-if="loggedIn && !myJob" class="flex">
+              <Toggle
+                v-if="!appliedButRemoved"
+                size="sm"
+                v-model:pressed="isFavorite"
+              >
+                <Icon
+                  :name="
+                    isFavorite
+                      ? 'material-symbols-light:bookmark'
+                      : 'material-symbols-light:bookmark-outline'
+                  "
+                  class="text-2xl cursor-pointer bg-green-300"
+              /></Toggle>
+              <div v-else="appliedButRemoved">
                 <Alert
                   variant="destructive"
                   class="flex items-center h-9 text-xs"
@@ -129,44 +80,64 @@ const isFavorite = ref(false);
             </div>
           </div>
 
-          <div class="flex gap-1 flex-wrap">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <Badge class="gap-1 font-normal" variant="secondary"
-                    ><Icon name="mynaui:location" />{{ job.location }}</Badge
-                  >
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{{ $t("locationToWork") }}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <Badge class="gap-1 font-normal" variant="secondary"
-                    ><Icon name="mynaui:clock-three" />{{
-                      job.estimatedJobTime + " " + $t("month")
-                    }}
-                  </Badge>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{{ $t("estimatedJobTime") }}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </div>
-
-          <div class="text-xs line-clamp-3 leading-6">
+          <div class="text-xs line-clamp-5 leading-5">
             {{ job.description }}
           </div>
         </div>
-      </div>
+      </CardHeader>
+      <CardFooter class="px-5 pb-3">
+        <div class="flex justify-between w-full">
+          <div class="flex gap-2 items-center">
+            <Avatar>
+              <AvatarImage src="https://github.com/radix-vue.png" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+
+            <div class="flex gap-2 items-center font-bold text-xs">
+              <div>
+                {{ job.title }}
+              </div>
+
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger class="flex items-center gap-1">
+                    <Icon
+                      click="copy(job.id)"
+                      @click="copy(job.id)"
+                      name="mynaui:clipboard"
+                      class="text-xl"
+                    />
+                    <div v-if="copied" class="text-green-300 text-xs">
+                      {{ $t("copied") }}
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{{ $t("copyAdId") }}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+          </div>
+
+          <div v-if="!appliedButRemoved">
+            <Sheet>
+              <SheetTrigger class="hidden md:block">
+                <Button variant="outline" class="text-xs">
+                  {{ $t("view") }}
+                </Button>
+              </SheetTrigger>
+              <SheetsJob :job :myJob />
+            </Sheet>
+
+            <DrawerTrigger class="md:hidden">
+              <Button variant="outline" class="text-xs">
+                {{ $t("view") }}
+              </Button>
+            </DrawerTrigger>
+          </div>
+        </div>
+      </CardFooter>
     </Card>
-    <!-- Job Details Drawer -->
     <DrawersJob :job :myJob />
-    <!-- Job Details Drawer -->
   </Drawer>
 </template>

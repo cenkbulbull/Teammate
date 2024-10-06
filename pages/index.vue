@@ -43,7 +43,7 @@ const appliedFilterToggle = ref(false);
         <EmailCard />
       </div>
     </div>
-    <div class="grid gap-4 col-span-3">
+    <div class="flex flex-col gap-4 col-span-3">
       <!-- filters -->
       <div class="flex gap-4">
         <div class="w-full flex items-center border bg-white rounded-lg">
@@ -93,10 +93,12 @@ const appliedFilterToggle = ref(false);
       <!-- filters -->
 
       <!-- jobs -->
-      <JobCard :job />
-      <JobCard :job :appliedButRemoved="true" />
-      <JobCard :job />
-      <JobCard :job />
+      <div class="grid lg:grid-cols-2 gap-2">
+        <JobCard :job />
+        <JobCard :job :appliedButRemoved="true" />
+        <JobCard :job />
+        <JobCard :job />
+      </div>
       <!-- jobs -->
 
       <Pagination
