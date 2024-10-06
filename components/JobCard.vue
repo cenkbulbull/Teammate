@@ -122,7 +122,7 @@ const isFavorite = ref(false);
           <div v-if="!appliedButRemoved">
             <Sheet>
               <SheetTrigger class="hidden md:block">
-                <Button variant="outline" class="text-xs">
+                <Button class="text-xs">
                   {{ $t("view") }}
                 </Button>
               </SheetTrigger>
@@ -130,7 +130,7 @@ const isFavorite = ref(false);
             </Sheet>
 
             <DrawerTrigger class="md:hidden">
-              <Button variant="outline" class="text-xs">
+              <Button class="text-xs">
                 {{ $t("view") }}
               </Button>
             </DrawerTrigger>
