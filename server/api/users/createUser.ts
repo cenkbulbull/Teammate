@@ -2,6 +2,7 @@ import { defineEventHandler, readBody } from "h3";
 import connectDB from "../../database/mongoose";
 import User from "../../models/User";
 import bcrypt from "bcrypt";
+import { v4 as uuidv4 } from "uuid";
 
 // MongoDB bağlantısını kur
 connectDB();
@@ -16,7 +17,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const newUser = new User({
-      id: body.id,
+      id: uuidv4(),
       email: body.email,
       password: hashedPassword,
       authMethod: hashedPassword ? "credentials" : "google",
