@@ -1,7 +1,13 @@
 export default defineNuxtRouteMiddleware((to, from) => {
   const { status } = useAuth();
 
-  const publicRoutes = ["/auth/login", "/auth/signup", "/auth/confirmation"];
+  const publicRoutes = [
+    "/auth/login",
+    "/auth/signup",
+    "/auth/confirmation",
+    "/auth/Login",
+    "/auth/Signup",
+  ];
   const privateRoutes = [
     "/user/settings",
     "/user/Settings",
@@ -9,11 +15,19 @@ export default defineNuxtRouteMiddleware((to, from) => {
     "/user/MyJobs",
   ];
 
-  if (publicRoutes.includes(to.path) && status.value === "authenticated") {
-    return navigateTo("/");
+  // Eğer kullanıcı giriş yapmamışsa ve private route'lara gitmeye çalışıyorsa logine yönlendir
+  if (
+    status.value !== "authenticated" &&
+    privateRoutes.some((route) => to.path.startsWith(route))
+  ) {
+    return navigateTo("/auth/login"); // Logine yönlendir
   }
 
-  if (privateRoutes.includes(to.path) && status.value !== "authenticated") {
-    return navigateTo("/auth/login");
+  // Eğer kullanıcı giriş yapmışsa ve public route'lara gitmeye çalışıyorsa anasayfaya yönlendir
+  if (
+    status.value === "authenticated" &&
+    publicRoutes.some((route) => to.path.startsWith(route))
+  ) {
+    return navigateTo("/"); // Anasayfaya yönlendir
   }
 });
