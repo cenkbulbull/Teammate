@@ -1,11 +1,27 @@
-export default defineEventHandler(async (event) => {
-  const body = await readBody(event);
+import { defineEventHandler, readBody } from "h3";
+import connectDB from "../../database/mongoose";
+import Post from "../../models/Post";
+import { v4 as uuidv4 } from "uuid";
 
-  await $fetch(`${useRuntimeConfig().public.apiBase}/posts`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body,
-  });
+connectDB();
+
+export default defineEventHandler(async (event) => {
+  try {
+    const body = await readBody(event);
+
+    const newPost = new Post({
+      id: uuidv4(),
+      title: body.title,
+      location: body.location,
+      estimatedJobTime: body.estimatedJobTime,
+      description: body.description,
+      requirements: body.requirements || [],
+    });
+
+    const savedPost = await newPost.save();
+    return savedPost;
+  } catch (error) {
+    console.error("Error adding post:", error);
+    return { error: "Error adding post" };
+  }
 });

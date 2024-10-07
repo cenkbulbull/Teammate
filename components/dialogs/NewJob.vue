@@ -12,9 +12,6 @@ const requirements = ref();
 
 const onSubmit = handleSubmit((values) => {
   postsStore.createPost({
-    id: "11423432",
-    createdAt: new Date(),
-    user: "userid",
     ...values,
     requirements: requirements.value,
   });
