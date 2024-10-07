@@ -35,7 +35,14 @@ export default defineNuxtConfig({
       },
     ],
     "@sidebase/nuxt-auth",
+    "nuxt-mongoose",
   ],
+  mongoose: {
+    uri: process.env.MONGODB_URI,
+    options: {},
+    modelsDir: "models",
+    devtools: true,
+  },
   auth: {
     //globalAppMiddleware: true,
     // provider: {
@@ -89,6 +96,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // The private keys which are only available within server-side (PRIVATE --SERVER)
     //apiSecret: "", //example
+    mongoURI: process.env.MONGODB_URI,
     // Keys within public, will be also exposed to the client-side (PUBLIC --ALL)
     public: {
       apiBase: process.env.NUXT_BASE_URL,

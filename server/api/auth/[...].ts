@@ -1,6 +1,8 @@
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NuxtAuthHandler } from "#auth";
+import bcrypt from "bcrypt";
+import { v4 as uuidv4 } from "uuid";
 
 const appConfig = useAppConfig();
 
@@ -33,7 +35,7 @@ export default NuxtAuthHandler({
           const user = users.find(
             (user: any) =>
               user.email === credentials.email &&
-              user.password === credentials.password
+              bcrypt.compareSync(credentials.password, user.password)
           );
 
           if (user) {
@@ -71,6 +73,7 @@ export default NuxtAuthHandler({
           //kullanıcı yoksa kayıt işlemi yap
           if (!user) {
             const user = {
+              id: uuidv4(),
               email: profile?.email,
               firstname: profile?.given_name,
               lastname: profile?.family_name,

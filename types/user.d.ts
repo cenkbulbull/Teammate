@@ -3,6 +3,7 @@ declare global {
     id: string;
     email: string;
     password: string;
+    authMethod: string;
     firstname: string;
     lastname: string;
     biography?: string;

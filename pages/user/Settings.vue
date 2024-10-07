@@ -5,7 +5,7 @@ definePageMeta({
 });
 
 const personalSettings = ref({
-  id: "0.9380986828625959",
+  id: "25bfcc90-690a-4764-b486-fdf8f3172e4c",
   firstname: "",
   lastname: "",
   telephone: "",
@@ -16,7 +16,7 @@ const personalSettings = ref({
 });
 
 const socialSettings = ref({
-  id: "0.9380986828625959",
+  id: "25bfcc90-690a-4764-b486-fdf8f3172e4c",
   social: {
     linkedin: "",
     github: "",

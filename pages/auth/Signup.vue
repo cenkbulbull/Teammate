@@ -7,6 +7,7 @@ definePageMeta({
 //normal kayıt
 import { formSchema } from "@/schemas/signupSchema";
 import { useForm } from "vee-validate";
+import { v4 as uuidv4 } from "uuid";
 
 import { useUsersStore } from "@/stores/users";
 const usersStore = useUsersStore();
@@ -18,13 +19,11 @@ const { handleSubmit } = useForm({
 const onSubmit = handleSubmit((values) => {
   const user = values;
   delete user?.repassword;
-  usersStore.addUser({ id: String(Math.random()), ...user });
+  usersStore.addUser({ id: uuidv4(), ...user });
 });
-//normal kayıt
 
 //google ile giriş/kayıt
 const { signIn } = useAuth();
-//google ile giriş/kayıt
 </script>
 
 <template>
