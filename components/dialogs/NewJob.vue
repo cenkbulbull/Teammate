@@ -9,6 +9,48 @@ const { toast } = useToast();
 const postsStore = usePostsStore();
 const appStore = useAppStore();
 
+const locations = [
+  {
+    id: "remote",
+    label: "Remote",
+  },
+  {
+    id: "İstanbul",
+    label: "İstanbul",
+  },
+  {
+    id: "Ankara",
+    label: "Ankara",
+  },
+  {
+    id: "Zonguldak",
+    label: "Zonguldak",
+  },
+];
+
+const jobTime = [
+  {
+    id: "0-1",
+    label: "0-1",
+  },
+  {
+    id: "1-3",
+    label: "1-3",
+  },
+  {
+    id: "3-6",
+    label: "3-6",
+  },
+  {
+    id: "6-12",
+    label: "6-12",
+  },
+  {
+    id: "12>",
+    label: "12 >",
+  },
+];
+
 const { handleSubmit } = useForm({
   validationSchema: formSchema(),
 });
@@ -68,11 +110,13 @@ const onSubmit = handleSubmit(async (values) => {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        <SelectItem value="apple"> Şehir1 </SelectItem>
-                        <SelectItem value="banana"> Şehir2 </SelectItem>
-                        <SelectItem value="blueberry"> Şehir3 </SelectItem>
-                        <SelectItem value="grapes"> Şehir4 </SelectItem>
-                        <SelectItem value="pineapple"> Şehir5 </SelectItem>
+                        <SelectItem
+                          v-for="(location, index) in locations"
+                          :key="index"
+                          :value="location.id"
+                        >
+                          {{ location.label }}
+                        </SelectItem>
                       </SelectGroup>
                     </SelectContent>
                   </FormControl>
@@ -94,11 +138,13 @@ const onSubmit = handleSubmit(async (values) => {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        <SelectItem value="apple">0-1 Ay </SelectItem>
-                        <SelectItem value="banana"> 1-3 Ay </SelectItem>
-                        <SelectItem value="blueberry"> 3-6 Ay </SelectItem>
-                        <SelectItem value="grapes"> 6-12 Ay </SelectItem>
-                        <SelectItem value="pineapple"> 12 Ay > </SelectItem>
+                        <SelectItem
+                          v-for="(time, index) in jobTime"
+                          :key="index"
+                          :value="time.id"
+                        >
+                          {{ time.label }} {{ $t("month") }}
+                        </SelectItem>
                       </SelectGroup>
                     </SelectContent>
                   </FormControl>

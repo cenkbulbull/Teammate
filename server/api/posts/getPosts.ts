@@ -22,15 +22,21 @@ export default defineEventHandler(async (event) => {
 
     let posts = await Post.find(query);
 
-    // if (filtered?.sortOrder === "asc") {
-    //   posts = posts.sort(
-    //     (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
-    //   ); // Artan sıralama
-    // } else if (filtered?.sortOrder === "desc") {
-    //   posts = posts.sort(
-    //     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-    //   ); // Azalan sıralama
-    // }
+    //Sorting
+    if (filtered?.sort === "oldToNew") {
+      posts = posts.sort(
+        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+      ); // Artan sıralama
+    } else if (filtered?.sort === "newToOld") {
+      posts = posts.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      ); // Azalan sıralama
+    } else {
+      // Varsayılan olarak en yeni postları getir
+      posts = posts.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      ); // Azalan sıralama
+    }
 
     return posts;
   } catch (error) {

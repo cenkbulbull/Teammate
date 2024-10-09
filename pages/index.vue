@@ -32,7 +32,14 @@ const changeFavoriteFilter = async (isPressed) => {
   }
 };
 
-const testfav = async () => {};
+// Sorting
+const changeSort = (sort) => {
+  postsStore.fetchPosts({
+    filtered: {
+      sort,
+    },
+  });
+};
 </script>
 
 <template>
@@ -66,11 +73,11 @@ const testfav = async () => {};
         <div class="w-full flex items-center border bg-white rounded-lg">
           <Icon name="mynaui:location" class="text-xl ms-2" />
 
-          <Select>
+          <Select @update:modelValue="changeSort">
             <SelectTrigger
               class="text-xs outline-none border-none focus:outline-none focus:ring-0 focus:ring-offset-0"
             >
-              <SelectValue :placeholder="$t('sort')" />
+              <SelectValue :placeholder="$t('newToOld')" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
