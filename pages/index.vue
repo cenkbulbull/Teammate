@@ -40,6 +40,11 @@ const changeSort = (sort) => {
     },
   });
 };
+
+//Pagination
+const changePage = (newPage) => {
+  postsStore.fetchPosts(postsStore.filtered, newPage);
+};
 </script>
 
 <template>
@@ -140,14 +145,15 @@ const changeSort = (sort) => {
           v-if="posts.length > 0"
           class="mx-auto"
           v-slot="{ page }"
-          :total="40"
+          :total="Number(postsStore.totalPages) * 10"
           :sibling-count="1"
           show-edges
-          :default-page="2"
+          :default-page="postsStore.currentPage"
+          @page-change="changePage"
         >
           <PaginationList v-slot="{ items }" class="flex items-center gap-1">
-            <PaginationFirst />
-            <PaginationPrev />
+            <PaginationFirst @click="changePage(1)" />
+            <PaginationPrev @click="changePage(page - 1)" />
 
             <template v-for="(item, index) in items">
               <PaginationListItem
@@ -159,6 +165,7 @@ const changeSort = (sort) => {
                 <Button
                   class="w-10 h-10 p-0"
                   :variant="item.value === page ? 'default' : 'outline'"
+                  @click="changePage(item.value)"
                 >
                   {{ item.value }}
                 </Button>
@@ -166,8 +173,8 @@ const changeSort = (sort) => {
               <PaginationEllipsis v-else :key="item.type" :index="index" />
             </template>
 
-            <PaginationNext />
-            <PaginationLast />
+            <PaginationNext @click="changePage(page + 1)" />
+            <PaginationLast @click="changePage(postsStore.totalPages)" />
           </PaginationList>
         </Pagination>
       </div>

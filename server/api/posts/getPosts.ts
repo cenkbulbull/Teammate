@@ -7,7 +7,7 @@ connectDB();
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event); // İstek gövdesini al
-    const { filtered } = body; // filtered değerini al
+    const { filtered, page, limit } = body;
 
     let query = {}; // Sorgu nesnesini oluştur
 
@@ -58,7 +58,12 @@ export default defineEventHandler(async (event) => {
       query.location = { $in: filtered.location }; // Belirtilen lokasyonları içeren postlar
     }
 
-    let posts = await Post.find(query);
+    // Toplam kayıt sayısını al
+    const totalPosts = await Post.countDocuments(query);
+
+    let posts = await Post.find(query)
+      .skip((page - 1) * limit) // Hangi kayıttan başlayacağımız
+      .limit(limit); // Kaç kayıt alacağımız
 
     //Sorting
     if (filtered?.sort === "oldToNew") {
@@ -76,7 +81,12 @@ export default defineEventHandler(async (event) => {
       ); // Azalan sıralama
     }
 
-    return posts;
+    return {
+      posts,
+      totalPosts,
+      totalPages: Math.ceil(totalPosts / limit), // Toplam sayfa sayısını hesapla
+      currentPage: page, // Mevcut sayfa
+    };
   } catch (error) {
     console.error("Error fetching posts:", error);
     return { error: "Error fetching posts" };

@@ -3,17 +3,28 @@ import { defineStore } from "pinia";
 export const usePostsStore = defineStore("posts", {
   state: () => ({
     posts: [] as Job[],
+    currentPage: 1,
+    totalPages: null,
+    totalPosts: null,
+    filtered: null,
   }),
   actions: {
-    async fetchPosts(filtered = {}) {
+    async fetchPosts(filtered = {}, page = 1, limit = 2) {
       const response = await fetch("/api/posts/getPosts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(filtered),
+        body: JSON.stringify({ ...filtered, page, limit }),
       });
-      this.posts = await response.json();
+
+      const data = await response.json();
+
+      this.filtered = filtered; //paginationda tekrar istek attığımızdan dolayı oluşan filter kaybolma durumu store kullanılarak çözüldü
+      this.posts = data.posts;
+      this.currentPage = data.currentPage;
+      this.totalPages = data.totalPages;
+      this.totalPosts = data.totalPosts;
     },
     createPost(post: Job) {
       const response = fetch("/api/posts/createPost", {
