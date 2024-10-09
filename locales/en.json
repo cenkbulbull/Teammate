@@ -114,7 +114,7 @@
   "turnOnEmailNotifications": "Turn on email notifications",
   "users": "Users",
   "jobs": "Jobs",
-  "newJobs": "Jobs",
+  "newJobs": "New Jobs",
   "remote": "Remote",
   "description": "Description",
   "projectGlobalDescription": "Find your project teammate now! Share your skills, meet suitable team members, and complete your projects successfully. Sign up for quick and easy connections!",
@@ -136,5 +136,10 @@
   "SavePreferences": "Save Preferences",
   "ImHereToo": "I'm here too.",
   "myJobs": "My Jobs",
-  "view": "View"
+  "view": "View",
+  "saveChangesToastTitle": "Updated",
+  "saveChangesToastText": "{0} settings updated",
+  "added": "Added",
+  "noOneHasSharedAnythingYet": "No one has shared anything yet",
+  "referenced": "Referenced"
 }
