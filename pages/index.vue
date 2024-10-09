@@ -1,21 +1,38 @@
 <script lang="ts" setup>
-const { status } = useAuth();
+import { usePostsStore } from "@/stores/posts";
+import { useAppStore } from "@/stores/app";
+const postsStore = usePostsStore();
+const appStore = useAppStore();
 
+const { status } = useAuth();
 const loggedIn = computed(() => status.value === "authenticated");
 
-const job: Job = {
-  id: "ac789xc",
-  user: "Paylaşan İsim",
-  title: "Frontend Developer",
-  location: "Remote",
-  estimatedJobTime: "1-3",
-  description:
-    "TIKLANINCA DRAWER AÇ Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scr, when an unknown printer took a galley of type and scr, when an unknown printer took a galley of type and scr, when an unknown printer took a galley of type and scr, when an unknown printer took a galley of type and scr, when an unknown printer took a galley of type and scr, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  requirements: ["Javascript", "İngilizce", "Araştırma", "Takım çalışması"],
-};
+const posts = computed(() => postsStore.posts);
 
 const favoritesFilterToggle = ref(false);
 const appliedFilterToggle = ref(false);
+
+const changeFavoriteFilter = async (isPressed) => {
+  if (isPressed) {
+    const { data: user } = await useFetch("/api/users/getUser", {
+      method: "POST",
+      body: JSON.stringify({ id: appStore.activeUser?.id }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    postsStore.fetchPosts({
+      filtered: {
+        favorites: user.value?.favorites,
+      },
+    });
+  } else {
+    postsStore.fetchPosts();
+  }
+};
+
+const testfav = async () => {};
 </script>
 
 <template>
@@ -72,6 +89,7 @@ const appliedFilterToggle = ref(false);
                 <Toggle
                   variant="outline"
                   v-model:pressed="favoritesFilterToggle"
+                  @update:pressed="changeFavoriteFilter"
                 >
                   <Icon
                     :name="
@@ -92,48 +110,60 @@ const appliedFilterToggle = ref(false);
       </div>
       <!-- filters -->
 
-      <!-- jobs -->
-      <div class="grid lg:grid-cols-2 gap-2">
-        <JobCard :job />
-        <JobCard :job :appliedButRemoved="true" />
-        <JobCard :job />
-        <JobCard :job />
-      </div>
-      <!-- jobs -->
+      <div class="flex flex-col gap-4">
+        <!-- jobs -->
+        <div class="grid lg:grid-cols-2 gap-2">
+          <JobCard
+            v-if="posts.length > 0"
+            v-for="(post, index) in posts"
+            :key="index"
+            :job="post"
+          />
+          <Alert v-else variant="destructive" class="col-span-2">
+            <AlertDescription class="flex gap-2 items-center">
+              <Icon name="mdi:checkbox-blank-badge-outline" />
+              {{ $t("noOneHasSharedAnythingYet") }}
+            </AlertDescription>
+          </Alert>
+          <!-- <JobCard :job :appliedButRemoved="true" /> -->
+        </div>
+        <!-- jobs -->
 
-      <Pagination
-        class="m-auto"
-        v-slot="{ page }"
-        :total="40"
-        :sibling-count="1"
-        show-edges
-        :default-page="2"
-      >
-        <PaginationList v-slot="{ items }" class="flex items-center gap-1">
-          <PaginationFirst />
-          <PaginationPrev />
+        <Pagination
+          v-if="posts.length > 0"
+          class="mx-auto"
+          v-slot="{ page }"
+          :total="40"
+          :sibling-count="1"
+          show-edges
+          :default-page="2"
+        >
+          <PaginationList v-slot="{ items }" class="flex items-center gap-1">
+            <PaginationFirst />
+            <PaginationPrev />
 
-          <template v-for="(item, index) in items">
-            <PaginationListItem
-              v-if="item.type === 'page'"
-              :key="index"
-              :value="item.value"
-              as-child
-            >
-              <Button
-                class="w-10 h-10 p-0"
-                :variant="item.value === page ? 'default' : 'outline'"
+            <template v-for="(item, index) in items">
+              <PaginationListItem
+                v-if="item.type === 'page'"
+                :key="index"
+                :value="item.value"
+                as-child
               >
-                {{ item.value }}
-              </Button>
-            </PaginationListItem>
-            <PaginationEllipsis v-else :key="item.type" :index="index" />
-          </template>
+                <Button
+                  class="w-10 h-10 p-0"
+                  :variant="item.value === page ? 'default' : 'outline'"
+                >
+                  {{ item.value }}
+                </Button>
+              </PaginationListItem>
+              <PaginationEllipsis v-else :key="item.type" :index="index" />
+            </template>
 
-          <PaginationNext />
-          <PaginationLast />
-        </PaginationList>
-      </Pagination>
+            <PaginationNext />
+            <PaginationLast />
+          </PaginationList>
+        </Pagination>
+      </div>
     </div>
   </div>
 </template>

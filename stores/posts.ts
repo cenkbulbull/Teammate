@@ -5,8 +5,14 @@ export const usePostsStore = defineStore("posts", {
     posts: [] as Job[],
   }),
   actions: {
-    async fetchPosts() {
-      const response = await fetch("/api/posts/getPosts");
+    async fetchPosts(filtered = {}) {
+      const response = await fetch("/api/posts/getPosts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(filtered),
+      });
       this.posts = await response.json();
     },
     createPost(post: Job) {
