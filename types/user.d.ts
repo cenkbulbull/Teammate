@@ -13,9 +13,9 @@ declare global {
     profilePhoto?: string;
     social?: SocialLinks;
     abilities?: string[];
-    jobs?: number[];
-    applied?: number[]; // Sadece postId değerlerini içermeli
-    favorites?: number[];
+    jobs?: string[];
+    applied?: string[]; // Sadece postId değerlerini içermeli
+    favorites?: string[];
     emailNotification?: boolean;
   }
 }

@@ -59,15 +59,15 @@ const UserSchema: Schema<User> = new Schema({
     required: false,
   },
   jobs: {
-    type: [Number],
+    type: [String],
     required: false,
   },
   applied: {
-    type: [Number],
+    type: [String],
     required: false,
   },
   favorites: {
-    type: [Number],
+    type: [String],
     required: false,
   },
   emailNotification: {

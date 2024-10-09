@@ -11,6 +11,7 @@ export default defineEventHandler(async (event) => {
 
     const newPost = new Post({
       id: uuidv4(),
+      user: body.user,
       title: body.title,
       location: body.location,
       estimatedJobTime: body.estimatedJobTime,
@@ -19,6 +20,7 @@ export default defineEventHandler(async (event) => {
     });
 
     const savedPost = await newPost.save();
+    console.log(savedPost);
     return savedPost;
   } catch (error) {
     console.error("Error adding post:", error);

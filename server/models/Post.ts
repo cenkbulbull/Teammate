@@ -13,8 +13,7 @@ const PostSchema: Schema<Job> = new Schema({
   },
   user: {
     type: String,
-    //required: true, // Kullanıcı ID'si gereklidir
-    default: "0de27e53-9ee3-4883-8d4e-6928ed42e9f6", //giriş yapan kullanıcının idsi olacak
+    required: true, // Kullanıcı ID'si gereklidir
   },
   title: {
     type: String,
@@ -35,6 +34,10 @@ const PostSchema: Schema<Job> = new Schema({
   requirements: {
     type: [String], // Gereksinimler dizi olarak tanımlanır
     required: false, // Gereksinimler isteğe bağlıdır
+  },
+  applicants: {
+    type: [String],
+    required: false,
   },
 });
 

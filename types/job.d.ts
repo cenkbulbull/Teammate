@@ -8,6 +8,7 @@ declare global {
     estimatedJobTime: string;
     description: string;
     requirements?: array;
+    applicants?: array; // Sadece userID değerlerini içermeli
   }
 }
 export {};
