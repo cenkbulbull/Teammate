@@ -17,30 +17,8 @@ const job: Job = {
 </script>
 
 <template>
-  <div class="relative">
-    <div class="w-full h-20 md:h-40 magicpattern-dots-bg flex justify-center">
-      <span
-        class="flex gap-2 text-xl md:text-3xl font-bold mt-7 uppercase tracking-widest"
-        ><Icon
-          class="text-2xl mt-[1px] md:text-3xl md:mt-[2px]"
-          name="material-symbols-light:work-outline"
-        />{{ $t("myJobs") }}</span
-      >
-    </div>
-    <div
-      class="px-4 md:px-24 py-12 grid grid-cols-1 gap-8 absolute md:top-[30%] left-0"
-    >
-      <!-- <Card class="col-span-3 p-3 md:p-8 flex justify-between items-center">
-        <div class="flex items-center gap-2">
-          <div class="flex gap-2">
-            <Icon class="text-xl" name="material-symbols-light:work-outline" />
-            <span class="font-bold text-xs md:text-sm">{{
-              $t("openProjects")
-            }}</span>
-          </div>
-        </div>
-      </Card> -->
-
+  <div class="bg-gradient pt-24">
+    <div class="px-4 md:px-24 py-12 grid grid-cols-1 gap-8 bg-white">
       <div class="flex flex-col gap-8 col-span-3">
         <JobCard :job :myJob="true" />
         <JobCard :job :myJob="true" />
@@ -85,10 +63,12 @@ const job: Job = {
 </template>
 
 <style lang="scss" scoped>
-.magicpattern-dots-bg {
-  background-color: #e5e5f7;
-  opacity: 0.8;
-  background-image: radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
-  background-size: 10px 10px;
+.bg-gradient {
+  background: rgb(186, 213, 242);
+  background: linear-gradient(
+    103deg,
+    rgba(186, 213, 242, 1) 0%,
+    rgba(253, 252, 227, 1) 100%
+  );
 }
 </style>
