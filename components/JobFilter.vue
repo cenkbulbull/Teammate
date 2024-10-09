@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import { usePostsStore } from "@/stores/posts";
+const postsStore = usePostsStore();
+
 const { locale, setLocale, t } = useI18n();
 
 const locations = [
@@ -71,6 +74,14 @@ const filterJobTime = (e: Boolean, id: String) => {
   e
     ? filter.jobTime.push(id)
     : (filter.jobTime = filter.jobTime.filter((jobTime) => jobTime !== id));
+};
+
+const filterPosts = () => {
+  postsStore.fetchPosts({
+    filtered: {
+      ...filter,
+    },
+  });
 };
 </script>
 
@@ -146,9 +157,7 @@ const filterJobTime = (e: Boolean, id: String) => {
           >
         </div>
       </div>
-      <Button @click="console.log(filter)" class="text-xs">{{
-        $t("filter")
-      }}</Button>
+      <Button @click="filterPosts" class="text-xs">{{ $t("filter") }}</Button>
     </CardContent>
   </Card>
 </template>
