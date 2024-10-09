@@ -2,7 +2,12 @@
 import { formSchema } from "@/schemas/createJobSchema";
 import { useForm } from "vee-validate";
 import { usePostsStore } from "@/stores/posts";
+import { useAppStore } from "@/stores/app";
+import { useToast } from "@/components/ui/toast/use-toast";
+const { t } = useI18n();
+const { toast } = useToast();
 const postsStore = usePostsStore();
+const appStore = useAppStore();
 
 const { handleSubmit } = useForm({
   validationSchema: formSchema(),
@@ -10,15 +15,21 @@ const { handleSubmit } = useForm({
 
 const requirements = ref();
 
-const onSubmit = handleSubmit((values) => {
-  postsStore.createPost({
+const onSubmit = handleSubmit(async (values) => {
+  await postsStore.createPost({
+    user: appStore.activeUser.id,
     ...values,
     requirements: requirements.value,
+  });
+
+  toast({
+    title: t("added"),
   });
 });
 </script>
 
 <template>
+  <Toaster />
   <DialogContent>
     <form @submit="onSubmit">
       <DialogHeader>
@@ -132,7 +143,9 @@ const onSubmit = handleSubmit((values) => {
         </div>
       </div>
       <DialogFooter>
-        <Button type="submit">{{ $t("create") }}</Button>
+        <DialogClose as-child>
+          <Button type="submit">{{ $t("create") }}</Button>
+        </DialogClose>
       </DialogFooter>
     </form>
   </DialogContent>

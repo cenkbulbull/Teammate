@@ -1,9 +1,19 @@
 <script lang="ts" setup>
+import { useAppStore } from "@/stores/app";
+const appStore = useAppStore();
+
 const localePath = useLocalePath();
 
 const { status, signOut } = useAuth();
-
 const loggedIn = computed(() => status.value === "authenticated");
+
+const user = computed(() => appStore.activeUser);
+
+const avatarFallback = computed(() => {
+  const firstInitial = user.value.firstname.charAt(0).toUpperCase();
+  const lastInitial = user.value.lastname.charAt(0).toUpperCase();
+  return `${firstInitial}${lastInitial}`;
+});
 </script>
 
 <template>
@@ -34,7 +44,7 @@ const loggedIn = computed(() => status.value === "authenticated");
       </li>
     </ul> -->
 
-    <div>
+    <div v-if="user">
       <ul class="flex gap-2">
         <li v-if="!loggedIn">
           <nuxt-link :to="localePath('/auth/login')">
@@ -87,17 +97,17 @@ const loggedIn = computed(() => status.value === "authenticated");
             <DropdownMenuContent class="w-56 mr-12">
               <DropdownMenuLabel class="flex items-center gap-2">
                 <Avatar class="w-6 h-6">
-                  <AvatarImage src="https://github.com/radix-vue.png" />
-                  <AvatarFallback>CB</AvatarFallback>
+                  <AvatarImage :src="user.profilePhoto" />
+                  <AvatarFallback>{{ avatarFallback }}</AvatarFallback>
                   <!--src gelmezse isim soyisim ilk harflerini al-->
                 </Avatar>
-                <span>Cenk Bülbül</span>
+                <span>{{ user.firstname }} {{ user.lastname }} </span>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
                 <DropdownMenuItem>
                   <nuxt-link
-                    :to="localePath('/user/profile')"
+                    :to="localePath(`/user/profile/${user.id}`)"
                     class="flex gap-2"
                     ><Icon name="mynaui:user" class="text-xl" />
                     <span>{{ $t("profile") }}</span></nuxt-link

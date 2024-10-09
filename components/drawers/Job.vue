@@ -4,9 +4,75 @@ defineProps<{
   myJob: boolean;
 }>();
 
-const { status } = useAuth();
+import { useUsersStore } from "@/stores/users";
+import { usePostsStore } from "@/stores/posts";
+import { useAppStore } from "@/stores/app";
+import { useToast } from "@/components/ui/toast/use-toast";
 
+const usersStore = useUsersStore();
+const postsStore = usePostsStore();
+const appStore = useAppStore();
+
+const { toast } = useToast();
+
+const { t } = useI18n();
+
+const { status } = useAuth();
 const loggedIn = computed(() => status.value === "authenticated");
+
+const apply = async () => {
+  const userID = appStore.activeUser?.id;
+  const postID = props.job.id;
+
+  if (!userID || !postID) {
+    console.error("Kullanıcı ID'si veya Post ID'si bulunamadı.");
+    return;
+  }
+
+  try {
+    const { data: post } = useFetch("/api/posts/getPost", {
+      method: "POST",
+      body: JSON.stringify({ id: postID }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const applicants = post.value?.applicants || []; //Users
+
+    if (!applicants.includes(userID)) {
+      applicants.push(userID); // Kullanıcıyı applicants dizisine ekle
+    }
+
+    // Posts Store'da güncelleme yap
+    await postsStore.updatePost({ id: postID, applicants });
+
+    const { data: user } = useFetch("/api/users/getUser", {
+      method: "POST",
+      body: JSON.stringify({ id: userID }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const applied = user.value?.applied || [];
+
+    if (!applied.includes(postID)) {
+      applied.push(postID); // Postu applied dizisine ekle
+    }
+
+    // Users Store'da güncelleme yap
+    await usersStore.updateUser({ id: userID, applied });
+
+    toast({
+      title: t("referenced"),
+    });
+
+    console.log("Başarıyla güncellendi.");
+  } catch (error) {
+    console.error("Güncelleme sırasında hata oluştu:", error);
+  }
+};
 </script>
 <template>
   <DrawerContent>
@@ -79,7 +145,9 @@ const loggedIn = computed(() => status.value === "authenticated");
 
     <DrawerFooter class="flex-row">
       <div v-if="!myJob" class="flex gap-2">
-        <Button v-if="loggedIn" class="text-xs">{{ $t("apply") }}</Button>
+        <Button v-if="loggedIn" @click="apply" class="text-xs">{{
+          $t("apply")
+        }}</Button>
 
         <DrawerClose v-if="loggedIn">
           <Button class="text-xs" variant="outline">
