@@ -93,7 +93,6 @@ const changeFavorite = async (isPressed: boolean) => {
 <template>
   <Drawer>
     <Card
-      @click="copyID(job.id)"
       class="flex flex-col gap-5 p-2 rounded-xl text-sm group hover:border-green-300 transition-all cursor-pointer"
     >
       <CardHeader class="rounded-t-xl p-2">
@@ -101,20 +100,26 @@ const changeFavorite = async (isPressed: boolean) => {
           <div class="flex justify-between items-center">
             <CardTitle class="text-md">{{ job.title }}</CardTitle>
             <div v-if="loggedIn && !myJob" class="flex">
-              <Toggle
-                v-if="!appliedButRemoved"
-                size="sm"
-                v-model:pressed="isFavorite"
-                @update:pressed="changeFavorite"
-              >
+              <div v-if="!appliedButRemoved" class="flex gap-2 items-center">
+                <Toggle
+                  size="sm"
+                  v-model:pressed="isFavorite"
+                  @update:pressed="changeFavorite"
+                >
+                  <Icon
+                    :name="
+                      isFavorite
+                        ? 'material-symbols-light:bookmark'
+                        : 'material-symbols-light:bookmark-outline'
+                    "
+                    class="text-2xl cursor-pointer bg-green-300"
+                /></Toggle>
                 <Icon
-                  :name="
-                    isFavorite
-                      ? 'material-symbols-light:bookmark'
-                      : 'material-symbols-light:bookmark-outline'
-                  "
-                  class="text-2xl cursor-pointer bg-green-300"
-              /></Toggle>
+                  @click="copyID(job.id)"
+                  name="material-symbols:content-copy-outline"
+                  class="text-xl cursor-pointer bg-green-300 hover:bg-green-500"
+                />
+              </div>
               <div v-else="appliedButRemoved">
                 <Alert
                   variant="destructive"
