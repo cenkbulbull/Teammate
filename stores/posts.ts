@@ -9,7 +9,7 @@ export const usePostsStore = defineStore("posts", {
     filtered: null,
   }),
   actions: {
-    async fetchPosts(filtered = {}, page = 1, limit = 2) {
+    async fetchPosts(filtered = {}, page = 1, limit = 10) {
       const response = await fetch("/api/posts/getPosts", {
         method: "POST",
         headers: {

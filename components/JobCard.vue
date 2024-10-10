@@ -2,11 +2,16 @@
 import { useClipboard } from "@vueuse/core";
 import { useUsersStore } from "@/stores/users";
 import { useAppStore } from "@/stores/app";
+import { useToast } from "@/components/ui/toast/use-toast";
+
 const usersStore = useUsersStore();
 const appStore = useAppStore();
 
-const { status } = useAuth();
+const { toast } = useToast();
 
+const { t } = useI18n();
+
+const { status } = useAuth();
 const loggedIn = computed(() => status.value === "authenticated");
 
 const props = defineProps<{
@@ -40,6 +45,14 @@ const avatarFallback = computed(() => {
 
 const { text, copy, copied, isSupported } = useClipboard();
 
+const copyID = async (id: string) => {
+  await copy(id);
+  toast({
+    title: t("adIdCopied"),
+    description: id,
+  });
+};
+
 const isFavorite = ref(false);
 
 // favorites dizisini ve props.job.id'yi kontrol edin
@@ -53,7 +66,7 @@ watch(
   { immediate: true } // İlk başta da kontrol etsin
 );
 
-const changeFavorite = async (isPressed) => {
+const changeFavorite = async (isPressed: boolean) => {
   try {
     const favorites = appStore.activeUser?.favorites || [];
 
@@ -80,10 +93,41 @@ const changeFavorite = async (isPressed) => {
 <template>
   <Drawer>
     <Card
-      class="flex flex-col gap-5 p-2 rounded-xl text-sm group hover:shadow-md transition-all"
+      @click="copyID(job.id)"
+      class="flex flex-col gap-5 p-2 rounded-xl text-sm group hover:border-green-300 transition-all cursor-pointer"
     >
       <CardHeader class="rounded-t-xl p-2">
         <div class="flex flex-col gap-3">
+          <div class="flex justify-between items-center">
+            <CardTitle class="text-md">{{ job.title }}</CardTitle>
+            <div v-if="loggedIn && !myJob" class="flex">
+              <Toggle
+                v-if="!appliedButRemoved"
+                size="sm"
+                v-model:pressed="isFavorite"
+                @update:pressed="changeFavorite"
+              >
+                <Icon
+                  :name="
+                    isFavorite
+                      ? 'material-symbols-light:bookmark'
+                      : 'material-symbols-light:bookmark-outline'
+                  "
+                  class="text-2xl cursor-pointer bg-green-300"
+              /></Toggle>
+              <div v-else="appliedButRemoved">
+                <Alert
+                  variant="destructive"
+                  class="flex items-center h-9 text-xs"
+                >
+                  <Icon name="mdi:exclamation-thick" />
+                  <AlertTitle class="mt-1">
+                    {{ $t("removed") }}
+                  </AlertTitle>
+                </Alert>
+              </div>
+            </div>
+          </div>
           <div class="flex justify-between items-center">
             <div class="flex gap-1 flex-wrap">
               <TooltipProvider>
@@ -114,34 +158,6 @@ const changeFavorite = async (isPressed) => {
                 </Tooltip>
               </TooltipProvider>
             </div>
-
-            <div v-if="loggedIn && !myJob" class="flex">
-              <Toggle
-                v-if="!appliedButRemoved"
-                size="sm"
-                v-model:pressed="isFavorite"
-                @update:pressed="changeFavorite"
-              >
-                <Icon
-                  :name="
-                    isFavorite
-                      ? 'material-symbols-light:bookmark'
-                      : 'material-symbols-light:bookmark-outline'
-                  "
-                  class="text-2xl cursor-pointer bg-green-300"
-              /></Toggle>
-              <div v-else="appliedButRemoved">
-                <Alert
-                  variant="destructive"
-                  class="flex items-center h-9 text-xs"
-                >
-                  <Icon name="mdi:exclamation-thick" />
-                  <AlertTitle class="mt-1">
-                    {{ $t("removed") }}
-                  </AlertTitle>
-                </Alert>
-              </div>
-            </div>
           </div>
 
           <div class="text-xs line-clamp-5 leading-5">
@@ -158,28 +174,7 @@ const changeFavorite = async (isPressed) => {
             </Avatar>
 
             <div class="flex gap-2 items-center font-bold text-xs">
-              <div>
-                {{ job.title }}
-              </div>
-
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger class="flex items-center gap-1">
-                    <Icon
-                      click="copy(job.id)"
-                      @click="copy(job.id)"
-                      name="mynaui:clipboard"
-                      class="text-xl"
-                    />
-                    <div v-if="copied" class="text-green-300 text-xs">
-                      {{ $t("copied") }}
-                    </div>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{{ $t("copyAdId") }}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+              <div>{{ advertiser?.firstname }} {{ advertiser?.lastname }}</div>
             </div>
           </div>
 
