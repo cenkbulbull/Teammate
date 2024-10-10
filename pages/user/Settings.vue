@@ -86,7 +86,7 @@ const savePersonalSettings = async () => {
       <div class="flex justify-between items-center">
         <div class="flex items-center gap-2">
           <Avatar class="w-12 h-12 md:w-24 md:h-24">
-            <AvatarImage :src="user?.profilePhoto" />
+            <AvatarImage :src="'/uploads/images/' + user?.profilePhoto" />
             <AvatarFallback>{{ avatarFallback }}</AvatarFallback>
             <!-- src gelmezse isim soyisim ilk harflerini al -->
           </Avatar>
