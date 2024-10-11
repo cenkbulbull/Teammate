@@ -142,7 +142,7 @@ const changePage = (newPage) => {
         <!-- jobs -->
 
         <Pagination
-          v-if="posts.length > 0"
+          v-if="postsStore.totalPosts > posts.length"
           class="mx-auto"
           v-slot="{ page }"
           :total="Number(postsStore.totalPages) * 10"

@@ -71,28 +71,23 @@ export default defineEventHandler(async (event) => {
       query.location = { $in: filtered.location }; // Belirtilen lokasyonları içeren postlar
     }
 
-    // Toplam kayıt sayısını al
-    const totalPosts = await Post.countDocuments(query);
+    let allPosts = await Post.find(query);
 
-    let posts = await Post.find(query)
-      .skip((page - 1) * limit) // Hangi kayıttan başlayacağımız
-      .limit(limit); // Kaç kayıt alacağımız
-
-    //Sorting
+    // Sıralama işlemi
     if (filtered?.sort === "oldToNew") {
-      posts = posts.sort(
-        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
-      ); // Artan sıralama
+      allPosts.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)); // Artan sıralama
     } else if (filtered?.sort === "newToOld") {
-      posts = posts.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      ); // Azalan sıralama
+      allPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Azalan sıralama
     } else {
       // Varsayılan olarak en yeni postları getir
-      posts = posts.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      ); // Azalan sıralama
+      allPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Azalan sıralama
     }
+
+    // Toplam kayıt sayısını al
+    const totalPosts = allPosts.length; // Tüm postları say
+
+    // Sayfalama işlemi
+    const posts = allPosts.slice((page - 1) * limit, page * limit); // Sayfa için gereken postları al
 
     return {
       posts,

@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 
 export const usePostsStore = defineStore("posts", {
   state: () => ({
+    allPosts: [] as Job[],
     posts: [] as Job[],
     currentPage: 1,
     totalPages: null,
@@ -9,7 +10,19 @@ export const usePostsStore = defineStore("posts", {
     filtered: null,
   }),
   actions: {
-    async fetchPosts(filtered = {}, page = 1, limit = 10) {
+    async fetchAllPosts() {
+      const response = await fetch("/api/posts/getAllPosts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+
+      this.allPosts = data.allPosts;
+    },
+    async fetchPosts(filtered = {}, page = 1, limit = 8) {
       const response = await fetch("/api/posts/getPosts", {
         method: "POST",
         headers: {
@@ -26,8 +39,8 @@ export const usePostsStore = defineStore("posts", {
       this.totalPages = data.totalPages;
       this.totalPosts = data.totalPosts;
     },
-    createPost(post: Job) {
-      const response = fetch("/api/posts/createPost", {
+    async createPost(post: Job) {
+      const response = await fetch("/api/posts/createPost", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,7 +48,7 @@ export const usePostsStore = defineStore("posts", {
         body: JSON.stringify(post),
       });
 
-      this.posts.push(post);
+      this.fetchPosts();
     },
     deletePost(postId: String) {
       const response = fetch("/api/posts/deletePost", {

@@ -1,29 +1,10 @@
 <script lang="ts" setup>
 import { usePostsStore } from "@/stores/posts";
+import { useUsersStore } from "@/stores/users";
 const postsStore = usePostsStore();
+const usersStore = useUsersStore();
 
 const { locale, setLocale, t } = useI18n();
-
-const infoUsers: Info = {
-  icon: "mynaui:users",
-  iconBg: "bg-violet-300",
-  text: "users",
-  count: "1000",
-};
-
-const infoJobs: Info = {
-  icon: "mynaui:briefcase",
-  iconBg: "bg-green-300",
-  text: "jobs",
-  count: "300",
-};
-
-const infoNewJobs: Info = {
-  icon: "mynaui:bell",
-  iconBg: "bg-sky-700",
-  text: "newJobs",
-  count: "30",
-};
 
 const locations = [
   {
@@ -109,11 +90,73 @@ const searchJob = () => {
     </div>
 
     <div class="grid md:grid-cols-4 sm:grid-cols-2 gap-5">
-      <InfoCountCard :info="infoUsers" />
+      <Card class="w-full max-w-xs p-2 text-slate-800">
+        <CardContent class="flex gap-3 p-2">
+          <div
+            class="flex items-center p-3 rounded text-xl text-white bg-green-300"
+          >
+            <Icon name="mynaui:users" />
+          </div>
+          <div>
+            <p class="text-lg font-bold">
+              {{ usersStore.users.length }}
+            </p>
+            <p class="text-xs">{{ $t("users") }}</p>
+          </div>
+        </CardContent>
+      </Card>
 
-      <InfoCountCard :info="infoJobs" />
+      <Card class="w-full max-w-xs p-2 text-slate-800">
+        <CardContent class="flex gap-3 p-2">
+          <div
+            class="flex items-center p-3 rounded text-xl text-white bg-violet-300"
+          >
+            <Icon name="mynaui:users" />
+          </div>
+          <div>
+            <p class="text-lg font-bold">{{ postsStore.totalPosts || 0 }}</p>
+            <p class="text-xs">{{ $t("jobs") }}</p>
+          </div>
+        </CardContent>
+      </Card>
 
-      <InfoCountCard :info="infoNewJobs" />
+      <!-- Bugün açılan ilanların sayısı -->
+      <Card class="w-full max-w-xs p-2 text-slate-800">
+        <CardContent class="flex gap-3 p-2">
+          <div
+            class="flex items-center p-3 rounded text-xl text-white bg-sky-700"
+          >
+            <Icon name="mynaui:bell" />
+          </div>
+          <div>
+            <p class="text-lg font-bold">
+              {{
+                postsStore.allPosts.filter((post) => {
+                  const postDate = new Date(post.createdAt);
+                  const today = new Date();
+                  const todayStart = new Date(
+                    today.getFullYear(),
+                    today.getMonth(),
+                    today.getDate()
+                  );
+                  const todayEnd = new Date(todayStart);
+                  todayEnd.setDate(todayEnd.getDate() + 1); // Bugünün sonu
+
+                  // Konsola yazdırma
+                  if (postDate >= todayStart && postDate < todayEnd) {
+                    console.log(
+                      `Post: ${post.title}, Created At: ${post.createdAt}`
+                    );
+                    return true; // Bugün paylaşılan postları döndür
+                  }
+                  return false; // Bugün değilse döndürme
+                }).length
+              }}
+            </p>
+            <p class="text-xs">{{ $t("newJobs") }}</p>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   </div>
 </template>
