@@ -114,7 +114,9 @@ const searchJob = () => {
             <Icon name="mynaui:users" />
           </div>
           <div>
-            <p class="text-lg font-bold">{{ postsStore.totalPosts || 0 }}</p>
+            <p class="text-lg font-bold">
+              {{ postsStore.allPosts.length || 0 }}
+            </p>
             <p class="text-xs">{{ $t("jobs") }}</p>
           </div>
         </CardContent>
