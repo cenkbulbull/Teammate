@@ -189,16 +189,16 @@ const changeFavorite = async (isPressed: boolean) => {
           >
             <Sheet>
               <SheetTrigger class="hidden md:block">
-                <Button class="text-xs">
-                  {{ $t("view") }}
+                <Button size="icon" variant="outline">
+                  <Icon name="mynaui:eye" />
                 </Button>
               </SheetTrigger>
               <SheetsJob :job :myJob :advertiser />
             </Sheet>
 
             <DrawerTrigger class="md:hidden">
-              <Button class="text-xs">
-                {{ $t("view") }}
+              <Button size="icon" variant="outline">
+                <Icon name="mynaui:eye" />
               </Button>
             </DrawerTrigger>
           </div>

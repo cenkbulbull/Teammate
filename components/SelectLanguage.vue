@@ -36,7 +36,7 @@ const setLanguage = (language: Language) => {
       <Button
         variant="outline"
         role="combobox"
-        class="justify-between text-muted-foreground"
+        class="justify-between text-muted-foreground w-20"
       >
         <div v-for="language in languages" :key="language.value">
           <img

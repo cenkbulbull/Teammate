@@ -111,7 +111,7 @@ const searchJob = () => {
           <div
             class="flex items-center p-3 rounded text-xl text-white bg-violet-300"
           >
-            <Icon name="mynaui:users" />
+            <Icon name="mynaui:briefcase" />
           </div>
           <div>
             <p class="text-lg font-bold">
