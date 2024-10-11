@@ -127,13 +127,11 @@ const savePersonalSettings = async () => {
 
       <div class="grid md:grid-cols-2 gap-5">
         <div class="grid gap-2">
-          <Label class="text-xs" for="email">{{ $t("email") }}</Label>
+          <Label class="text-xs" for="job">{{ $t("job") }}</Label>
           <Input
-            id="email"
-            type="email"
-            placeholder="cenkbulbul67@gmail.com"
-            disabled
-            required
+            id="job"
+            :placeholder="$t('job')"
+            v-model="personalSettings.job"
             class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
           />
         </div>
@@ -173,16 +171,6 @@ const savePersonalSettings = async () => {
             }"
           />
         </div>
-      </div>
-
-      <div class="grid gap-2">
-        <Label class="text-xs" for="job">{{ $t("job") }}</Label>
-        <Input
-          id="job"
-          :placeholder="$t('job')"
-          v-model="personalSettings.job"
-          class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
-        />
       </div>
 
       <div class="grid gap-2">
