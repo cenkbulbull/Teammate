@@ -143,5 +143,8 @@
   "saveChangesToastText": "{0} settings updated",
   "added": "Added",
   "noOneHasSharedAnythingYet": "No one has shared anything yet",
-  "referenced": "Referenced"
+  "referenced": "Referenced",
+  "noCompetenciesText": "No competencies have been added yet.",
+  "noBiographyText": "No biography information has been added yet.",
+  "noJobText": "Occupation information has not been entered yet."
 }

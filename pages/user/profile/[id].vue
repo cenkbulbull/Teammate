@@ -83,8 +83,27 @@ const avatarFallback = computed(() => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div class="leading-6 text-xs">
+              <div v-if="user?.biography" class="leading-6 text-xs">
                 {{ user?.biography }}
+              </div>
+              <div v-else class="text-xs">
+                {{ $t("noBiographyText") }}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle class="font-bold text-xs">
+                {{ $t("job") }}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div v-if="user?.job" class="leading-6 text-xs">
+                {{ user?.job }}
+              </div>
+              <div v-else class="text-xs">
+                {{ $t("noJobText") }}
               </div>
             </CardContent>
           </Card>
@@ -100,9 +119,13 @@ const avatarFallback = computed(() => {
                 <Badge
                   variant="secondary"
                   class="py-2 px-6"
+                  v-if="user?.abilities.length > 0"
                   v-for="(ability, index) in user?.abilities"
                   >{{ ability }}</Badge
                 >
+                <div v-else class="text-xs">
+                  {{ $t("noCompetenciesText") }}
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -122,14 +145,15 @@ const avatarFallback = computed(() => {
                     <Icon name="mynaui:file-text" class="text-4xl" />
                   </div>
                   <div class="flex flex-col text-xs gap-1 text-slate-600">
-                    <span>Dosya İsmi</span>
                     <span>{{ $t("pdf") }}</span>
                   </div>
                 </div>
                 <div>
-                  <Button size="icon"
-                    ><Icon name="mynaui:download" class="text-2xl" />
-                  </Button>
+                  <a :href="'/uploads/docs/' + user?.resume" download>
+                    <Button size="icon"
+                      ><Icon name="mynaui:download" class="text-2xl" />
+                    </Button>
+                  </a>
                 </div>
               </div>
             </CardContent>
