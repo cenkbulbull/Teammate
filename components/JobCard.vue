@@ -93,7 +93,7 @@ const changeFavorite = async (isPressed: boolean) => {
 <template>
   <Drawer>
     <Card
-      class="flex flex-col gap-5 p-2 rounded-xl text-sm group hover:border-green-300 transition-all cursor-pointer"
+      class="flex flex-col justify-between gap-5 p-2 rounded-xl text-sm group hover:border-green-300 transition-all cursor-pointer"
     >
       <CardHeader class="rounded-t-xl p-2">
         <div class="flex flex-col gap-3">
@@ -165,7 +165,7 @@ const changeFavorite = async (isPressed: boolean) => {
             </div>
           </div>
 
-          <div class="text-xs line-clamp-5 leading-5">
+          <div class="text-xs line-clamp-3 leading-5">
             {{ job.description }}
           </div>
         </div>

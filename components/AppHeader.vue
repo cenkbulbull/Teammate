@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import { usePostsStore } from "@/stores/posts";
+const postsStore = usePostsStore();
+
 const { locale, setLocale, t } = useI18n();
 
 const infoUsers: Info = {
@@ -21,6 +24,37 @@ const infoNewJobs: Info = {
   text: "newJobs",
   count: "30",
 };
+
+const locations = [
+  {
+    id: "remote",
+    label: "Remote",
+  },
+  {
+    id: "İstanbul",
+    label: "İstanbul",
+  },
+  {
+    id: "Ankara",
+    label: "Ankara",
+  },
+  {
+    id: "Zonguldak",
+    label: "Zonguldak",
+  },
+];
+
+const postIdOrTitle = ref(null);
+const location = ref(null);
+
+const searchJob = () => {
+  postsStore.fetchPosts({
+    filtered: {
+      postIdOrTitle: postIdOrTitle.value,
+      location: location.value,
+    },
+  });
+};
 </script>
 <template>
   <div class="flex flex-col gap-5 py-8 px-4 md:px-12">
@@ -39,15 +73,15 @@ const infoNewJobs: Info = {
         <Input
           id="search"
           type="text"
-          :placeholder="$t('whatPosition')"
+          :placeholder="$t('searchJobText')"
+          v-model="postIdOrTitle"
           class="w-full border-none text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
         />
       </div>
 
       <div class="w-full flex items-center border md:border-none">
         <Icon name="mynaui:location" class="text-xl ms-2" />
-
-        <Select>
+        <Select v-model="location">
           <SelectTrigger
             class="text-xs outline-none border-none focus:outline-none focus:ring-0 focus:ring-offset-0"
           >
@@ -55,18 +89,20 @@ const infoNewJobs: Info = {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="apple"> Şehir1 </SelectItem>
-              <SelectItem value="banana"> Şehir2 </SelectItem>
-              <SelectItem value="blueberry"> Şehir3 </SelectItem>
-              <SelectItem value="grapes"> Şehir4 </SelectItem>
-              <SelectItem value="pineapple"> Şehir5 </SelectItem>
+              <SelectItem
+                v-for="(location, index) in locations"
+                :key="index"
+                :value="location.id"
+              >
+                {{ location.label }}
+              </SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
       </div>
 
       <div>
-        <Button class="rounded-none text-xs w-full">{{
+        <Button @click="searchJob" class="rounded-none text-xs w-full">{{
           $t("searchJob")
         }}</Button>
       </div>

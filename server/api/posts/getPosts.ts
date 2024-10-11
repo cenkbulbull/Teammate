@@ -11,6 +11,23 @@ export default defineEventHandler(async (event) => {
 
     let query = {}; // Sorgu nesnesini oluştur
 
+    // Id or Title filter
+    if (filtered?.postIdOrTitle) {
+      const postIdOrTitle = filtered.postIdOrTitle;
+
+      // Önce id ile arama yap
+      const postById = await Post.findOne({ id: postIdOrTitle });
+
+      if (postById) {
+        return {
+          posts: [postById], //id ile dönüş olunca diğer filtrelemeler çalışmayacak
+        };
+      } else {
+        // Eğer id ile post bulunamazsa, title ile arama yap
+        query.title = { $regex: postIdOrTitle, $options: "i" };
+      }
+    }
+
     // Favorites filter
     if (
       filtered?.favorites &&
@@ -49,12 +66,8 @@ export default defineEventHandler(async (event) => {
       }
     }
 
-    //Location filter
-    if (
-      filtered?.location &&
-      Array.isArray(filtered.location) &&
-      filtered.location.length > 0
-    ) {
+    // Location filter
+    if (filtered?.location) {
       query.location = { $in: filtered.location }; // Belirtilen lokasyonları içeren postlar
     }
 
