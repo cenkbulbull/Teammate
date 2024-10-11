@@ -138,5 +138,12 @@ const avatarFallback = computed(() => {
         </li>
       </ul>
     </div>
+
+    <div v-else class="flex items-center space-x-2">
+      <Skeleton class="h-10 w-40" />
+      <Skeleton class="h-10 w-10" />
+      <Skeleton class="h-10 w-10" />
+      <Skeleton class="h-10 w-20" />
+    </div>
   </div>
 </template>
