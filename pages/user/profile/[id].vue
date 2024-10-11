@@ -29,12 +29,12 @@ const avatarFallback = computed(() => {
 </script>
 
 <template>
-  <div class="bg-gradient pt-24">
+  <div v-if="user" class="bg-gradient pt-24">
     <div class="flex flex-col gap-5 px-8 md:px-12 py-6 bg-white">
       <div class="flex justify-between items-center">
         <div class="flex items-center gap-2">
           <Avatar class="w-12 h-12 md:w-24 md:h-24">
-            <AvatarImage :src="user?.profilePhoto" />
+            <AvatarImage :src="'/uploads/images/' + user?.profilePhoto" />
             <AvatarFallback>{{ avatarFallback }}</AvatarFallback>
             <!-- src gelmezse isim soyisim ilk harflerini al -->
           </Avatar>
@@ -46,8 +46,8 @@ const avatarFallback = computed(() => {
           </div>
         </div>
 
-        <div class="flex gap-2">
-          <a :href="user.social.web" target="_blank">
+        <div v-if="user?.social" class="flex gap-2">
+          <a :href="user?.social.web" target="_blank">
             <Button
               size="icon"
               variant="outline"
@@ -55,7 +55,7 @@ const avatarFallback = computed(() => {
               ><Icon name="mynaui:globe" class="text-2xl" />
             </Button>
           </a>
-          <a :href="user.social.github" target="_blank">
+          <a :href="user?.social.github" target="_blank">
             <Button
               size="icon"
               variant="outline"
@@ -63,7 +63,7 @@ const avatarFallback = computed(() => {
               ><Icon name="mynaui:brand-github" class="text-2xl" />
             </Button>
           </a>
-          <a :href="user.social.linkedin" target="_blank">
+          <a :href="user?.social.linkedin" target="_blank">
             <Button
               size="icon"
               variant="outline"
@@ -84,7 +84,7 @@ const avatarFallback = computed(() => {
             </CardHeader>
             <CardContent>
               <div class="leading-6 text-xs">
-                {{ user.biography }}
+                {{ user?.biography }}
               </div>
             </CardContent>
           </Card>
@@ -100,7 +100,7 @@ const avatarFallback = computed(() => {
                 <Badge
                   variant="secondary"
                   class="py-2 px-6"
-                  v-for="(ability, index) in user.abilities"
+                  v-for="(ability, index) in user?.abilities"
                   >{{ ability }}</Badge
                 >
               </div>

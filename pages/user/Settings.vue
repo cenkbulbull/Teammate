@@ -81,7 +81,7 @@ const savePersonalSettings = async () => {
 </script>
 
 <template>
-  <div class="bg-gradient pt-24">
+  <div v-if="user" class="bg-gradient pt-24">
     <div class="grid gap-5 px-8 md:px-12 py-6 bg-white">
       <div class="flex justify-between items-center">
         <div class="flex items-center gap-2">
