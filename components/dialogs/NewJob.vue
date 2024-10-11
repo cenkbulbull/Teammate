@@ -9,6 +9,9 @@ const { toast } = useToast();
 const postsStore = usePostsStore();
 const appStore = useAppStore();
 
+// Dialog durumunu kontrol etmek için bir ref
+const dialogOpen = ref(true); // Başlangıçta açık
+
 const locations = [
   {
     id: "remote",
@@ -67,12 +70,17 @@ const onSubmit = handleSubmit(async (values) => {
   toast({
     title: t("added"),
   });
+
+  dialogOpen.value = false; // Dialog'u kapat
 });
+
+// Dialog'un açık olup olmadığını kontrol eden computed
+const dialogStatus = computed(() => dialogOpen.value);
 </script>
 
 <template>
   <Toaster />
-  <DialogContent>
+  <DialogContent v-if="dialogStatus">
     <form @submit="onSubmit">
       <DialogHeader>
         <DialogTitle class="flex gap-2"
@@ -189,9 +197,7 @@ const onSubmit = handleSubmit(async (values) => {
         </div>
       </div>
       <DialogFooter>
-        <DialogClose as-child>
-          <Button type="submit">{{ $t("create") }}</Button>
-        </DialogClose>
+        <Button type="submit">{{ $t("create") }}</Button>
       </DialogFooter>
     </form>
   </DialogContent>
