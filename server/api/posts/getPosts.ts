@@ -67,8 +67,16 @@ export default defineEventHandler(async (event) => {
     }
 
     // Location filter
-    if (filtered?.location) {
+    if (
+      filtered?.location &&
+      Array.isArray(filtered.location) &&
+      filtered.location.length > 0
+    ) {
       query.location = { $in: filtered.location }; // Belirtilen lokasyonları içeren postlar
+    }
+
+    if (filtered?.postType === "appliedOnly") {
+      query.id = { $in: filtered.applied };
     }
 
     let allPosts = await Post.find(query);

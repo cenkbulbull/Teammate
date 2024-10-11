@@ -1,8 +1,19 @@
 <script lang="ts" setup>
+import { useAppStore } from "@/stores/app";
 import { usePostsStore } from "@/stores/posts";
+const appStore = useAppStore();
 const postsStore = usePostsStore();
 
 const { locale, setLocale, t } = useI18n();
+
+const postTypes = [
+  {
+    id: "all",
+  },
+  {
+    id: "appliedOnly",
+  },
+];
 
 const locations = [
   {
@@ -59,6 +70,7 @@ const jobTime = [
 ];
 
 const filter = reactive({
+  postType: "all",
   location: [],
   postingTime: null,
   jobTime: [],
@@ -77,11 +89,20 @@ const filterJobTime = (e: Boolean, id: String) => {
 };
 
 const filterPosts = () => {
-  postsStore.fetchPosts({
-    filtered: {
-      ...filter,
-    },
-  });
+  if (filter.postType === "appliedOnly") {
+    postsStore.fetchPosts({
+      filtered: {
+        applied: appStore.activeUser?.applied,
+        ...filter,
+      },
+    });
+  } else {
+    postsStore.fetchPosts({
+      filtered: {
+        ...filter,
+      },
+    });
+  }
 };
 </script>
 
@@ -91,15 +112,19 @@ const filterPosts = () => {
       <!-- post type -->
       <div class="flex flex-col gap-2">
         <p class="font-bold text-xs">{{ $t("postType") }}</p>
-        <RadioGroup default-value="all">
-          <div class="flex items-center space-x-2">
-            <RadioGroupItem id="all" value="all" selected />
-            <Label class="text-xs" for="all">{{ $t("all") }}</Label>
-          </div>
-
-          <div class="flex items-center space-x-2">
-            <RadioGroupItem id="applied" value="applied" />
-            <Label class="text-xs" for="applied">{{ $t("appliedOnly") }}</Label>
+        <RadioGroup default-value="all" v-model="filter.postType">
+          <div
+            v-for="postType in postTypes"
+            class="flex items-center space-x-2"
+          >
+            <RadioGroupItem
+              :key="postType.id"
+              :id="postType.id"
+              :value="postType.id"
+            />
+            <Label class="text-xs" :for="postType.id">{{
+              $t(postType.id)
+            }}</Label>
           </div>
         </RadioGroup>
       </div>
