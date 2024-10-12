@@ -74,17 +74,6 @@ const avatarFallback = computed(() => {
         </li>
 
         <li v-if="loggedIn && user">
-          <nuxt-link to="/user/myjobs">
-            <Button size="icon" variant="outline">
-              <Icon
-                class="text-xl"
-                name="material-symbols-light:work-outline"
-              />
-            </Button>
-          </nuxt-link>
-        </li>
-
-        <li v-if="loggedIn && user">
           <DropdownMenu>
             <DropdownMenuTrigger as-child>
               <Button size="icon" variant="outline">
