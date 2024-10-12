@@ -28,6 +28,7 @@ const { data } = useFetch("/api/users/getUser", {
   headers: {
     "Content-Type": "application/json",
   },
+  key: advertiserId, //kullanmadığımızda önbelleklemeden dolayı advertiserId değişmesine rağmen hep aynı user post geliyor
 });
 
 // Yalnızca paylaşanın id/firstname/lastname/profilePhoto bilgisi atanıyor
@@ -112,12 +113,12 @@ const changeFavorite = async (isPressed: boolean) => {
                         ? 'material-symbols-light:bookmark'
                         : 'material-symbols-light:bookmark-outline'
                     "
-                    class="text-2xl cursor-pointer bg-green-300"
+                    class="text-2xl cursor-pointer"
                 /></Toggle>
                 <Icon
                   @click="copyID(job.id)"
                   name="material-symbols:content-copy-outline"
-                  class="text-xl cursor-pointer bg-green-300 hover:bg-green-500"
+                  class="text-xl cursor-pointer hover:bg-green-300 transition-all"
                 />
               </div>
               <div v-else="appliedButRemoved">
@@ -173,8 +174,10 @@ const changeFavorite = async (isPressed: boolean) => {
       <CardFooter class="px-2 pb-3">
         <div class="flex justify-between w-full">
           <div class="flex gap-2 items-center">
-            <Avatar>
-              <AvatarImage :src="advertiser?.profilePhoto" />
+            <Avatar class="rounded-lg">
+              <AvatarImage
+                :src="'/uploads/images/' + advertiser?.profilePhoto"
+              />
               <AvatarFallback>{{ avatarFallback }}</AvatarFallback>
             </Avatar>
 

@@ -109,7 +109,7 @@ const changePage = (newPage) => {
                         ? 'material-symbols-light:bookmark'
                         : 'material-symbols-light:bookmark-outline'
                     "
-                    class="text-3xl cursor-pointer bg-green-300"
+                    class="text-3xl cursor-pointer"
                 /></Toggle>
               </TooltipTrigger>
               <TooltipContent>

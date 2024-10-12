@@ -44,7 +44,7 @@ const avatarFallback = computed(() => {
       </li>
     </ul> -->
 
-    <div v-if="user">
+    <div>
       <ul class="flex gap-2">
         <li v-if="!loggedIn">
           <nuxt-link :to="localePath('/auth/login')">
@@ -58,7 +58,7 @@ const avatarFallback = computed(() => {
           </nuxt-link>
         </li>
 
-        <li v-if="loggedIn">
+        <li v-if="loggedIn && user">
           <Dialog>
             <DialogTrigger as-child>
               <Button class="text-xs gap-1">
@@ -73,7 +73,7 @@ const avatarFallback = computed(() => {
           </Dialog>
         </li>
 
-        <li v-if="loggedIn">
+        <li v-if="loggedIn && user">
           <nuxt-link to="/user/myjobs">
             <Button size="icon" variant="outline">
               <Icon
@@ -84,7 +84,7 @@ const avatarFallback = computed(() => {
           </nuxt-link>
         </li>
 
-        <li v-if="loggedIn">
+        <li v-if="loggedIn && user">
           <DropdownMenu>
             <DropdownMenuTrigger as-child>
               <Button size="icon" variant="outline">
@@ -137,13 +137,6 @@ const avatarFallback = computed(() => {
           <SelectLanguage />
         </li>
       </ul>
-    </div>
-
-    <div v-else class="flex items-center space-x-2">
-      <Skeleton class="h-10 w-40" />
-      <Skeleton class="h-10 w-10" />
-      <Skeleton class="h-10 w-10" />
-      <Skeleton class="h-10 w-20" />
     </div>
   </div>
 </template>
