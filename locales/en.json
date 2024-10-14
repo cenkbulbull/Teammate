@@ -146,5 +146,6 @@
   "referenced": "Referenced",
   "noCompetenciesText": "No competencies have been added yet.",
   "noBiographyText": "No biography information has been added yet.",
-  "noJobText": "Occupation information has not been entered yet."
+  "noJobText": "Occupation information has not been entered yet.",
+  "noReferenceText": "No one has applied for this posting yet."
 }

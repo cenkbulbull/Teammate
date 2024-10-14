@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const appStore = useAppStore();
 const postStore = usePostsStore();
+const userStore = useUsersStore();
 const userId = computed(() => appStore.activeUser?.id);
 
 watch(userId, async (newUserId) => {
@@ -17,6 +18,18 @@ const deletePosts = async (id: String) => {
   await postStore.fetchMyPosts(userId.value);
 };
 //Delete Post
+
+const getApplicant = (applicantId) => {
+  const user = userStore.users.find((user) => user.id === applicantId);
+  //return user ? user.firstname + " " + user.lastname : "Unknown"; // Kullanıcı bulunamazsa 'Unknown' döner
+  return {
+    firstname: user?.firstname,
+    lastname: user?.lastname,
+    profilePhoto: user?.profilePhoto,
+    telephone: user?.telephone,
+    email: user?.email,
+  };
+};
 </script>
 
 <template>
@@ -79,13 +92,97 @@ const deletePosts = async (id: String) => {
           class="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-100 bg-opacity-95"
         >
           <div>
-            <Button variant="outline">
-              <Icon
-                @click=""
-                name="mynaui:eye"
-                class="text-md cursor-pointer hover:bg-indigo-800 transition-all"
-              />
-            </Button>
+            <Sheet>
+              <SheetTrigger
+                ><Button variant="outline">
+                  <Icon
+                    name="mynaui:eye"
+                    class="text-md cursor-pointer hover:bg-indigo-800 transition-all"
+                  /> </Button
+              ></SheetTrigger>
+              <SheetContent class="overflow-scroll h-[100vh] w-full">
+                <SheetHeader>
+                  <SheetTitle>{{ $t("applicants") }}</SheetTitle>
+                  <div class="flex flex-col">
+                    <div
+                      v-if="post.applicants.length > 0"
+                      v-for="applicant in post.applicants"
+                      :key="applicant"
+                    >
+                      <div class="relative flex flex-col gap-4 py-3 text-xs">
+                        <div class="flex items-center gap-2">
+                          <Avatar class="rounded-lg">
+                            <AvatarImage
+                              :src="
+                                '/uploads/images/' +
+                                getApplicant(applicant).profilePhoto
+                              "
+                            />
+                            <AvatarFallback>
+                              {{
+                                getApplicant(applicant).firstname.charAt(0) +
+                                getApplicant(applicant).lastname.charAt(0)
+                              }}</AvatarFallback
+                            >
+                          </Avatar>
+                          <p
+                            class="hover:text-indigo-800 break-words w-[70%] text-start"
+                          >
+                            <nuxt-link :to="'/user/profile/' + applicant">{{
+                              getApplicant(applicant).firstname +
+                              getApplicant(applicant).lastname
+                            }}</nuxt-link>
+                          </p>
+                        </div>
+
+                        <Accordion type="single" collapsible>
+                          <AccordionItem value="item-1">
+                            <AccordionTrigger
+                              class="absolute top-1 right-0"
+                            ></AccordionTrigger>
+                            <AccordionContent
+                              class="flex flex-col gap-3 text-xs"
+                            >
+                              <div
+                                v-if="getApplicant(applicant).telephone"
+                                class="flex items-center gap-2"
+                              >
+                                <Icon name="mynaui:telephone-call" />
+                                <a
+                                  :href="
+                                    'tel:' + getApplicant(applicant).telephone
+                                  "
+                                  >{{ getApplicant(applicant).telephone }}</a
+                                >
+                              </div>
+
+                              <div class="flex items-center gap-2">
+                                <Icon name="mynaui:envelope-open" />
+                                <a
+                                  :href="
+                                    'mailto:' + getApplicant(applicant).email
+                                  "
+                                  >{{ getApplicant(applicant).email }}</a
+                                >
+                              </div>
+                            </AccordionContent>
+                          </AccordionItem>
+                        </Accordion>
+                      </div>
+                    </div>
+
+                    <div v-else class="py-3">
+                      <Alert variant="destructive">
+                        <ExclamationTriangleIcon className="h-4 w-4" />
+                        <AlertDescription>
+                          {{ $t("noReferenceText") }}
+                        </AlertDescription>
+                      </Alert>
+                    </div>
+                  </div>
+                </SheetHeader>
+              </SheetContent>
+            </Sheet>
           </div>
 
           <div>
