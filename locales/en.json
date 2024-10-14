@@ -24,7 +24,6 @@
   "emailVerifyText": "Enter the verification code sent to the e-mail address {mail}",
   "resendCode": "Resend Code",
   "github": "Github",
-  "githubSupportMessage": "Open source, you can support.",
   "purpose": "Purpose",
   "purposeText": "What is the target audience and purpose of the project?",
   "howToUse": "How to use?",
@@ -147,5 +146,6 @@
   "noCompetenciesText": "No competencies have been added yet.",
   "noBiographyText": "No biography information has been added yet.",
   "noJobText": "Occupation information has not been entered yet.",
-  "noReferenceText": "No one has applied for this posting yet."
+  "noReferenceText": "No one has applied for this posting yet.",
+  "githubSupportMessage": "This project is open source. We are waiting for your support."
 }

@@ -36,6 +36,7 @@ export default defineNuxtConfig({
     ],
     "@sidebase/nuxt-auth",
     "nuxt-mongoose",
+    "nuxt-marquee",
   ],
   mongoose: {
     uri: process.env.MONGODB_URI,

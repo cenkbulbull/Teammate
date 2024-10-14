@@ -31,6 +31,21 @@ onMounted(async () => {
 </script>
 
 <template>
+  <NuxtMarquee
+    class="text-xs bg-green-400 tracking-widest py-3"
+    :speed="20"
+    :pauseOnHover="true"
+  >
+    <div class="flex gap-2 ms-20">
+      {{ $t("githubSupportMessage") }}
+      <a
+        class="font-bold underline"
+        href="https://github.com/cenkbulbull/Teammate"
+        target="_blank"
+        >Teaammate
+      </a>
+    </div>
+  </NuxtMarquee>
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>

@@ -27,6 +27,7 @@
     "lucide-vue-next": "^0.441.0",
     "next-auth": "^4.21.1",
     "nuxt": "^3.13.0",
+    "nuxt-marquee": "^1.0.4",
     "nuxt-mongoose": "^1.0.6",
     "radix-vue": "^1.9.6",
     "shadcn-nuxt": "^0.10.4",
