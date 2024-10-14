@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 defineProps<{
   job: Job;
-  myJob: boolean;
 }>();
 
 import { useUsersStore } from "@/stores/users";
@@ -144,7 +143,7 @@ const apply = async () => {
     </DrawerHeader>
 
     <DrawerFooter class="flex-row">
-      <div v-if="!myJob" class="flex gap-2">
+      <div class="flex gap-2">
         <Button v-if="loggedIn" @click="apply" class="text-xs">{{
           $t("apply")
         }}</Button>
@@ -154,80 +153,6 @@ const apply = async () => {
             {{ $t("cancel") }}
           </Button>
         </DrawerClose>
-      </div>
-      <div v-else class="flex gap-2">
-        <!-- applicatans sheet -->
-        <Sheet>
-          <SheetTrigger>
-            <Button
-              class="flex gap-1 text-white bg-neutral-500 hover:bg-neutral-600 hover:text-white text-xs"
-            >
-              <Icon name="mynaui:eye" class="text-sm" />
-              {{ $t("applicants") }}
-            </Button>
-          </SheetTrigger>
-
-          <SheetContent class="px-0">
-            <SheetHeader>
-              <SheetTitle class="flex items-center gap-1 px-4">
-                <Icon name="mynaui:file-text" class="text-xl" />{{
-                  $t("applicants")
-                }}</SheetTitle
-              >
-            </SheetHeader>
-            <div
-              class="flex flex-col gap-3 px-5 py-2 divide-y overflow-auto max-h-[88vh]"
-            >
-              <!-- users -->
-              <div v-for="i in 15" class="flex justify-between pt-3">
-                <div class="flex items-center gap-2">
-                  <Avatar class="w-8 h-8">
-                    <AvatarImage src="https://github.com/radix-vue.png" />
-                    <AvatarFallback>CB</AvatarFallback>
-                    <!--src gelmezse isim soyisim ilk harflerini al-->
-                  </Avatar>
-                  <p class="text-xs">Name Surname</p>
-                </div>
-
-                <div>
-                  <Button size="icon" variant="outline" class="w-8 h-8"
-                    ><Icon name="mynaui:eye" class="text-sm text-primary"
-                  /></Button>
-                </div>
-              </div>
-
-              <!-- users -->
-            </div>
-          </SheetContent>
-        </Sheet>
-        <!-- applicatans sheet -->
-
-        <Dialog>
-          <DialogTrigger as-child>
-            <Button class="flex gap-1">
-              <Icon name="mynaui:edit-one" class="text-sm" />
-              {{ $t("edit") }}
-            </Button>
-          </DialogTrigger>
-
-          <!--  Update Jobs Modal-->
-          <DialogsUpdateJob />
-          <!--  Update Jobs Modal-->
-        </Dialog>
-
-        <AlertDialog>
-          <AlertDialogTrigger as-child>
-            <Button
-              class="flex gap-1 text-white bg-red-500 hover:bg-red-600 hover:text-white text-xs"
-            >
-              <Icon name="mynaui:trash-one" class="text-sm" />
-              {{ $t("delete") }}
-            </Button>
-          </AlertDialogTrigger>
-          <!-- delete dialog -->
-          <DialogsDelete />
-          <!-- delete dialog -->
-        </AlertDialog>
       </div>
     </DrawerFooter>
   </DrawerContent>
