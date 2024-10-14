@@ -15,9 +15,6 @@ const appStore = useAppStore();
 
 const userId = computed(() => appStore.activeUser?.id);
 
-// Dialog durumunu kontrol etmek için bir ref
-const dialogOpen = ref(true); // Başlangıçta açık
-
 const locations = [
   {
     id: "remote",

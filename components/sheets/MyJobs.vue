@@ -29,7 +29,7 @@ const deletePosts = async (id: String) => {
     </SheetHeader>
 
     <div
-      class="flex flex-col gap-4 divide-y-2 divide-dashed py-4 overflow-scroll h-[100vh] pb-16"
+      class="flex flex-col gap-0 divide-y-2 divide-dashed py-4 overflow-scroll h-[100vh] pb-16"
     >
       <div
         v-for="post in postStore.myPosts"
@@ -76,51 +76,58 @@ const deletePosts = async (id: String) => {
         </div>
 
         <div
-          class="absolute inset-0 flex items-center justify-center gap-6 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-100 bg-opacity-95"
+          class="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity bg-gray-100 bg-opacity-95"
         >
-          <Button variant="outline">
-            <Icon
-              @click=""
-              name="mynaui:eye"
-              class="text-2xl cursor-pointer hover:bg-indigo-800 transition-all"
-            />
-          </Button>
-          <AlertDialog>
-            <AlertDialogTrigger as-child>
-              <Button variant="outline"
-                ><Icon
-                  @click=""
-                  name="mynaui:edit-one"
-                  class="text-2xl cursor-pointer hover:bg-blue-600 transition-all"
-              /></Button>
-            </AlertDialogTrigger>
+          <div>
+            <Button variant="outline">
+              <Icon
+                @click=""
+                name="mynaui:eye"
+                class="text-md cursor-pointer hover:bg-indigo-800 transition-all"
+              />
+            </Button>
+          </div>
 
-            <DialogsUpdateJob :post />
-          </AlertDialog>
+          <div>
+            <AlertDialog>
+              <AlertDialogTrigger as-child>
+                <Button variant="outline"
+                  ><Icon
+                    @click=""
+                    name="mynaui:edit-one"
+                    class="text-md cursor-pointer hover:bg-blue-600 transition-all"
+                /></Button>
+              </AlertDialogTrigger>
 
-          <AlertDialog>
-            <AlertDialogTrigger as-child>
-              <Button variant="outline">
-                <Icon
-                  name="mynaui:trash-two"
-                  class="text-2xl cursor-pointer hover:bg-red-600 transition-all"
-              /></Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>{{ $t("delete") }}</AlertDialogTitle>
-                <AlertDialogDescription>
-                  {{ $t("deleteMessage") }}
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>{{ $t("cancel") }}</AlertDialogCancel>
-                <AlertDialogAction @click="deletePosts(post.id)">{{
-                  $t("continue")
-                }}</AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+              <DialogsUpdateJob :post />
+            </AlertDialog>
+          </div>
+
+          <div>
+            <AlertDialog>
+              <AlertDialogTrigger as-child>
+                <Button variant="outline">
+                  <Icon
+                    name="mynaui:trash-two"
+                    class="text-md cursor-pointer hover:bg-red-600 transition-all"
+                /></Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>{{ $t("delete") }}</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    {{ $t("deleteMessage") }}
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>{{ $t("cancel") }}</AlertDialogCancel>
+                  <AlertDialogAction @click="deletePosts(post.id)">{{
+                    $t("continue")
+                  }}</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
         </div>
       </div>
     </div>
