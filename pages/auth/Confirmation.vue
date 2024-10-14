@@ -45,14 +45,14 @@ const handleComplete = (e: string[]) => alert(e.join(""));
         </div>
       </div>
     </div>
-    <div class="hidden bg-muted lg:block">
-      <img
+    <div class="hidden bg-muted lg:block magicpattern">
+      <!-- <img
         src="https://placehold.co/200"
         alt="Image"
         width="1920"
         height="1080"
         class="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-      />
+      /> -->
     </div>
   </div>
 </template>
