@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 export const usePostsStore = defineStore("posts", {
   state: () => ({
     allPosts: [] as Job[],
+    myPosts: [] as Job[],
     posts: [] as Job[],
     currentPage: 1,
     totalPages: null,
@@ -21,6 +22,19 @@ export const usePostsStore = defineStore("posts", {
       const data = await response.json();
 
       this.allPosts = data.allPosts;
+    },
+    async fetchMyPosts(userId: string) {
+      const response = await fetch("/api/posts/getMyPosts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId }),
+      });
+
+      const data = await response.json();
+
+      this.myPosts = data.myPosts;
     },
     async fetchPosts(filtered = {}, page = 1, limit = 8) {
       const response = await fetch("/api/posts/getPosts", {
