@@ -16,7 +16,6 @@ const loggedIn = computed(() => status.value === "authenticated");
 
 const props = defineProps<{
   job: Job;
-  myJob?: boolean;
   appliedButRemoved?: boolean;
 }>();
 
@@ -100,7 +99,7 @@ const changeFavorite = async (isPressed: boolean) => {
         <div class="flex flex-col gap-3">
           <div class="flex justify-between items-center">
             <CardTitle class="text-md">{{ job.title }}</CardTitle>
-            <div v-if="loggedIn && !myJob" class="flex">
+            <div v-if="loggedIn" class="flex">
               <div v-if="!appliedButRemoved" class="flex gap-2 items-center">
                 <Toggle
                   size="sm"
@@ -182,7 +181,12 @@ const changeFavorite = async (isPressed: boolean) => {
             </Avatar>
 
             <div class="flex gap-2 items-center font-bold text-xs">
-              <div>{{ advertiser?.firstname }} {{ advertiser?.lastname }}</div>
+              <div>
+                <nuxt-link :to="'/user/profile/' + advertiser?.id"
+                  >{{ advertiser?.firstname }}
+                  {{ advertiser?.lastname }}</nuxt-link
+                >
+              </div>
             </div>
           </div>
 
@@ -196,7 +200,7 @@ const changeFavorite = async (isPressed: boolean) => {
                   <Icon name="mynaui:eye" />
                 </Button>
               </SheetTrigger>
-              <SheetsJob :job :myJob :advertiser />
+              <SheetsJob :job :advertiser />
             </Sheet>
 
             <DrawerTrigger class="md:hidden">
@@ -208,7 +212,7 @@ const changeFavorite = async (isPressed: boolean) => {
         </div>
       </CardFooter>
     </Card>
-    <DrawersJob :job :myJob :advertiser />
+    <DrawersJob :job :advertiser />
   </Drawer>
 </template>
 
