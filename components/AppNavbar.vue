@@ -21,7 +21,9 @@ const avatarFallback = computed(() => {
     class="flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center py-5 px-12"
   >
     <nuxt-link :to="localePath('/')"
-      ><div class="text-lg">teammate</div></nuxt-link
+      ><span class="text-lg font-bold">
+        <span class="logo-text-gradient">team</span>mate
+      </span></nuxt-link
     >
     <!-- <ul class="flex gap-1 md:gap-10">
       <li>

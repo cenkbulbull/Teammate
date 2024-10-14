@@ -42,7 +42,7 @@ onMounted(async () => {
         class="font-bold underline"
         href="https://github.com/cenkbulbull/Teammate"
         target="_blank"
-        >Teaammate
+        >Teammate
       </a>
     </div>
   </NuxtMarquee>

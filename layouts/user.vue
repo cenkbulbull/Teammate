@@ -22,6 +22,7 @@ onMounted(() => {
       <AppNavbar />
     </div>
     <NuxtPage />
+    <AppFooter />
     <!-- MyJobs Sheet -->
     <Sheet>
       <SheetTrigger>
