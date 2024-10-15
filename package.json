@@ -42,7 +42,6 @@
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.12.1",
-    "@vue-email/nuxt": "^0.8.19",
     "json-server": "^1.0.0-beta.3",
     "nodemailer": "^6.9.15",
     "nuxt-nodemailer": "^1.1.2",

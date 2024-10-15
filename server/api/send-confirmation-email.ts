@@ -1,5 +1,4 @@
 import { defineEventHandler, readBody } from "h3";
-import { useAppStore } from "@/stores/app";
 
 export default defineEventHandler(async (event) => {
   const { email } = await readBody(event);
