@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 export const useAppStore = defineStore("app", {
   state: () => ({
     activeUser: null as User | null, // Kullanıcı bilgisi için null başlangıç
+    confirmationCode: null,
   }),
   actions: {
     async initializeUser() {
@@ -35,6 +36,9 @@ export const useAppStore = defineStore("app", {
     },
     setActiveUser(user: User) {
       this.activeUser = user;
+    },
+    setConfirmationCode(code: any) {
+      this.confirmationCode = code;
     },
   },
 });

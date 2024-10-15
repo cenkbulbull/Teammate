@@ -84,7 +84,7 @@ const getApplicant = (applicantId) => {
           </div>
         </div>
 
-        <div class="text-xs line-clamp-3 leading-5">
+        <div class="text-xs line-clamp-3 leading-5 break-words">
           {{ post.description }}
         </div>
 

@@ -21,7 +21,7 @@
   "createAccount": "Create an account",
   "continue": "Continue",
   "confirmation": "Confirmation",
-  "emailVerifyText": "Enter the verification code sent to the e-mail address {mail}",
+  "emailVerifyText": "Enter the verification code sent to the e-mail address {mail}. Do not refresh this page.",
   "resendCode": "Resend Code",
   "github": "Github",
   "purpose": "Purpose",
@@ -153,5 +153,7 @@
   "openSource": "Open Source",
   "contact": "Contact",
   "about": "About",
-  "legal": "Legal"
+  "legal": "Legal",
+  "error": "Error",
+  "wrongCodeText": "You entered the wrong code."
 }

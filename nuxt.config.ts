@@ -37,7 +37,18 @@ export default defineNuxtConfig({
     "@sidebase/nuxt-auth",
     "nuxt-mongoose",
     "nuxt-marquee",
+    "nuxt-nodemailer",
   ],
+  nodemailer: {
+    from: process.env.NUXT_SMTP_USER,
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.NUXT_SMTP_USER,
+      pass: process.env.NUXT_SMTP_PASS,
+    },
+  },
   mongoose: {
     uri: process.env.MONGODB_URI,
     options: {},
@@ -98,6 +109,8 @@ export default defineNuxtConfig({
     // The private keys which are only available within server-side (PRIVATE --SERVER)
     //apiSecret: "", //example
     mongoURI: process.env.MONGODB_URI,
+    smtpUser: process.env.NUXT_SMTP_USER,
+    smtpPass: process.env.NUXT_SMTP_PASS,
     // Keys within public, will be also exposed to the client-side (PUBLIC --ALL)
     public: {
       apiBase: process.env.NUXT_BASE_URL,

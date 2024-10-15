@@ -3,22 +3,39 @@ definePageMeta({
   layout: "auth",
   middleware: "auth",
 });
+const appStore = useAppStore();
 
 //normal kayıt
 import { formSchema } from "@/schemas/signupSchema";
 import { useForm } from "vee-validate";
 
-import { useUsersStore } from "@/stores/users";
-const usersStore = useUsersStore();
+const router = useRouter();
 
 const { handleSubmit } = useForm({
   validationSchema: formSchema(),
 });
 
-const onSubmit = handleSubmit((values) => {
+const onSubmit = handleSubmit(async (values) => {
   const user = values;
   delete user?.repassword;
-  usersStore.addUser({ ...user });
+
+  try {
+    const response = await useFetch("/api/send-confirmation-email", {
+      method: "POST",
+      body: {
+        email: user.email,
+      },
+    });
+
+    appStore.setConfirmationCode(response.data.value.confirmationCode);
+    sessionStorage.setItem("user", JSON.stringify(user));
+
+    router.push({
+      path: "/auth/confirmation",
+    });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 //google ile giriş/kayıt
