@@ -40,6 +40,20 @@ const confirmEmail = async (e: string[]) => {
     });
   }
 };
+
+const resendCode = async () => {
+  const response = await useFetch("/api/send-confirmation-email", {
+    method: "POST",
+    body: {
+      email: user.value.email,
+    },
+  });
+
+  appStore.setConfirmationCode(response.data.value.confirmationCode);
+  toast({
+    description: t("newCodeText"),
+  });
+};
 </script>
 
 <template>
@@ -68,7 +82,7 @@ const confirmEmail = async (e: string[]) => {
             </PinInput>
           </div>
 
-          <Button variant="outline" class="w-full">{{
+          <Button @click="resendCode" variant="outline" class="w-full">{{
             $t("resendCode")
           }}</Button>
           <Button @click="confirmEmail(code)" class="w-full">{{

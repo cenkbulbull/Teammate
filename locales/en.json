@@ -155,5 +155,7 @@
   "about": "About",
   "legal": "Legal",
   "error": "Error",
-  "wrongCodeText": "You entered the wrong code."
+  "wrongCodeText": "You entered the wrong code.",
+  "alreadyUserText": "A user already exists with this email.",
+  "newCodeText": "The new code has been sent to your e-mail address."
 }

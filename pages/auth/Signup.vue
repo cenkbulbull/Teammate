@@ -4,6 +4,9 @@ definePageMeta({
   middleware: "auth",
 });
 const appStore = useAppStore();
+import { useToast } from "@/components/ui/toast/use-toast";
+const { toast } = useToast();
+const { t } = useI18n();
 
 //normal kayıt
 import { formSchema } from "@/schemas/signupSchema";
@@ -20,29 +23,53 @@ const onSubmit = handleSubmit(async (values) => {
   delete user?.repassword;
 
   try {
-    const response = await useFetch("/api/send-confirmation-email", {
+    const userExist = await useFetch("/api/users/getUser", {
       method: "POST",
       body: {
         email: user.email,
       },
     });
 
-    appStore.setConfirmationCode(response.data.value.confirmationCode);
-    sessionStorage.setItem("user", JSON.stringify(user));
-
-    router.push({
-      path: "/auth/confirmation",
-    });
+    //daha önce kayıt yapıldı mı?, kontrolü yapılıyor
+    if (userExist.data.value) {
+      toast({
+        title: t("error"),
+        description: t("alreadyUserText"),
+        variant: "destructive",
+      });
+    } else {
+      await sendConfirmationEmail(user.email);
+      sessionStorage.setItem("user", JSON.stringify(user));
+      router.push({
+        path: "/auth/confirmation",
+      });
+    }
   } catch (error) {
     console.error(error);
   }
 });
+
+const sendConfirmationEmail = async (email: string) => {
+  try {
+    const response = await useFetch("/api/send-confirmation-email", {
+      method: "POST",
+      body: {
+        email: email,
+      },
+    });
+
+    appStore.setConfirmationCode(response.data.value.confirmationCode);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 //google ile giriş/kayıt
 const { signIn } = useAuth();
 </script>
 
 <template>
+  <Toaster />
   <div
     class="w-full flex justify-center lg:grid lg:grid-cols-2 h-[100vh] overflow-hidden"
   >
