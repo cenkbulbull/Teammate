@@ -2,6 +2,24 @@
 
 "Teammate" allows you to find new teammates for your team. Log in, open an ad, enter the estimated job duration and get people who like your project idea to join you.
 
+**! The target audience is students and similar people who have a project idea but have difficulty finding a teammate. Those who have commercial expectations and want to use people for free should please turn to other platforms**
+
+## Environment Variables
+
+To run this project you will need to add the following environment variables to your .env file
+
+`NUXT_BASE_URL`
+
+`GOOGLE_CLIENT_ID` -> For google signin/signup
+
+`GOOGLE_CLIENT_SECRET` -> For google signin/signup
+
+`MONGODB_URI`
+
+`NUXT_SMTP_USER` -> For sending e-mail
+
+`NUXT_SMTP_PASS` -> For sending e-mail
+
 # Nuxt 3 Minimal Starter
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
@@ -77,22 +95,6 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-
-## Environment Variables
-
-To run this project you will need to add the following environment variables to your .env file
-
-`NUXT_BASE_URL`
-
-`GOOGLE_CLIENT_ID` -> For google signin/signup
-
-`GOOGLE_CLIENT_SECRET` -> For google signin/signup
-
-`MONGODB_URI`
-
-`NUXT_SMTP_USER` -> For sending e-mail
-
-`NUXT_SMTP_PASS` -> For sending e-mail
 
 ## Technologies Used
 
