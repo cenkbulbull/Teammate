@@ -31,7 +31,7 @@ const avatarFallback = computed(() => {
 <template>
   <div v-if="user" class="bg-gradient pt-24">
     <div class="flex flex-col gap-5 px-8 md:px-12 py-6 bg-white">
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center flex-wrap gap-4">
         <div class="flex items-center gap-2">
           <Avatar class="w-12 h-12 md:w-24 md:h-24">
             <AvatarImage :src="'/uploads/images/' + user?.profilePhoto" />
@@ -77,8 +77,8 @@ const avatarFallback = computed(() => {
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div class="col-span-2 flex flex-col gap-4">
           <Card>
-            <CardHeader>
-              <CardTitle class="font-bold text-xs">
+            <CardHeader class="pb-4">
+              <CardTitle class="font-bold text-sm">
                 {{ $t("biography") }}
               </CardTitle>
             </CardHeader>
@@ -93,24 +93,8 @@ const avatarFallback = computed(() => {
           </Card>
 
           <Card>
-            <CardHeader>
-              <CardTitle class="font-bold text-xs">
-                {{ $t("job") }}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div v-if="user?.job" class="leading-6 text-xs">
-                {{ user?.job }}
-              </div>
-              <div v-else class="text-xs">
-                {{ $t("noJobText") }}
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle class="font-bold text-xs">
+            <CardHeader class="pb-4">
+              <CardTitle class="font-bold text-sm">
                 {{ $t("abilities") }}
               </CardTitle>
             </CardHeader>
@@ -133,8 +117,24 @@ const avatarFallback = computed(() => {
 
         <div class="col-span-1 flex flex-col gap-4">
           <Card>
-            <CardHeader>
-              <CardTitle class="font-bold text-xs">{{
+            <CardHeader class="pb-2">
+              <CardTitle class="font-bold text-sm">
+                {{ $t("job") }}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div v-if="user?.job" class="leading-6 text-xs">
+                {{ user?.job }}
+              </div>
+              <div v-else class="text-xs">
+                {{ $t("noJobText") }}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader class="pb-2">
+              <CardTitle class="font-bold text-sm">{{
                 $t("downloadResume")
               }}</CardTitle>
             </CardHeader>
@@ -142,7 +142,7 @@ const avatarFallback = computed(() => {
               <div class="flex justify-between">
                 <div class="flex items-center gap-2">
                   <div class="flex items-center">
-                    <Icon name="mynaui:file-text" class="text-4xl" />
+                    <Icon name="mynaui:file-text" class="text-2xl" />
                   </div>
                   <div class="flex flex-col text-xs gap-1 text-slate-600">
                     <span>{{ $t("pdf") }}</span>
@@ -150,7 +150,7 @@ const avatarFallback = computed(() => {
                 </div>
                 <div>
                   <a :href="'/uploads/docs/' + user?.resume" download>
-                    <Button size="icon"
+                    <Button size="icon" class="w-8 h-8"
                       ><Icon name="mynaui:download" class="text-2xl" />
                     </Button>
                   </a>
@@ -160,15 +160,15 @@ const avatarFallback = computed(() => {
           </Card>
 
           <Card>
-            <CardHeader>
-              <CardTitle class="font-bold text-xs">{{
+            <CardHeader class="pb-4">
+              <CardTitle class="font-bold text-sm">{{
                 $t("contactInformation")
               }}</CardTitle>
             </CardHeader>
             <CardContent class="flex flex-col gap-4">
               <div class="flex items-center gap-2">
                 <div class="flex items-center p-1 rounded">
-                  <Icon name="mynaui:telephone-call" class="text-3xl" />
+                  <Icon name="mynaui:telephone-call" class="text-2xl" />
                 </div>
                 <div class="flex flex-col text-xs gap-1">
                   <span class="text-slate-600">{{ $t("phone") }}</span>
@@ -182,7 +182,7 @@ const avatarFallback = computed(() => {
 
               <div class="flex items-center gap-2">
                 <div class="flex items-center p-1 rounded">
-                  <Icon name="mynaui:envelope-open" class="text-3xl" />
+                  <Icon name="mynaui:envelope-open" class="text-2xl" />
                 </div>
                 <div class="flex flex-col text-xs gap-1">
                   <span class="text-slate-600">{{ $t("email") }}</span>
