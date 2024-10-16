@@ -32,7 +32,7 @@ const searchJob = () => {
   postsStore.fetchPosts({
     filtered: {
       postIdOrTitle: postIdOrTitle.value,
-      location: [location.value],
+      location: location.value ? [location.value] : [],
     },
   });
 };

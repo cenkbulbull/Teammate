@@ -10,7 +10,6 @@ const loggedIn = computed(() => status.value === "authenticated");
 const posts = computed(() => postsStore.posts);
 
 const favoritesFilterToggle = ref(false);
-const appliedFilterToggle = ref(false);
 
 const changeFavoriteFilter = async (isPressed) => {
   if (isPressed) {
