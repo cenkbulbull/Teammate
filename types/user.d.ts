@@ -17,6 +17,7 @@ declare global {
     applied?: string[]; // Sadece postId değerlerini içermeli
     favorites?: string[];
     emailNotification?: boolean;
+    jobPostingNotification?: boolean;
   }
 }
 export {};

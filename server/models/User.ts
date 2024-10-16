@@ -74,6 +74,10 @@ const UserSchema: Schema<User> = new Schema({
     type: Boolean,
     default: true, // Varsayılan olarak e-posta bildirimleri açık
   },
+  jobPostingNotification: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const User = mongoose.model<User>("User", UserSchema);

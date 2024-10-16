@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useAppStore } from "@/stores/app";
 const appStore = useAppStore();
 
 const localePath = useLocalePath();

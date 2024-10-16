@@ -77,6 +77,8 @@ const savePersonalSettings = async () => {
     title: t("saveChangesToastTitle"),
     description: t("saveChangesToastText", [t("personal")]),
   });
+
+  await appStore.initializeUser();
 };
 </script>
 
