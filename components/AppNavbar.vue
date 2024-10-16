@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 const appStore = useAppStore();
-
 const localePath = useLocalePath();
-
 const { status, signOut } = useAuth();
 const loggedIn = computed(() => status.value === "authenticated");
 
@@ -84,6 +82,7 @@ const avatarFallback = computed(() => {
                 />
               </Button>
             </DropdownMenuTrigger>
+
             <DropdownMenuContent class="w-56 mr-12">
               <DropdownMenuLabel class="flex items-center gap-2">
                 <Avatar class="w-6 h-6">
@@ -93,7 +92,9 @@ const avatarFallback = computed(() => {
                 </Avatar>
                 <span>{{ user.firstname }} {{ user.lastname }} </span>
               </DropdownMenuLabel>
+
               <DropdownMenuSeparator />
+
               <DropdownMenuGroup>
                 <DropdownMenuItem>
                   <nuxt-link

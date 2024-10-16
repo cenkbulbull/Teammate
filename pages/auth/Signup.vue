@@ -3,15 +3,17 @@ definePageMeta({
   layout: "auth",
   middleware: "auth",
 });
-const appStore = useAppStore();
-import { useToast } from "@/components/ui/toast/use-toast";
-const { toast } = useToast();
-const { t } = useI18n();
 
-//normal kayıt
+import { useToast } from "@/components/ui/toast/use-toast";
 import { formSchema } from "@/schemas/signupSchema";
 import { useForm } from "vee-validate";
 
+const appStore = useAppStore();
+const { toast } = useToast();
+const { t } = useI18n();
+//google ile giriş/kayıt
+const { signIn } = useAuth();
+//normal kayıt
 const router = useRouter();
 
 const { handleSubmit } = useForm({
@@ -63,9 +65,6 @@ const sendConfirmationEmail = async (email: string) => {
     console.error(error);
   }
 };
-
-//google ile giriş/kayıt
-const { signIn } = useAuth();
 </script>
 
 <template>
@@ -189,6 +188,7 @@ const { signIn } = useAuth();
         </div>
 
         <Button @click="onSubmit" class="w-full">{{ $t("signup") }}</Button>
+
         <Button
           @click="($event) => signIn('google')"
           variant="outline"
@@ -208,6 +208,7 @@ const { signIn } = useAuth();
         </div>
       </div>
     </div>
+
     <div class="hidden bg-muted lg:block magicpattern">
       <!-- <img
         src="https://placehold.co/200"

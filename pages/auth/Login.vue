@@ -5,7 +5,6 @@ definePageMeta({
 });
 
 const { signIn } = useAuth();
-
 const email = ref();
 const password = ref();
 </script>
@@ -22,6 +21,7 @@ const password = ref();
             {{ $t("loginText") }}
           </p>
         </div>
+
         <div class="grid gap-4">
           <div class="grid gap-2">
             <Label class="text-xs" for="email">{{ $t("email") }}</Label>
@@ -34,6 +34,7 @@ const password = ref();
               class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
             />
           </div>
+
           <div class="grid gap-2">
             <div class="flex items-center">
               <Label class="text-xs" for="password">{{ $t("password") }}</Label>
@@ -53,11 +54,13 @@ const password = ref();
               class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
             />
           </div>
+
           <Button
             @click="($event) => signIn('credentials', { email, password })"
             class="w-full"
             >{{ $t("login") }}</Button
           >
+
           <Button
             @click="($event) => signIn('google')"
             variant="outline"
@@ -67,6 +70,7 @@ const password = ref();
             {{ $t("loginWithGoogle") }}
           </Button>
         </div>
+
         <div class="mt-4 text-center text-sm">
           {{ $t("dontHaveAccount") }}
           <nuxt-link to="signup"
@@ -77,6 +81,7 @@ const password = ref();
         </div>
       </div>
     </div>
+
     <div class="hidden bg-muted lg:block magicpattern">
       <!-- <img
         src="https://placehold.co/200"

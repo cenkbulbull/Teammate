@@ -6,14 +6,6 @@ definePageMeta({
 const route = useRoute();
 const userId = route.params.id;
 
-const { data } = useFetch("/api/users/getUser", {
-  method: "POST",
-  body: JSON.stringify({ id: userId }),
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
-
 // Kullanıcı verilerini filtrele
 const user = computed(() => {
   if (!data.value) return null; // Veri henüz gelmemişse null döndür
@@ -25,6 +17,14 @@ const avatarFallback = computed(() => {
   const firstInitial = user.value?.firstname.charAt(0).toUpperCase();
   const lastInitial = user.value?.lastname.charAt(0).toUpperCase();
   return `${firstInitial}${lastInitial}`;
+});
+
+const { data } = useFetch("/api/users/getUser", {
+  method: "POST",
+  body: JSON.stringify({ id: userId }),
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 </script>
 
@@ -55,6 +55,7 @@ const avatarFallback = computed(() => {
               ><Icon name="mynaui:globe" class="text-2xl" />
             </Button>
           </a>
+
           <a :href="user?.social.github" target="_blank">
             <Button
               size="icon"
@@ -63,6 +64,7 @@ const avatarFallback = computed(() => {
               ><Icon name="mynaui:brand-github" class="text-2xl" />
             </Button>
           </a>
+
           <a :href="user?.social.linkedin" target="_blank">
             <Button
               size="icon"
@@ -98,6 +100,7 @@ const avatarFallback = computed(() => {
                 {{ $t("abilities") }}
               </CardTitle>
             </CardHeader>
+
             <CardContent>
               <div class="flex flex-wrap gap-2">
                 <Badge
@@ -122,6 +125,7 @@ const avatarFallback = computed(() => {
                 {{ $t("job") }}
               </CardTitle>
             </CardHeader>
+
             <CardContent>
               <div v-if="user?.job" class="leading-6 text-xs">
                 {{ user?.job }}
@@ -138,6 +142,7 @@ const avatarFallback = computed(() => {
                 $t("downloadResume")
               }}</CardTitle>
             </CardHeader>
+
             <CardContent>
               <div class="flex justify-between">
                 <div class="flex items-center gap-2">
@@ -165,11 +170,13 @@ const avatarFallback = computed(() => {
                 $t("contactInformation")
               }}</CardTitle>
             </CardHeader>
+
             <CardContent class="flex flex-col gap-4">
               <div class="flex items-center gap-2">
                 <div class="flex items-center p-1 rounded">
                   <Icon name="mynaui:telephone-call" class="text-2xl" />
                 </div>
+
                 <div class="flex flex-col text-xs gap-1">
                   <span class="text-slate-600">{{ $t("phone") }}</span>
                   <span
@@ -184,6 +191,7 @@ const avatarFallback = computed(() => {
                 <div class="flex items-center p-1 rounded">
                   <Icon name="mynaui:envelope-open" class="text-2xl" />
                 </div>
+
                 <div class="flex flex-col text-xs gap-1">
                   <span class="text-slate-600">{{ $t("email") }}</span>
                   <span

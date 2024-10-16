@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const { t } = useI18n();
-
 const appStore = useAppStore();
 const usersStore = useUsersStore();
 const activeUser = ref();
@@ -10,24 +9,9 @@ const notifications = ref({
   jobPostingNotification: "",
 });
 
-const savePreferences = async () => {
-  await usersStore.updateUser({
-    id: activeUser.value.id,
-    ...notifications.value,
-  });
-};
-
-onMounted(async () => {
-  baseUrl.value = window.location.origin;
-  await appStore.initializeUser();
-  activeUser.value = appStore.activeUser;
-
-  if (activeUser) {
-    notifications.value.emailNotification =
-      activeUser.value.emailNotification || false;
-    notifications.value.jobPostingNotification =
-      activeUser.value.jobPostingNotification || false;
-  }
+const user = computed(() => appStore.activeUser);
+const url = computed(() => {
+  return user.value ? `${baseUrl.value}/user/profile/${user.value.id}` : "";
 });
 
 watch(
@@ -37,10 +21,12 @@ watch(
   }
 );
 
-const user = computed(() => appStore.activeUser);
-const url = computed(() => {
-  return user.value ? `${baseUrl.value}/user/profile/${user.value.id}` : "";
-});
+const savePreferences = async () => {
+  await usersStore.updateUser({
+    id: activeUser.value.id,
+    ...notifications.value,
+  });
+};
 
 const shareOnLinkedIn = () => {
   const linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
@@ -69,6 +55,19 @@ const shareOnTelegram = () => {
 
   window.open(telegramUrl, "_blank", "width=600,height=400");
 };
+
+onMounted(async () => {
+  baseUrl.value = window.location.origin;
+  await appStore.initializeUser();
+  activeUser.value = appStore.activeUser;
+
+  if (activeUser) {
+    notifications.value.emailNotification =
+      activeUser.value.emailNotification || false;
+    notifications.value.jobPostingNotification =
+      activeUser.value.jobPostingNotification || false;
+  }
+});
 </script>
 
 <template>

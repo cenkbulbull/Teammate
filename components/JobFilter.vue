@@ -1,74 +1,11 @@
 <script lang="ts" setup>
-import { useAppStore } from "@/stores/app";
-import { usePostsStore } from "@/stores/posts";
+import locations from "@/data/locationsData";
+import jobTime from "@/data/jobTimeData";
+import dateofposting from "@/data/dateOfPostingData";
+import postTypes from "@/data/postTypesData";
+
 const appStore = useAppStore();
 const postsStore = usePostsStore();
-
-const { locale, setLocale, t } = useI18n();
-
-const postTypes = [
-  {
-    id: "all",
-  },
-  {
-    id: "appliedOnly",
-  },
-];
-
-const locations = [
-  {
-    id: "remote",
-    label: "Remote",
-  },
-  {
-    id: "İstanbul",
-    label: "İstanbul",
-  },
-  {
-    id: "Ankara",
-    label: "Ankara",
-  },
-  {
-    id: "Zonguldak",
-    label: "Zonguldak",
-  },
-];
-
-const dateofposting = [
-  {
-    id: "allTime",
-  },
-  {
-    id: "last24hours",
-  },
-  {
-    id: "last7days",
-  },
-];
-
-const jobTime = [
-  {
-    id: "0-1",
-    label: "0-1",
-  },
-  {
-    id: "1-3",
-    label: "1-3",
-  },
-  {
-    id: "3-6",
-    label: "3-6",
-  },
-  {
-    id: "6-12",
-    label: "6-12",
-  },
-  {
-    id: "12>",
-    label: "12 >",
-  },
-];
-
 const filter = reactive({
   postType: "all",
   location: [],
@@ -154,6 +91,7 @@ const filterPosts = () => {
       <!-- posting time -->
       <div class="flex flex-col gap-2">
         <p class="font-bold text-xs">{{ $t("dateOfPosting") }}</p>
+
         <RadioGroup v-model="filter.postingTime">
           <div
             v-for="date in dateofposting"
@@ -168,6 +106,7 @@ const filterPosts = () => {
       <!-- job time -->
       <div class="flex flex-col gap-2">
         <p class="font-bold text-xs">{{ $t("estimatedJobTime") }}</p>
+
         <div v-for="time in jobTime" :key="time.id" class="flex gap-2">
           <Checkbox
             :id="time.id"

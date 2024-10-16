@@ -1,26 +1,44 @@
 <script lang="ts" setup>
-import { useClipboard } from "@vueuse/core";
-import { useUsersStore } from "@/stores/users";
-import { useAppStore } from "@/stores/app";
-import { useToast } from "@/components/ui/toast/use-toast";
-
-const usersStore = useUsersStore();
-const appStore = useAppStore();
-
-const { toast } = useToast();
-
-const { t } = useI18n();
-
-const { status } = useAuth();
-const loggedIn = computed(() => status.value === "authenticated");
-
 const props = defineProps<{
   job: Job;
   appliedButRemoved?: boolean;
 }>();
 
+import { useClipboard } from "@vueuse/core";
+import { useToast } from "@/components/ui/toast/use-toast";
+
+const usersStore = useUsersStore();
+const appStore = useAppStore();
+const { toast } = useToast();
+const { t } = useI18n();
+const { status } = useAuth();
+const loggedIn = computed(() => status.value === "authenticated");
 const advertiser = ref(null);
 const avatarFallback = ref("");
+const { text, copy, copied, isSupported } = useClipboard();
+
+const isFavorite = computed(() => {
+  return (
+    appStore.activeUser?.favorites?.some((item) => item === props.job.id) ||
+    false
+  );
+});
+
+// props.job.user değiştiğinde veriyi al
+watch(
+  () => props.job.user,
+  (newUserId) => {
+    fetchAdvertiserData(newUserId);
+  }
+);
+
+const copyID = async (id: string) => {
+  await copy(id);
+  toast({
+    title: t("adIdCopied"),
+    description: id,
+  });
+};
 
 const fetchAdvertiserData = async (userId) => {
   try {
@@ -48,33 +66,8 @@ const fetchAdvertiserData = async (userId) => {
   }
 };
 
-// props.job.user değiştiğinde veriyi al
-watch(
-  () => props.job.user,
-  (newUserId) => {
-    fetchAdvertiserData(newUserId);
-  }
-);
-
 // İlk yüklemede veriyi al
 fetchAdvertiserData(props.job.user);
-
-const { text, copy, copied, isSupported } = useClipboard();
-
-const copyID = async (id: string) => {
-  await copy(id);
-  toast({
-    title: t("adIdCopied"),
-    description: id,
-  });
-};
-
-const isFavorite = computed(() => {
-  return (
-    appStore.activeUser?.favorites?.some((item) => item === props.job.id) ||
-    false
-  );
-});
 
 const changeFavorite = async (isPressed: boolean) => {
   try {
@@ -109,6 +102,7 @@ const changeFavorite = async (isPressed: boolean) => {
         <div class="flex flex-col gap-3">
           <div class="flex justify-between items-center">
             <CardTitle class="text-md">{{ job.title }}</CardTitle>
+
             <div v-if="loggedIn" class="flex">
               <div v-if="!appliedButRemoved" class="flex gap-2 items-center">
                 <Toggle
@@ -130,6 +124,7 @@ const changeFavorite = async (isPressed: boolean) => {
                   class="text-xl cursor-pointer hover:bg-green-300 transition-all"
                 />
               </div>
+
               <div v-else="appliedButRemoved">
                 <Alert
                   variant="destructive"
@@ -143,6 +138,7 @@ const changeFavorite = async (isPressed: boolean) => {
               </div>
             </div>
           </div>
+
           <div class="flex justify-between items-center">
             <div class="flex gap-1 flex-wrap">
               <TooltipProvider>
@@ -180,6 +176,7 @@ const changeFavorite = async (isPressed: boolean) => {
           </div>
         </div>
       </CardHeader>
+
       <CardFooter class="px-2 pb-3">
         <div class="flex justify-between w-full">
           <div class="flex gap-2 items-center">
@@ -222,6 +219,7 @@ const changeFavorite = async (isPressed: boolean) => {
         </div>
       </CardFooter>
     </Card>
+
     <DrawersJob :job :advertiser />
   </Drawer>
 </template>

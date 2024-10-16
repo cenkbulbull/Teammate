@@ -1,6 +1,5 @@
 import mongoose, { Schema } from "mongoose";
 
-// Job interface'ini kullanarak bir Mongoose Schema oluştur
 const PostSchema: Schema<Job> = new Schema({
   id: {
     type: String,

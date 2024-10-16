@@ -4,18 +4,12 @@ definePageMeta({
   middleware: "auth",
 });
 
-import { useAppStore } from "@/stores/app";
-import { useUsersStore } from "@/stores/users";
-
 import { useToast } from "@/components/ui/toast/use-toast";
+
 const { toast } = useToast();
-
 const { t } = useI18n();
-
 const appStore = useAppStore();
-
-const user = computed(() => appStore.activeUser);
-
+const usersStore = useUsersStore();
 const personalSettings = ref({
   id: "",
   firstname: "",
@@ -30,6 +24,13 @@ const personalSettings = ref({
     github: "",
     web: "",
   },
+});
+
+const user = computed(() => appStore.activeUser);
+const avatarFallback = computed(() => {
+  const firstInitial = user.value?.firstname.charAt(0).toUpperCase();
+  const lastInitial = user.value?.lastname.charAt(0).toUpperCase();
+  return `${firstInitial}${lastInitial}`;
 });
 
 const initializeUser = async () => {
@@ -53,22 +54,9 @@ const initializeUser = async () => {
   }
 };
 
-// Sayfa yüklendiğinde kullanıcıyı başlat
-onMounted(() => {
-  initializeUser();
-});
-
 const handleChangeEmailSwitch = (value: Boolean) => {
   personalSettings.value.emailNotification = value;
 };
-
-const usersStore = useUsersStore();
-
-const avatarFallback = computed(() => {
-  const firstInitial = user.value?.firstname.charAt(0).toUpperCase();
-  const lastInitial = user.value?.lastname.charAt(0).toUpperCase();
-  return `${firstInitial}${lastInitial}`;
-});
 
 const savePersonalSettings = async () => {
   await usersStore.updateUser(personalSettings.value);
@@ -80,6 +68,11 @@ const savePersonalSettings = async () => {
 
   await appStore.initializeUser();
 };
+
+// Sayfa yüklendiğinde kullanıcıyı başlat
+onMounted(() => {
+  initializeUser();
+});
 </script>
 
 <template>
@@ -92,6 +85,7 @@ const savePersonalSettings = async () => {
             <AvatarFallback>{{ avatarFallback }}</AvatarFallback>
             <!-- src gelmezse isim soyisim ilk harflerini al -->
           </Avatar>
+
           <div class="flex flex-col gap-1">
             <span class="font-bold text-xs md:text-lg"
               >{{ user?.firstname }} {{ user?.lastname }}</span
@@ -106,6 +100,7 @@ const savePersonalSettings = async () => {
           <div class="flex items-center">
             <Label class="text-xs" for="firstname">{{ $t("firstName") }}</Label>
           </div>
+
           <Input
             id="firstname"
             required
@@ -113,10 +108,12 @@ const savePersonalSettings = async () => {
             class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
           />
         </div>
+
         <div class="grid gap-2">
           <div class="flex items-center">
             <Label class="text-xs" for="lastname">{{ $t("lastName") }}</Label>
           </div>
+
           <Input
             id="lastname"
             required
@@ -227,6 +224,7 @@ const savePersonalSettings = async () => {
             class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
           />
         </div>
+
         <div class="col-span-3 md:col-span-1 flex items-center gap-1">
           <Icon name="mynaui:brand-linkedin" class="text-xl" />
           <Input
@@ -237,6 +235,7 @@ const savePersonalSettings = async () => {
             class="w-full text-xs focus-visible:ring-offset-0 focus-visible:outline-none focus-visible:ring-0"
           />
         </div>
+
         <div class="col-span-3 md:col-span-1 flex items-center gap-1">
           <Icon name="mynaui:brand-github" class="text-xl" />
           <Input

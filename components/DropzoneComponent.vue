@@ -1,15 +1,12 @@
 <script lang="ts" setup>
-import Dropzone from "dropzone";
-import { useI18n } from "vue-i18n";
-import { useAppStore } from "@/stores/app";
-const appStore = useAppStore();
-
-const { t } = useI18n();
-
 const props = defineProps<{
   options: DropzoneOptions;
 }>();
 
+import Dropzone from "dropzone";
+
+const appStore = useAppStore();
+const { t } = useI18n();
 const dropzoneRef = ref(null);
 
 onMounted(() => {

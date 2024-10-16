@@ -10,18 +10,14 @@ watch(userId, async (newUserId) => {
   }
 });
 
-onMounted(async () => await postStore.fetchMyPosts(userId.value));
-
 //Delete Post
-const deletePosts = async (id: String) => {
+const deletePosts = async (id: string) => {
   await postStore.deletePost(id);
   await postStore.fetchMyPosts(userId.value);
 };
-//Delete Post
 
-const getApplicant = (applicantId) => {
+const getApplicant = (applicantId: string) => {
   const user = userStore.users.find((user) => user.id === applicantId);
-  //return user ? user.firstname + " " + user.lastname : "Unknown"; // Kullanıcı bulunamazsa 'Unknown' döner
   return {
     firstname: user?.firstname,
     lastname: user?.lastname,
@@ -30,6 +26,8 @@ const getApplicant = (applicantId) => {
     email: user?.email,
   };
 };
+
+onMounted(async () => await postStore.fetchMyPosts(userId.value));
 </script>
 
 <template>
@@ -209,6 +207,7 @@ const getApplicant = (applicantId) => {
                     class="text-md cursor-pointer hover:bg-red-600 transition-all"
                 /></Button>
               </AlertDialogTrigger>
+
               <AlertDialogContent>
                 <AlertDialogHeader>
                   <AlertDialogTitle>{{ $t("delete") }}</AlertDialogTitle>
@@ -216,6 +215,7 @@ const getApplicant = (applicantId) => {
                     {{ $t("deleteMessage") }}
                   </AlertDialogDescription>
                 </AlertDialogHeader>
+
                 <AlertDialogFooter>
                   <AlertDialogCancel>{{ $t("cancel") }}</AlertDialogCancel>
                   <AlertDialogAction @click="deletePosts(post.id)">{{

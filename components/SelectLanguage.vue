@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const { locale, setLocale } = useI18n();
 import { ChevronsUpDown } from "lucide-vue-next";
 
 interface Language {
@@ -8,19 +7,14 @@ interface Language {
   flag: string;
 }
 
+const { locale, setLocale } = useI18n();
+const selectedLanguage = ref<string>("en-US");
+const openLangPopover = ref<boolean>(false);
 const languages: Language[] = [
   { label: "Türkçe", value: "tr-TR", flag: "tr.png" },
   { label: "English", value: "en-US", flag: "en.png" },
   { label: "Azərbaycan", value: "az-AZ", flag: "az.png" },
 ];
-
-const selectedLanguage = ref<string>("en-US");
-const openLangPopover = ref<boolean>(false);
-
-onMounted(() => {
-  selectedLanguage.value =
-    (localStorage.getItem("locale") as string | null) || "en-US";
-});
 
 const setLanguage = (language: Language) => {
   selectedLanguage.value = language.value;
@@ -28,6 +22,11 @@ const setLanguage = (language: Language) => {
   openLangPopover.value = false;
   setLocale(localStorage.getItem("locale") as string);
 };
+
+onMounted(() => {
+  selectedLanguage.value =
+    (localStorage.getItem("locale") as string | null) || "en-US";
+});
 </script>
 
 <template>

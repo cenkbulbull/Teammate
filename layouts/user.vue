@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const appStore = useAppStore();
 const postStore = usePostsStore();
-
 const userId = computed(() => appStore.activeUser?.id);
 
 // userId değiştiğinde fetchPosts'i çağır
@@ -23,6 +22,7 @@ onMounted(() => {
     </div>
     <NuxtPage />
     <AppFooter />
+
     <!-- MyJobs Sheet -->
     <Sheet>
       <SheetTrigger>

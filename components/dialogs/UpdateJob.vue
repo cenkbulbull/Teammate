@@ -3,60 +3,16 @@ const props = defineProps<{
   post: Job;
 }>();
 
+import locations from "@/data/locationsData";
+import jobTime from "@/data/jobTimeData";
 import { formSchema } from "@/schemas/createJobSchema";
 import { useForm } from "vee-validate";
-import { usePostsStore } from "@/stores/posts";
-import { useAppStore } from "@/stores/app";
 import { useToast } from "@/components/ui/toast/use-toast";
+
 const { t } = useI18n();
 const { toast } = useToast();
 const postsStore = usePostsStore();
 const appStore = useAppStore();
-
-const userId = computed(() => appStore.activeUser?.id);
-
-const locations = [
-  {
-    id: "remote",
-    label: "Remote",
-  },
-  {
-    id: "İstanbul",
-    label: "İstanbul",
-  },
-  {
-    id: "Ankara",
-    label: "Ankara",
-  },
-  {
-    id: "Zonguldak",
-    label: "Zonguldak",
-  },
-];
-
-const jobTime = [
-  {
-    id: "0-1",
-    label: "0-1",
-  },
-  {
-    id: "1-3",
-    label: "1-3",
-  },
-  {
-    id: "3-6",
-    label: "3-6",
-  },
-  {
-    id: "6-12",
-    label: "6-12",
-  },
-  {
-    id: "12>",
-    label: "12 >",
-  },
-];
-
 const postDetail = ref({
   title: props.post.title,
   location: props.post.location,
@@ -64,6 +20,8 @@ const postDetail = ref({
   description: props.post.description,
   requirements: props.post.requirements,
 });
+
+const userId = computed(() => appStore.activeUser?.id);
 
 const { handleSubmit } = useForm({
   validationSchema: formSchema(),
@@ -94,6 +52,7 @@ const onSubmit = handleSubmit(async (values) => {
           {{ $t("findATeammate") }}</DialogTitle
         >
       </DialogHeader>
+
       <div class="grid gap-4 py-3">
         <div>
           <FormField
@@ -218,6 +177,7 @@ const onSubmit = handleSubmit(async (values) => {
           </TagsInput>
         </div>
       </div>
+
       <DialogFooter>
         <DialogTrigger asChild>
           <Button type="submit">{{ $t("create") }}</Button>

@@ -13,18 +13,16 @@ definePageMeta({
     },
   ],
 });
+
+import { useToast } from "@/components/ui/toast/use-toast";
+
 const usersStore = useUsersStore();
 const appStore = useAppStore();
-import { useToast } from "@/components/ui/toast/use-toast";
 const { toast } = useToast();
 const { t } = useI18n();
 const router = useRouter();
 const user = ref<object>();
 const code = ref<string[]>([]);
-
-onMounted(async () => {
-  user.value = JSON.parse(sessionStorage.getItem("user") || "{}");
-});
 
 const confirmEmail = async (e: string[]) => {
   if (e.join("") === appStore.confirmationCode) {
@@ -54,6 +52,10 @@ const resendCode = async () => {
     description: t("newCodeText"),
   });
 };
+
+onMounted(async () => {
+  user.value = JSON.parse(sessionStorage.getItem("user") || "{}");
+});
 </script>
 
 <template>
@@ -69,6 +71,7 @@ const resendCode = async () => {
             {{ $t("emailVerifyText", { mail: user.email }) }}
           </p>
         </div>
+
         <div class="grid gap-4">
           <div class="m-auto">
             <PinInput id="pin-input" v-model="code" placeholder="○">
@@ -91,6 +94,7 @@ const resendCode = async () => {
         </div>
       </div>
     </div>
+
     <div class="hidden bg-muted lg:block magicpattern">
       <!-- <img
         src="https://placehold.co/200"

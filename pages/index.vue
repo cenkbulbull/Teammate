@@ -1,15 +1,11 @@
 <script lang="ts" setup>
-import { usePostsStore } from "@/stores/posts";
-import { useAppStore } from "@/stores/app";
 const postsStore = usePostsStore();
 const appStore = useAppStore();
-
 const { status } = useAuth();
-const loggedIn = computed(() => status.value === "authenticated");
-
-const posts = computed(() => postsStore.posts);
-
 const favoritesFilterToggle = ref(false);
+
+const loggedIn = computed(() => status.value === "authenticated");
+const posts = computed(() => postsStore.posts);
 
 const changeFavoriteFilter = async (isPressed) => {
   if (isPressed) {
@@ -67,10 +63,12 @@ const changePage = (newPage) => {
       <div>
         <JobFilter />
       </div>
+
       <div>
         <EmailCard />
       </div>
     </div>
+
     <div class="flex flex-col gap-4 col-span-3">
       <!-- filters -->
       <div class="flex gap-4">
@@ -83,6 +81,7 @@ const changePage = (newPage) => {
             >
               <SelectValue :placeholder="$t('newToOld')" />
             </SelectTrigger>
+
             <SelectContent>
               <SelectGroup>
                 <SelectItem value="newToOld">{{ $t("newToOld") }}</SelectItem>
@@ -111,6 +110,7 @@ const changePage = (newPage) => {
                     class="text-3xl cursor-pointer"
                 /></Toggle>
               </TooltipTrigger>
+
               <TooltipContent>
                 <p>{{ $t("favoritesOnly") }}</p>
               </TooltipContent>
@@ -130,6 +130,7 @@ const changePage = (newPage) => {
             :key="index"
             :job="post"
           />
+
           <Alert v-else variant="destructive" class="col-span-2">
             <AlertDescription class="flex gap-2 items-center">
               <Icon name="mdi:checkbox-blank-badge-outline" />

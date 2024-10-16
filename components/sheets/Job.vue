@@ -4,19 +4,13 @@ const props = defineProps<{
   advertiser: Object;
 }>();
 
-import { useUsersStore } from "@/stores/users";
-import { usePostsStore } from "@/stores/posts";
-import { useAppStore } from "@/stores/app";
 import { useToast } from "@/components/ui/toast/use-toast";
 
 const usersStore = useUsersStore();
 const postsStore = usePostsStore();
 const appStore = useAppStore();
-
 const { toast } = useToast();
-
 const { t } = useI18n();
-
 const { status } = useAuth();
 const loggedIn = computed(() => status.value === "authenticated");
 
@@ -67,8 +61,6 @@ const apply = async () => {
     toast({
       title: t("referenced"),
     });
-
-    console.log("Başarıyla güncellendi.");
   } catch (error) {
     console.error("Güncelleme sırasında hata oluştu:", error);
   }

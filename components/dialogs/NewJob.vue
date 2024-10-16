@@ -1,68 +1,27 @@
 <script lang="ts" setup>
+import locations from "@/data/locationsData";
+import jobTime from "@/data/jobTimeData";
 import { formSchema } from "@/schemas/createJobSchema";
 import { useForm } from "vee-validate";
-import { usePostsStore } from "@/stores/posts";
-import { useAppStore } from "@/stores/app";
 import { useToast } from "@/components/ui/toast/use-toast";
+
 const { t } = useI18n();
 const { toast } = useToast();
 const postsStore = usePostsStore();
 const appStore = useAppStore();
+const dialogOpen = ref(true); // Dialog durumunu kontrol etmek için bir ref
+const requirements = ref();
 
-// Dialog durumunu kontrol etmek için bir ref
-const dialogOpen = ref(true); // Başlangıçta açık
-
-const locations = [
-  {
-    id: "remote",
-    label: "Remote",
-  },
-  {
-    id: "İstanbul",
-    label: "İstanbul",
-  },
-  {
-    id: "Ankara",
-    label: "Ankara",
-  },
-  {
-    id: "Zonguldak",
-    label: "Zonguldak",
-  },
-];
-
-const jobTime = [
-  {
-    id: "0-1",
-    label: "0-1",
-  },
-  {
-    id: "1-3",
-    label: "1-3",
-  },
-  {
-    id: "3-6",
-    label: "3-6",
-  },
-  {
-    id: "6-12",
-    label: "6-12",
-  },
-  {
-    id: "12>",
-    label: "12 >",
-  },
-];
+// Dialog'un açık olup olmadığını kontrol eden computed
+const dialogStatus = computed(() => dialogOpen.value);
 
 const { handleSubmit } = useForm({
   validationSchema: formSchema(),
 });
 
-const requirements = ref();
-
 const onSubmit = handleSubmit(async (values) => {
   await postsStore.createPost({
-    user: appStore.activeUser.id,
+    user: appStore.activeUser?.id,
     ...values,
     requirements: requirements.value,
   });
@@ -73,9 +32,6 @@ const onSubmit = handleSubmit(async (values) => {
 
   dialogOpen.value = false; // Dialog'u kapat
 });
-
-// Dialog'un açık olup olmadığını kontrol eden computed
-const dialogStatus = computed(() => dialogOpen.value);
 </script>
 
 <template>
@@ -88,6 +44,7 @@ const dialogStatus = computed(() => dialogOpen.value);
           {{ $t("findATeammate") }}</DialogTitle
         >
       </DialogHeader>
+
       <div class="grid gap-4 py-3">
         <div>
           <FormField v-slot="{ componentField }" name="title">
@@ -196,6 +153,7 @@ const dialogStatus = computed(() => dialogOpen.value);
           </TagsInput>
         </div>
       </div>
+
       <DialogFooter>
         <Button type="submit">{{ $t("create") }}</Button>
       </DialogFooter>

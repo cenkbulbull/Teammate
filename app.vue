@@ -1,11 +1,7 @@
 <script lang="ts" setup>
-import { useAppStore } from "@/stores/app";
-import { usePostsStore } from "@/stores/posts";
-import { useUsersStore } from "@/stores/users";
 const appStore = useAppStore();
 const postsStore = usePostsStore();
 const usersStore = useUsersStore();
-
 const { locale, setLocale, t } = useI18n();
 
 useHead({
@@ -46,6 +42,7 @@ onMounted(async () => {
       </a>
     </div>
   </NuxtMarquee>
+
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>

@@ -1,30 +1,7 @@
 <script lang="ts" setup>
-import { usePostsStore } from "@/stores/posts";
-import { useUsersStore } from "@/stores/users";
+import locations from "@/data/locationsData";
 const postsStore = usePostsStore();
 const usersStore = useUsersStore();
-
-const { locale, setLocale, t } = useI18n();
-
-const locations = [
-  {
-    id: "remote",
-    label: "Remote",
-  },
-  {
-    id: "İstanbul",
-    label: "İstanbul",
-  },
-  {
-    id: "Ankara",
-    label: "Ankara",
-  },
-  {
-    id: "Zonguldak",
-    label: "Zonguldak",
-  },
-];
-
 const postIdOrTitle = ref(null);
 const location = ref(null);
 
@@ -37,11 +14,13 @@ const searchJob = () => {
   });
 };
 </script>
+
 <template>
   <div class="flex flex-col gap-5 py-8 px-4 md:px-12">
     <div class="text-4xl font-bold">
       {{ $t("findTeammatesForYourTeam") }}
     </div>
+
     <div class="text-slate-600">
       {{ $t("findTeammatesForYourTeamDescription") }}
     </div>

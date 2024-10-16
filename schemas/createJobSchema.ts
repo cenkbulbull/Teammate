@@ -1,6 +1,5 @@
 import { toTypedSchema } from "@vee-validate/zod";
 import * as z from "zod";
-import { useI18n } from "#imports";
 
 const createSchema = () => {
   const { t } = useI18n();
