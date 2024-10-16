@@ -4,6 +4,12 @@
 
 **! The target audience is students and similar people who have a project idea but have difficulty finding a teammate. Those who have commercial expectations and want to use people for free should please turn to other platforms**
 
+## Language Support
+
+- Turkish
+- English
+- Azerbaijani
+
 ## Environment Variables
 
 To run this project you will need to add the following environment variables to your .env file
@@ -20,11 +26,11 @@ To run this project you will need to add the following environment variables to 
 
 `NUXT_SMTP_PASS` -> For sending e-mail
 
-# Nuxt 3 Minimal Starter
+## Nuxt 3 Minimal Starter
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-## Setup
+### Setup
 
 Make sure to install the dependencies:
 
@@ -42,7 +48,7 @@ yarn install
 bun install
 ```
 
-## Development Server
+### Development Server
 
 Start the development server on `http://localhost:3000`:
 
@@ -60,7 +66,7 @@ yarn dev
 bun run dev
 ```
 
-## Production
+### Production
 
 Build the application for production:
 
