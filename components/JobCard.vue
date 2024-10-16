@@ -19,29 +19,45 @@ const props = defineProps<{
   appliedButRemoved?: boolean;
 }>();
 
-const advertiserId = props.job.user;
+const advertiser = ref(null);
+const avatarFallback = ref("");
 
-const { data } = useFetch("/api/users/getUser", {
-  method: "POST",
-  body: JSON.stringify({ id: advertiserId }),
-  headers: {
-    "Content-Type": "application/json",
-  },
-  key: advertiserId, //kullanmadığımızda önbelleklemeden dolayı advertiserId değişmesine rağmen hep aynı user post geliyor
-});
+const fetchAdvertiserData = async (userId) => {
+  try {
+    const { data } = await useFetch("/api/users/getUser", {
+      method: "POST",
+      body: JSON.stringify({ id: userId }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      key: userId,
+    });
 
-// Yalnızca paylaşanın id/firstname/lastname/profilePhoto bilgisi atanıyor
-const advertiser = computed(() => {
-  if (!data.value) return null; // Veri henüz gelmemişse null döndür
-  const { id, firstname, lastname, profilePhoto } = data.value;
-  return { id, firstname, lastname, profilePhoto };
-});
+    // Kullanıcı bilgilerini güncelle
+    advertiser.value = data.value;
 
-const avatarFallback = computed(() => {
-  const firstInitial = advertiser.value?.firstname.charAt(0).toUpperCase();
-  const lastInitial = advertiser.value?.lastname.charAt(0).toUpperCase();
-  return `${firstInitial}${lastInitial}`;
-});
+    // Fallback avatar'ı ayarla
+    if (advertiser.value) {
+      const { firstname, lastname } = advertiser.value;
+      const firstInitial = firstname.charAt(0).toUpperCase();
+      const lastInitial = lastname.charAt(0).toUpperCase();
+      avatarFallback.value = `${firstInitial}${lastInitial}`;
+    }
+  } catch (error) {
+    console.error("Error fetching advertiser data:", error);
+  }
+};
+
+// props.job.user değiştiğinde veriyi al
+watch(
+  () => props.job.user,
+  (newUserId) => {
+    fetchAdvertiserData(newUserId);
+  }
+);
+
+// İlk yüklemede veriyi al
+fetchAdvertiserData(props.job.user);
 
 const { text, copy, copied, isSupported } = useClipboard();
 
@@ -53,18 +69,12 @@ const copyID = async (id: string) => {
   });
 };
 
-const isFavorite = ref(false);
-
-// favorites dizisini ve props.job.id'yi kontrol edin
-watch(
-  () => appStore.activeUser?.favorites,
-  (favorites) => {
-    if (favorites) {
-      isFavorite.value = favorites.some((item) => item === props.job.id);
-    }
-  },
-  { immediate: true } // İlk başta da kontrol etsin
-);
+const isFavorite = computed(() => {
+  return (
+    appStore.activeUser?.favorites?.some((item) => item === props.job.id) ||
+    false
+  );
+});
 
 const changeFavorite = async (isPressed: boolean) => {
   try {
