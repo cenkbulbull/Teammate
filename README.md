@@ -68,6 +68,20 @@ To run this project you will need to add the following environment variables to 
 
 `NUXT_SMTP_PASS` -> For sending e-mail
 
+#### For Firebase Storage
+
+`firebaseApiKey`
+
+`firebaseAuthDomain`
+
+`firebaseProjectId`
+
+`firebaseStorageBucket`
+
+`firebaseMessagingSenderId`
+
+`firebaseAppId`
+
 ## Nuxt 3 Minimal Starter
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
