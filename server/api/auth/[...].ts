@@ -25,7 +25,9 @@ export default NuxtAuthHandler({
       async authorize(credentials: any) {
         let users = null;
         try {
-          const response = await fetch(appConfig.NUXT_BASE_URL);
+          const response = await fetch(
+            `${appConfig.NUXT_BASE_URL}/api/users/getUsers`
+          );
           if (!response.ok) {
             throw new Error("Failed to fetch users");
           }
@@ -59,7 +61,9 @@ export default NuxtAuthHandler({
       if (account?.provider === "google") {
         let users = null;
         try {
-          const response = await fetch(appConfig.NUXT_BASE_URL);
+          const response = await fetch(
+            `${appConfig.NUXT_BASE_URL}/api/users/getUsers`
+          );
           if (!response.ok) {
             throw new Error("Failed to fetch users");
           }
@@ -80,7 +84,7 @@ export default NuxtAuthHandler({
             // console.error("böyle bir email gmail yok");
             // return null;
             const response = await fetch(
-              "http://localhost:3000/api/users/createUser",
+              `${appConfig.NUXT_BASE_URL}/api/users/createUser`,
               {
                 method: "POST",
                 headers: {

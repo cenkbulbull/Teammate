@@ -115,7 +115,7 @@ export default defineNuxtConfig({
     smtpPass: process.env.NUXT_SMTP_PASS,
     // Keys within public, will be also exposed to the client-side (PUBLIC --ALL)
     public: {
-      apiBase: process.env.NUXT_BASE_URL,
+      // apiBase: process.env.NUXT_BASE_URL,
     },
   },
 });
