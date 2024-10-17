@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 const appConfig = useAppConfig();
 
 export default NuxtAuthHandler({
+  secret: process.env.AUTH_SECRET,
   pages: {
     signIn: "/auth/Login",
   },
