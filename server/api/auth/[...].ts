@@ -25,9 +25,7 @@ export default NuxtAuthHandler({
       async authorize(credentials: any) {
         let users = null;
         try {
-          const response = await fetch(
-            "http://localhost:3000/api/users/getUsers"
-          );
+          const response = await fetch(appConfig.NUXT_BASE_URL);
           if (!response.ok) {
             throw new Error("Failed to fetch users");
           }
