@@ -4,6 +4,7 @@ definePageMeta({
   middleware: "auth",
 });
 
+const loginLoading = ref(false);
 const { signIn } = useAuth();
 const email = ref();
 const password = ref();
@@ -56,15 +57,27 @@ const password = ref();
           </div>
 
           <Button
-            @click="($event) => signIn('credentials', { email, password })"
+            @click="
+              async ($event) => {
+                loginLoading = true;
+                await signIn('credentials', { email, password });
+                loginLoading = false;
+              }
+            "
+            :disabled="loginLoading"
             class="w-full"
-            >{{ $t("login") }}</Button
-          >
+            >{{ $t("login") }}
+            <Icon
+              v-if="loginLoading"
+              class="text-xl"
+              name="line-md:loading-twotone-loop"
+          /></Button>
 
           <Button
             @click="($event) => signIn('google')"
             variant="outline"
             class="w-full gap-1"
+            :disabled="loginLoading"
           >
             <Icon class="text-xl" name="mynaui:brand-google" />
             {{ $t("loginWithGoogle") }}

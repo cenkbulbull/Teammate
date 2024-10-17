@@ -16,11 +16,13 @@ const { signIn } = useAuth();
 //normal kayıt
 const router = useRouter();
 
+const signupLoading = ref(false);
 const { handleSubmit } = useForm({
   validationSchema: formSchema(),
 });
 
 const onSubmit = handleSubmit(async (values) => {
+  signupLoading.value = true;
   const user = values;
   delete user?.repassword;
 
@@ -49,6 +51,8 @@ const onSubmit = handleSubmit(async (values) => {
   } catch (error) {
     console.error(error);
   }
+
+  signupLoading.value = false;
 });
 
 const sendConfirmationEmail = async (email: string) => {
@@ -187,12 +191,22 @@ const sendConfirmationEmail = async (email: string) => {
           </div>
         </div>
 
-        <Button @click="onSubmit" class="w-full">{{ $t("signup") }}</Button>
+        <Button
+          @click="onSubmit"
+          class="w-full flex gap-2"
+          :disabled="signupLoading"
+          >{{ $t("signup") }}
+          <Icon
+            v-if="signupLoading"
+            class="text-xl"
+            name="line-md:loading-twotone-loop"
+        /></Button>
 
         <Button
           @click="($event) => signIn('google')"
           variant="outline"
           class="w-full gap-1"
+          :disabled="signupLoading"
         >
           <Icon class="text-xl" name="mynaui:brand-google" />
           {{ $t("signupWithGoogle") }}
