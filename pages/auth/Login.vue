@@ -82,9 +82,16 @@ const password = ref();
             <Icon class="text-xl" name="mynaui:brand-google" />
             {{ $t("loginWithGoogle") }}
           </Button>
+
+          <Alert variant="destructive" class="flex gap-1 items-center p-2">
+            <Icon name="mdi:exclamation-thick" class="text-4xl" />
+            <AlertDescription class="text-xs">
+              {{ $t("criticalAlertText") }}
+            </AlertDescription>
+          </Alert>
         </div>
 
-        <div class="mt-4 text-center text-sm">
+        <div class="text-center text-sm">
           {{ $t("dontHaveAccount") }}
           <nuxt-link to="signup"
             ><a class="underline">

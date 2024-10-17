@@ -157,5 +157,6 @@
   "error": "Xəta",
   "wrongCodeText": "Yanlış kod daxil etdiniz.",
   "alreadyUserText": "Bu e-poçtla artıq bir istifadəçi mövcuddur.",
-  "newCodeText": "Yeni kod e-poçt adresinizə göndərilmişdir."
+  "newCodeText": "Yeni kod e-poçt adresinizə göndərilmişdir.",
+  "criticalAlertText": "Layihə hazırlanır. Zəhmət olmasa kritik məlumatları daxil etməyin. Tam təhlükəsizlik təmin olunmayıb."
 }

@@ -3,7 +3,6 @@ definePageMeta({
   layout: "auth",
   middleware: "auth",
 });
-
 import { useToast } from "@/components/ui/toast/use-toast";
 import { formSchema } from "@/schemas/signupSchema";
 import { useForm } from "vee-validate";
@@ -191,6 +190,8 @@ const sendConfirmationEmail = async (email: string) => {
           </div>
         </div>
 
+        <recaptcha />
+
         <Button
           @click="onSubmit"
           class="w-full flex gap-2"
@@ -211,6 +212,13 @@ const sendConfirmationEmail = async (email: string) => {
           <Icon class="text-xl" name="mynaui:brand-google" />
           {{ $t("signupWithGoogle") }}
         </Button>
+
+        <Alert variant="destructive" class="flex gap-1 items-center p-2">
+          <Icon name="mdi:exclamation-thick" class="text-4xl" />
+          <AlertDescription class="text-xs">
+            {{ $t("criticalAlertText") }}
+          </AlertDescription>
+        </Alert>
 
         <div class="mt-4 text-center text-sm">
           {{ $t("haveAnAccount") }}

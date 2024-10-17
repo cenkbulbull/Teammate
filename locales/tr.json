@@ -157,5 +157,6 @@
   "error": "Hata",
   "wrongCodeText": "Yanlış kod girdiniz.",
   "alreadyUserText": "Bu e-posta ile zaten bir kullanıcı mevcut.",
-  "newCodeText": "Yeni kod e-posta adresinize gönderildi."
+  "newCodeText": "Yeni kod e-posta adresinize gönderildi.",
+  "criticalAlertText": "Proje geliştirme aşamasındadır. Lütfen kritik bilgilerinizi girmeyin. Tam güvenlik sağlanmadı."
 }
