@@ -61,6 +61,7 @@ export default defineNuxtConfig({
     //   type: "authjs",
     //   defaultProvider: "credentials",
     // },
+    baseURL: process.env.AUTH_ORIGIN,
   },
   css: ["@/assets/styles/index.scss"],
   shadcn: {
