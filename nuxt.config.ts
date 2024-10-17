@@ -62,6 +62,7 @@ export default defineNuxtConfig({
     //   defaultProvider: "credentials",
     // },
     baseURL: process.env.AUTH_ORIGIN,
+    origin: process.env.AUTH_ORIGIN,
   },
   css: ["@/assets/styles/index.scss"],
   shadcn: {
