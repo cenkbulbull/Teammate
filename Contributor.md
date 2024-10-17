@@ -14,7 +14,7 @@ This project is improved by the contributions of its participants. To contribute
 ## Rules
 
 - Adhere to code standards.
-- Write clear and concise descriptions.
+- Write clear and concise descriptions.(Use conventional commit)
 - Please open an issue for any problems or bugs.
 
 ## Contact
