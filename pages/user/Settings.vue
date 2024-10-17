@@ -248,7 +248,7 @@ onMounted(() => {
         </div>
       </div>
 
-      <Button @click="savePersonalSettings" class="text-xs w-32">{{
+      <Button @click="savePersonalSettings" class="text-xs md:w-52">{{
         $t("saveChanges")
       }}</Button>
     </div>
