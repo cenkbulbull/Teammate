@@ -146,9 +146,9 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 
 ## Technologies Used
 
-**Main:** Nuxt Js, Typescript, Tailwind Css, Scss, ShadcnVue, MongoDB, Pinia
+**Main:** Nuxt Js, Typescript, Tailwind Css, Scss, ShadcnVue, MongoDB, Pinia, Firebase Storage
 
-**Packages:** nuxt-mongoose, nuxtjs/i18n, nuxtjs/google-fonts, dropzone, bcrypt,uuid, vee-validate, zod, sidebase-auth, nodemailer, nuxt-marquee
+**Packages:** nuxt-mongoose, nuxtjs/i18n, nuxtjs/google-fonts, dropzone, bcrypt, uuid, vee-validate, zod, sidebase-auth, nodemailer, nuxt-marquee
 
 ## Authors and Acknowledgments
 
