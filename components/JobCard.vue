@@ -181,9 +181,7 @@ const changeFavorite = async (isPressed: boolean) => {
         <div class="flex justify-between w-full">
           <div class="flex gap-2 items-center">
             <Avatar class="rounded-lg">
-              <AvatarImage
-                :src="'/uploads/images/' + advertiser?.profilePhoto"
-              />
+              <AvatarImage :src="advertiser?.profilePhoto" />
               <AvatarFallback>{{ avatarFallback }}</AvatarFallback>
             </Avatar>
 

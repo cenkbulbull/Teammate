@@ -34,7 +34,7 @@ const { data } = useFetch("/api/users/getUser", {
       <div class="flex justify-between items-center flex-wrap gap-4">
         <div class="flex items-center gap-2">
           <Avatar class="w-12 h-12 md:w-24 md:h-24">
-            <AvatarImage :src="'/uploads/images/' + user?.profilePhoto" />
+            <AvatarImage :src="user?.profilePhoto" />
             <AvatarFallback>{{ avatarFallback }}</AvatarFallback>
             <!-- src gelmezse isim soyisim ilk harflerini al -->
           </Avatar>
@@ -154,7 +154,7 @@ const { data } = useFetch("/api/users/getUser", {
                   </div>
                 </div>
                 <div>
-                  <a :href="'/uploads/docs/' + user?.resume" download>
+                  <a :href="user?.resume" download target="_blank">
                     <Button size="icon" class="w-8 h-8"
                       ><Icon name="mynaui:download" class="text-2xl" />
                     </Button>

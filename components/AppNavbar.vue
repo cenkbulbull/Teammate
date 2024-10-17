@@ -86,7 +86,7 @@ const avatarFallback = computed(() => {
             <DropdownMenuContent class="w-56 mr-12">
               <DropdownMenuLabel class="flex items-center gap-2">
                 <Avatar class="w-6 h-6">
-                  <AvatarImage :src="'/uploads/images/' + user.profilePhoto" />
+                  <AvatarImage :src="user.profilePhoto" />
                   <AvatarFallback>{{ avatarFallback }}</AvatarFallback>
                   <!--src gelmezse isim soyisim ilk harflerini al-->
                 </Avatar>

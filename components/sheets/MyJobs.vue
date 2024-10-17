@@ -111,10 +111,7 @@ onMounted(async () => await postStore.fetchMyPosts(userId.value));
                         <div class="flex items-center gap-2">
                           <Avatar class="rounded-lg">
                             <AvatarImage
-                              :src="
-                                '/uploads/images/' +
-                                getApplicant(applicant).profilePhoto
-                              "
+                              :src="getApplicant(applicant).profilePhoto"
                             />
                             <AvatarFallback>
                               {{
