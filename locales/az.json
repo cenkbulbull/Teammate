@@ -128,7 +128,7 @@
     "passwordDontMatch": "Şifrələr uyğun deyil",
     "selectboxError": "Zəhmət olmasa, bir {0} seçin"
   },
-  "applicationSettings": "Müraciət Ayarları",
+  "applicationSettings": "Tətbiq Ayarları",
   "TurnOnEmailNotifications": "E-poçt bildirişlərini aktiv edin",
   "TurnOnEmailNotificationsDescription": "E-poçt bildirişlərini aktiv etsəniz, yeni elanlarla bağlı xəbərlər alacaqsınız.",
   "TurnOnJobPostingNotifications": "İş elan bildirişlərini aktiv edin",

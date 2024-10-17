@@ -128,7 +128,7 @@
     "passwordDontMatch": "Şifreler uyuşmuyor",
     "selectboxError": "Lütfen bir {0} seçin"
   },
-  "applicationSettings": "Başvuru Ayarları",
+  "applicationSettings": "Uygulama Ayarları",
   "TurnOnEmailNotifications": "E-posta bildirimlerini aç",
   "TurnOnEmailNotificationsDescription": "E-posta bildirimlerini açarsanız, yeni ilanlar hakkında haber alabilirsiniz.",
   "TurnOnJobPostingNotifications": "İş ilanı bildirimlerini aç",
