@@ -45,13 +45,13 @@ const avatarFallback = computed(() => {
 
     <div>
       <ul class="flex gap-2">
-        <li v-if="!loggedIn">
+        <li v-if="!loggedIn || !user">
           <nuxt-link :to="localePath('/auth/login')">
             <Button class="text-xs" variant="outline">{{ $t("login") }}</Button>
           </nuxt-link>
         </li>
 
-        <li v-if="!loggedIn">
+        <li v-if="!loggedIn || !user">
           <nuxt-link :to="localePath('/auth/signup')">
             <Button class="text-xs">{{ $t("signup") }}</Button>
           </nuxt-link>
