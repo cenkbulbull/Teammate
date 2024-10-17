@@ -10,6 +10,48 @@
 - English
 - Azerbaijani
 
+## Screenshots
+
+  <div >
+    <img src="public/dashboard.png" alt="Açıklayıcı Metin" />
+    <p>Home</p>
+  </div>
+
+  <div>
+    <img src="public/jobsheet.png" alt="Açıklayıcı Metin" />
+    <p>Job Sheet</p>
+  </div>
+
+  <div>
+    <img src="public/findateammate.png" alt="Açıklayıcı Metin" />
+    <p>Create an ad</p>
+  </div>
+
+  <div>
+    <img src="public/settings.png" alt="Açıklayıcı Metin" />
+    <p>Settings Page</p>
+  </div>
+
+  <div>
+    <img src="public/myjobs.png" alt="Açıklayıcı Metin" />
+    <p>MyJobs Sheet</p>
+  </div>
+
+   <div>
+    <img src="public/login.png" alt="Açıklayıcı Metin" />
+    <p>Login Page</p>
+  </div>
+
+   <div>
+    <img src="public/signup.png" alt="Açıklayıcı Metin" />
+    <p>Signup Page</p>
+  </div>
+
+   <div>
+    <img src="public/confirmation.png" alt="Açıklayıcı Metin" />
+    <p>Confirmation Page</p>
+  </div>
+
 ## Environment Variables
 
 To run this project you will need to add the following environment variables to your .env file
