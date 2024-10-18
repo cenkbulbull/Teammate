@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const props = defineProps<{
   job: Job;
+  advertiser: Object;
 }>();
 
 import { useToast } from "@/components/ui/toast/use-toast";
@@ -76,7 +77,8 @@ const apply = async () => {
           <Tooltip>
             <TooltipTrigger>
               <Badge class="gap-1 font-normal" variant="secondary"
-                ><Icon name="mynaui:user" />{{ job.user }}</Badge
+                ><Icon name="mynaui:user" />{{ advertiser.firstname }}
+                {{ advertiser.lastname }}</Badge
               >
             </TooltipTrigger>
             <TooltipContent>
