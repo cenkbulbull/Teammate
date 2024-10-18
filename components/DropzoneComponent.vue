@@ -8,6 +8,7 @@ import Dropzone from "dropzone";
 const appStore = useAppStore();
 const { t } = useI18n();
 const dropzoneRef = ref(null);
+const errorRequest = ref(null);
 
 onMounted(() => {
   const dropzone = new Dropzone(dropzoneRef.value, {
@@ -35,10 +36,20 @@ onMounted(() => {
         formData.append("userId", userId); // userId'yi de ekle
 
         // Dosya eklendiğinde yapılacak işlemler
-        const { data } = await useFetch("/api/upload", {
+        const { data, error } = await useFetch("/api/upload", {
           method: "POST",
           body: formData,
         });
+
+        if (error.value) {
+          const statusCode = error.value?.data?.statusCode;
+
+          if (statusCode === 429) {
+            errorRequest.value = "error429";
+          } else {
+            errorRequest.value = "errorStandart";
+          }
+        }
 
         await appStore.initializeUser(); //Uploaddan sonra store -> active user güncelle
 
@@ -59,6 +70,16 @@ onMounted(() => {
         <input name="file" type="file" />
       </div>
     </form>
+    <Alert
+      v-if="errorRequest"
+      variant="destructive"
+      class="flex gap-1 items-center p-2 mt-2"
+    >
+      <Icon name="mdi:exclamation-thick" class="text-4xl" />
+      <AlertDescription class="text-xs">
+        {{ $t(errorRequest) }}
+      </AlertDescription>
+    </Alert>
   </div>
 </template>
 

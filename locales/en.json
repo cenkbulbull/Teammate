@@ -158,5 +158,7 @@
   "wrongCodeText": "You entered the wrong code.",
   "alreadyUserText": "A user already exists with this email.",
   "newCodeText": "The new code has been sent to your e-mail address.",
-  "criticalAlertText": "The project is under development. Please do not enter critical information. Complete security is not ensured."
+  "criticalAlertText": "The project is under development. Please do not enter critical information. Complete security is not ensured.",
+  "error429": "Too many requests, please try again later.",
+  "errorStandart": "An error occurred"
 }

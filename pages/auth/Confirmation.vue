@@ -23,6 +23,7 @@ const { t } = useI18n();
 const router = useRouter();
 const user = ref<object>();
 const code = ref<string[]>([]);
+const errorRequest = ref(null);
 
 const confirmEmail = async (e: string[]) => {
   if (e.join("") === appStore.confirmationCode) {
@@ -40,14 +41,24 @@ const confirmEmail = async (e: string[]) => {
 };
 
 const resendCode = async () => {
-  const response = await useFetch("/api/send-confirmation-email", {
+  const { data, error } = await useFetch("/api/send-confirmation-email", {
     method: "POST",
     body: {
       email: user.value.email,
     },
   });
 
-  appStore.setConfirmationCode(response.data.value.confirmationCode);
+  if (error.value) {
+    const statusCode = error.value?.data?.statusCode;
+
+    if (statusCode === 429) {
+      errorRequest.value = "error429";
+    } else {
+      errorRequest.value = "errorStandart";
+    }
+  }
+
+  appStore.setConfirmationCode(data.value.confirmationCode);
   toast({
     description: t("newCodeText"),
   });
@@ -91,6 +102,17 @@ onMounted(async () => {
           <Button @click="confirmEmail(code)" class="w-full">{{
             $t("continue")
           }}</Button>
+
+          <Alert
+            v-if="errorRequest"
+            variant="destructive"
+            class="flex gap-1 items-center p-2"
+          >
+            <Icon name="mdi:exclamation-thick" class="text-4xl" />
+            <AlertDescription class="text-xs">
+              {{ $t(errorRequest) }}
+            </AlertDescription>
+          </Alert>
         </div>
       </div>
     </div>

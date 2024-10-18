@@ -158,5 +158,7 @@
   "wrongCodeText": "Yanlış kod daxil etdiniz.",
   "alreadyUserText": "Bu e-poçtla artıq bir istifadəçi mövcuddur.",
   "newCodeText": "Yeni kod e-poçt adresinizə göndərilmişdir.",
-  "criticalAlertText": "Layihə hazırlanır. Zəhmət olmasa kritik məlumatları daxil etməyin. Tam təhlükəsizlik təmin olunmayıb."
+  "criticalAlertText": "Layihə hazırlanır. Zəhmət olmasa kritik məlumatları daxil etməyin. Tam təhlükəsizlik təmin olunmayıb.",
+  "error429": "Çox sayda sorğu göndərildi, xahiş edirik sonra yenidən cəhd edin.",
+  "errorStandart": "Bir xəta baş verdi."
 }

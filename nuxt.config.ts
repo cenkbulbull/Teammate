@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   compatibilityDate: "2024-09-20",
   modules: [
+    "nuxt-security",
     "@nuxtjs/tailwindcss",
     "shadcn-nuxt",
     "@nuxtjs/i18n",
@@ -116,6 +117,30 @@ export default defineNuxtConfig({
     // Keys within public, will be also exposed to the client-side (PUBLIC --ALL)
     public: {
       // apiBase: process.env.NUXT_BASE_URL,
+    },
+  },
+  // security: {
+  //   rateLimiter: {
+  //     tokensPerInterval: 150, //default 150
+  //     interval: 300000, //default 300000
+  //   },
+  // },
+  routeRules: {
+    "/api/send-confirmation-email": {
+      security: {
+        rateLimiter: {
+          tokensPerInterval: 8, // İzin verilen maksimum istek sayısı, başlangıçta 1 tane fazladan atıyor , yani şuan toplam yazılanın +1 fazlası tane istek atabilecek
+          interval: 300000, // Zaman aralığı (milisaniye cinsinden) 5dk
+        },
+      },
+    },
+    "/api/upload": {
+      security: {
+        rateLimiter: {
+          tokensPerInterval: 8,
+          interval: 300000,
+        },
+      },
     },
   },
 });
