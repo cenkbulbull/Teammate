@@ -125,6 +125,17 @@ export default defineNuxtConfig({
   //     interval: 300000, //default 300000
   //   },
   // },
+  security: {
+    headers: {
+      contentSecurityPolicy: {
+        "img-src": [
+          "'self'",
+          "data:",
+          "https://firebasestorage.googleapis.com",
+        ],
+      },
+    },
+  },
   routeRules: {
     "/api/send-confirmation-email": {
       security: {
