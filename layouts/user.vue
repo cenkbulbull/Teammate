@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { status, signOut } = useAuth();
+const loggedIn = computed(() => status.value === "authenticated");
 const appStore = useAppStore();
 const postStore = usePostsStore();
 const userId = computed(() => appStore.activeUser?.id);
@@ -24,7 +26,7 @@ onMounted(() => {
     <AppFooter />
 
     <!-- MyJobs Sheet -->
-    <Sheet>
+    <Sheet v-if="loggedIn && postStore.myPosts.length > 0">
       <SheetTrigger>
         <div
           class="flex p-1 cursor-pointer text-2xl bg-indigo-800 text-white fixed top-[50%] -right-[8px] rounded transition-all hover:-right-[3px]"
