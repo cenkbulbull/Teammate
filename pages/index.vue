@@ -60,11 +60,11 @@ const changePage = (newPage) => {
     class="col-span-1 grid grid-cols-1 gap-4 bg-slate-50 px-4 py-7 md:px-12 md:grid-cols-3 lg:grid-cols-4"
   >
     <div class="flex flex-col gap-3 gap-2 col-span-3 lg:col-span-1">
-      <div>
+      <div class="hidden lg:block">
         <JobFilter />
       </div>
 
-      <div>
+      <div class="hidden lg:block">
         <EmailCard />
       </div>
     </div>
@@ -72,6 +72,13 @@ const changePage = (newPage) => {
     <div class="flex flex-col gap-4 col-span-3">
       <!-- filters -->
       <div class="flex gap-4">
+        <Drawer>
+          <DrawerTrigger class="block lg:hidden"
+            ><Button>{{ $t("filter") }}</Button></DrawerTrigger
+          >
+          <DrawersJobFilter />
+        </Drawer>
+
         <div class="w-full flex items-center border bg-white rounded-lg">
           <Icon name="mynaui:location" class="text-xl ms-2" />
 
@@ -120,6 +127,24 @@ const changePage = (newPage) => {
         <!-- filter favorites -->
       </div>
       <!-- filters -->
+
+      <!-- Filtered Values -->
+      <!-- {{ postsStore?.filtered?.filtered }}
+
+      <div>
+        <Badge
+          v-for="(value, key) in postsStore?.filtered?.filtered"
+          :key="key"
+          variant="outline"
+        >
+          <template v-if="Array.isArray(value)">
+            {{ key }}: {{ value.join(", ") }}
+          </template>
+          <template v-else> {{ key }}: {{ value }} </template>
+        </Badge>
+      </div> -->
+
+      <!-- Filtered Values -->
 
       <div class="flex flex-col gap-4">
         <!-- jobs -->
@@ -177,6 +202,10 @@ const changePage = (newPage) => {
             <PaginationLast @click="changePage(postsStore.totalPages)" />
           </PaginationList>
         </Pagination>
+      </div>
+
+      <div class="block lg:hidden">
+        <EmailCard />
       </div>
     </div>
   </div>
