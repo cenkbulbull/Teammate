@@ -57,7 +57,7 @@ const changePage = (newPage) => {
   <!-- Settings Sheet -->
 
   <div
-    class="col-span-1 grid grid-cols-1 gap-4 bg-slate-50 px-4 py-7 md:px-12 md:grid-cols-3 lg:grid-cols-4"
+    class="col-span-1 grid grid-cols-1 gap-4 bg-slate-50 px-4 py-5 md:px-12 md:grid-cols-3 lg:grid-cols-4"
   >
     <div class="flex flex-col gap-3 gap-2 col-span-3 lg:col-span-1">
       <div class="hidden lg:block">
@@ -71,7 +71,7 @@ const changePage = (newPage) => {
 
     <div class="flex flex-col gap-4 col-span-3">
       <!-- filters -->
-      <div class="flex gap-4">
+      <div class="flex gap-2">
         <Drawer>
           <DrawerTrigger class="block lg:hidden"
             ><Button>{{ $t("filter") }}</Button></DrawerTrigger

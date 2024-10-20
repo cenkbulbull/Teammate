@@ -16,7 +16,7 @@ const searchJob = () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-5 py-8 px-4 pb-0 md:px-12">
+  <div class="flex flex-col gap-5 py-8 px-4 pb-2 md:px-12">
     <div class="text-4xl font-bold">
       {{ $t("findTeammatesForYourTeam") }}
     </div>
