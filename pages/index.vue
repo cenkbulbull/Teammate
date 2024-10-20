@@ -79,7 +79,7 @@ const changePage = (newPage) => {
           <DrawersJobFilter />
         </Drawer>
 
-        <div class="w-full flex items-center border bg-white rounded-lg">
+        <div class="flex items-center border bg-white rounded-lg">
           <Icon name="mynaui:location" class="text-xl ms-2" />
 
           <Select @update:modelValue="changeSort">
@@ -99,7 +99,7 @@ const changePage = (newPage) => {
         </div>
 
         <!-- filter favorites -->
-        <div class="w-auto">
+        <div>
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger class="flex items-center gap-1">
