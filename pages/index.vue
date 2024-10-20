@@ -99,7 +99,7 @@ const changePage = (newPage) => {
         </div>
 
         <!-- filter favorites -->
-        <div>
+        <div v-if="loggedIn">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger class="flex items-center gap-1">
